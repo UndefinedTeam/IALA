@@ -18,10 +18,11 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "jest": "^22.0.5",
+    "sequelize-cli": "^3.2.0",
     "sequelize-mock": "^0.10.2",
     "supertest": "^3.0.0"
   },
   "scripts": {
-  "test": "jest --watch"
+    "test": "jest --watch"
   }
 }
