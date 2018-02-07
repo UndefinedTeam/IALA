@@ -7,13 +7,13 @@ class Home extends Component {
 		return (
 			<div className="home-container">
 				<Jumbotron>
-				  <h1>Welcome to IALA!</h1>
-				  <p>
-				    It&rsquo;s A List App! Take your organization to a new level with all your lists and tasks in one place.
-				  </p>
-				  <p>
-				    <Button className="jumbo-button">Start Here</Button>
-				  </p>
+					<h1>Welcome to IALA!</h1>
+						<p>
+							It&rsquo;s A List App! Take your organization to a new level with all your lists and tasks in one place.
+						</p>
+						<p>
+							<Button className="jumbo-button">Start Here</Button>
+						</p>
 				</Jumbotron>
 				<section id="labels">
 					<div className="feat-list">

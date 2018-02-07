@@ -13,13 +13,13 @@ class Header extends Component {
 						</Navbar.Brand>
 					</Navbar.Header>
 					<Nav pullRight>
-				      <NavItem eventKey={1} >
-				        <Link to='/register'>Register</Link>
-				      </NavItem>
-				      <NavItem eventKey={2}>
-				        <Link to='/login'>Login</Link>
-				      </NavItem>
-				    </Nav>
+						<NavItem eventKey={1} >
+							<Link to='/register'>Register</Link>
+						</NavItem>
+						<NavItem eventKey={2}>
+							<Link to='/login'>Login</Link>
+						</NavItem>
+					</Nav>
 				</Navbar>
 			</div>
 		)

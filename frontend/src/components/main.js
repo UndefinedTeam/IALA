@@ -7,7 +7,6 @@ import SignUp from './signup';
 class Main extends Component {
 
 	render (){
-
 		return (
 			<div>
 				<Switch>
