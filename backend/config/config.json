@@ -2,21 +2,21 @@
   "development": {
     "username": null,
     "password": null,
-    "database": "IALA-development",
+    "database": "IALA_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": null,
     "password": null,
-    "database": "IALA-test",
+    "database": "IALA_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": null,
     "password": null,
-    "database": "IALA",
+    "database": "IALA_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
