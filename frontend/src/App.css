@@ -1,28 +1,154 @@
-.App {
-  text-align: center;
+/* Color Scheme:
+    #CAEBF2 - Blue
+    #A9A9A9 - Carbon
+    #FF3B3F - Watermelon
+    #EFEFEF - Neutral gray
+  */
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100%;
+    padding: 5px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.jumbotron {
+    margin: 0% 2%;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #D3D3D3;
 }
 
-.App-intro {
-  font-size: large;
+.jumbo-button {
+    border: 2px hidden;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #CAEBF2;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    color: black;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.jumbo-button:hover {
+    background-color: #b5d3d9;
+}
+
+#labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+#features {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.feat-list {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+}
+
+.feat-list > img {
+    width: 400px;
+    height: 270px;
+    padding: 15px;
+}
+
+.feat-vendor {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+}
+
+.feat-vendor > img {
+    width: 400px;
+    height: 270px;
+    padding: 15px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+form {
+    border: 2px solid #D3D3D3;
+    border-radius: 4px;
+    background-color: #D3D3D3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 10px;
+    width: 50%;
+}
+
+.form-input {
+    margin: 15px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+input {
+    padding: 5px;
+    width: 100%;
+    border: 1px inset;
+    border-radius: 4px;
+}
+
+/* change border color to red or green for validation */
+
+
+input[type=button] {
+    width: 50%;
+    border: 2px hidden;
+    border-radius: 4px;
+    padding: 2px 5px 2px 5px;
+    background-color: #FF3B3F;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    color: black;
+}
+
+input[type=button]:hover {
+    background-color: #e53538;
+}
+
+input[type=text]:focus {
+    background-color: #EFEFEF;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 15px;
+    text-align: center;
+    color: #D3D3D3;
+}
+
+h3 {
+    padding: 10px;
 }
