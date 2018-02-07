@@ -25,18 +25,18 @@ app.get('/lists', (req, res) => {
 
 
 //.then doesn't get called
-app.get('/user/:id/list', function(req, res){
-  User.findById(req.params.id,
-    {include: [{
-      model: TodoList,
-      as: 'todoLists'
-    }]
-  }).then(function(user){
-    console.log(user);
-    res.json({user: user, todoLists: user.todoLists})
-  }).catch(function(error){
-    res.send(error)
-  })
-})
+//app.get('/user/:id/list', function(req, res){
+  //User.findById(req.params.id,
+    //{include: [{
+     // model: TodoList,
+     // as: 'todoLists'
+   // }]
+ // }).then(function(user){
+  //  console.log(user);
+   // res.json({user: user, todoLists: user.todoLists})
+ // }).catch(function(error){
+ //   res.send(error)
+//  })
+//})
 
 module.exports = app
