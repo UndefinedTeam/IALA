@@ -4,7 +4,8 @@ class RegoInput extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			type: this.props.type || 'text'
+			type: this.props.type || 'text',
+			name: this.props.name
 		}
 	}
 
@@ -27,7 +28,7 @@ class RegoInput extends Component {
 				</input>
 
 				{this.props.errors &&
-					<div className='help-block'>
+					<div className='help-block' id='help-block'>
 						<ul>
 							{errorList}
 						</ul>
