@@ -15,6 +15,14 @@ module.exports = {
             userId: list.get('id'),
             createdAt: new Date(),
             updatedAt: new Date()
+          },
+          {
+            title: 'Test 2',
+            categoryID: 0,
+            isComplete: false,
+            userId: list.get('id'),
+            createdAt: new Date(),
+            updatedAt: new Date()
           }
         ])
       })

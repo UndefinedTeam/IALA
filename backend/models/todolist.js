@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'userId',
           onDelete: 'CASCADE'
         })
+      },
+      associate: function(models) {
+        TodoList.hasMany(models.Task, {
+          foreignKey: 'todoListId',
+          as: 'tasks'
+        })
       }
     }
   });

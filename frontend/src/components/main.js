@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './home';
 import Login from './login';
 import SignUp from './signup';
+import Dashboard from './userDash'
 
 const API = "http://localhost:3001"
 
@@ -10,8 +11,14 @@ class Main extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			users: []
+			users: [],
+			login: false
 		}
+	}
+
+	//Pass this function to login as prop
+	loginRoute() {
+		this.setState({login: true})
 	}
 
 	componentWillMount() {
@@ -29,8 +36,15 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					<Route path='/login' render={()=><Login users={this.state.users} />} />
+					{this.state.login && <Redirect from='/login' to='/dashboard' />}
+					<Route path='/login' render={()=>
+						<Login
+							users={this.state.users}
+							loginRoute={this.loginRoute.bind(this)}
+						/>
+					}/>
 					<Route path='/register' component={SignUp}/>
+					<Route path='/dashboard' component={Dashboard}/>
 				</Switch>
 			</div>
 		)
