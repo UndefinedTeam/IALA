@@ -25,10 +25,10 @@ class Home extends Component {
 				</section>
 				<section id="features">
 					<div className="feat-list">
-						<img src={require("../images/coffee-cup-desk-pen.jpg")} />
+						<img src={require("../images/coffee-cup-desk-pen.jpg")} alt="cofee-cup" />
 					</div>
 					<div className="feat-vendor">
-						<img src={require("../images/calendar.jpeg")} />
+						<img src={require("../images/calendar.jpeg")} alt="calendar"/>
 					</div>
 				</section>
 			</div>
