@@ -105,23 +105,23 @@ form {
     margin: 15px;
 }
 
+.form-input.has-error > input {
+    border: 2px solid #dc0005;
+    background-color: #ffbec0;
+}
+
+.help-block {
+    color: #dc0005;
+    text-align: center;
+}
+
 .button {
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
-input {
-    padding: 5px;
-    width: 100%;
-    border: 1px inset;
-    border-radius: 4px;
-}
-
-/* change border color to red or green for validation */
-
-
-input[type=button] {
+#submit {
     width: 50%;
     border: 2px hidden;
     border-radius: 4px;
@@ -131,8 +131,15 @@ input[type=button] {
     color: black;
 }
 
-input[type=button]:hover {
+#submit:hover {
     background-color: #e53538;
+}
+
+input {
+    padding: 5px;
+    width: 100%;
+    border: 1px inset;
+    border-radius: 4px;
 }
 
 input[type=text]:focus {
@@ -147,6 +154,15 @@ h2 {
     font-size: 15px;
     text-align: center;
     color: #777;
+}
+
+label {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
 }
 
 h3 {

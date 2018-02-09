@@ -6,20 +6,23 @@ class Header extends Component {
 	render() {
 		return(
 			<div>
-				<Navbar>
+				<Navbar collapseOnSelect>
 					<Navbar.Header>
 						<Navbar.Brand>
 							<Link to="/">IALA</Link>
 						</Navbar.Brand>
+						<Navbar.Toggle />
 					</Navbar.Header>
-					<Nav pullRight>
-						<NavItem href="/register">
-							Register
-						</NavItem>
-						<NavItem href="/login">
-							Login
-						</NavItem>
-					</Nav>
+					<Navbar.Collapse>
+						<Nav pullRight>
+							<NavItem eventKey={1} >
+								<Link to='/register'>Register</Link>
+							</NavItem>
+							<NavItem eventKey={2}>
+								<Link to='/login'>Login</Link>
+							</NavItem>
+						</Nav>
+					</Navbar.Collapse>
 				</Navbar>
 			</div>
 		)
@@ -29,7 +32,7 @@ class Header extends Component {
 export default Header;
 
 
-// <Navbar.Collapse>
+
 //   <Navbar.Text>
 // 	Hello: <Navbar.Link href="#">Link client name here</Navbar.Link>
 //   </Navbar.Text>
@@ -38,4 +41,3 @@ export default Header;
 // 	  Sign Out
 // 	</NavItem>
 //   </Nav>
-// </Navbar.Collapse>
