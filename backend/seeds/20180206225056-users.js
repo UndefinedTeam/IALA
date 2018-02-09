@@ -13,7 +13,7 @@ module.exports = {
         updatedAt: new Date(),
         authToken: 0,
         authTokenExpiration: new Date(),
-        salt: "a1!",
+        salt: ""
       },
       {
         email: 'sally@aol.com',
@@ -24,7 +24,7 @@ module.exports = {
         updatedAt: new Date(),
         authToken: 0,
         authTokenExpiration: new Date(),
-        salt: "a1!"
+        salt: ""
       }
     ])
   },
