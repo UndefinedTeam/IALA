@@ -4,14 +4,32 @@ import Home from './home';
 import Login from './login';
 import SignUp from './Signup';
 
-class Main extends Component {
+const API = "http://localhost:3001"
 
-	render (){
+class Main extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			users: []
+		}
+	}
+
+	componentWillMount() {
+		fetch(`${API}/user`)
+		.then((rawResponse) => {
+			return rawResponse.json()
+		})
+		.then((parsedResponse) => {
+			this.setState({users: parsedResponse.user})
+		})
+	}
+
+	render() {
 		return (
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					<Route path='/login' component={Login}/>
+					<Route path='/login' render={()=><Login users={this.state.users} />} />
 					<Route path='/register' component={SignUp}/>
 				</Switch>
 			</div>
