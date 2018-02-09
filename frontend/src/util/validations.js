@@ -20,7 +20,7 @@ function validateLength(errors, form, field, min, max) {
 }
 
 function validateEmail(errors, form, field){
-	const filter = /^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/
+	const filter = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/
 
 	if(!filter.test(form[field])){
 		return errors
@@ -41,9 +41,32 @@ function validateNumeric(errors, form, field) {
 
 function validatePassword(errors, form, field) {
 	errors = validatePresence(errors, form,'password')
-	errors = validateNumeric(errors, form, 'password', 6)
+	errors = validateNumeric(errors, form, 'password')
+    errors = validateLength(errors, form, 'password', 6, 15)
 
 	return errors
+}
+
+function validateZip(errors, form, field) {
+    const letters = /[a-zA-Z]/
+
+    errors = validatePresence(errors, form, 'zip')
+    errors = validateNumeric(errors, form, 'zip')
+    errors = validateLength(errors, form, 'zip', 5, 5)
+
+    if(form[field].match(letters)){
+        return addError(errors, field, `${field} cannot contain letters`)
+    }
+    return errors
+}
+
+function confirmPassword(errors, form, field) {
+    let password = form['password']
+
+    if (!form[field].match(password)){
+        return addError(errors, field, 'passwords do not match')
+    }
+    return errors
 }
 
 function addError(errors, field, error) {
@@ -63,5 +86,7 @@ module.exports = {
 	validateEmail: validateEmail,
 	validateNumeric: validateNumeric,
 	validatePassword: validatePassword,
+    validateZip: validateZip,
+    confirmPassword: confirmPassword,
 	addError: addError,
 }

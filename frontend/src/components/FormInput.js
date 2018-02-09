@@ -8,16 +8,23 @@ class FormInput extends Component {
 
 		this.state = {
 			hasBeenTouched: false,
-			type: type || 'text',
+			type: type || 'text' || 'password',
 			name: name
 		}
 	}
 
+	onChange(e) {
+		this.props.onChange(e)
+		this.setState({
+			hasBeenTouched: true
+		})
+	}
+
 	render() {
-		const { errors, name, value, onChange } = this.props
+		const { errors, name, value } = this.props
 		const { hasBeenTouched, type } = this.state
 
-		if (errors && this.state.hasBeenTouched){
+		if (errors && hasBeenTouched){
 			var passError = errors;
 			var errorList = passError.map((el, index) => {
 				return <li key={index}> {el} </li>
@@ -25,14 +32,14 @@ class FormInput extends Component {
 		}
 
 		return (
-			<div className={`form-input ${errors && 'has-error'}`}>
+			<div className={`form-input ${errors && hasBeenTouched && 'has-error'}`}>
 			 	<input
 					type={type}
 					name={name}
 					value={value}
-					onChange={onChange} />
+					onChange={this.onChange.bind(this)} />
 
-				{errors && this.state.hasBeenTouched &&
+				{errors && hasBeenTouched &&
 					<div className='help-block' id='help-block'>
 						<ul>
 							{errorList}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormInput from './FormInput';
-import { validatePresence, validateLength, validateEmail, validatePassword, validateNumeric, addError } from '../util/validations'
+import { validatePresence, validateLength, validateEmail, validatePassword, validateNumeric, confirmPassword, validateZip } from '../util/validations'
 
 
 class SignUp extends Component {
@@ -11,6 +11,7 @@ class SignUp extends Component {
                 email: "",
                 name: "",
                 password: "",
+                passwordConfirm: "",
                 zip: ""
             },
 
@@ -31,10 +32,10 @@ class SignUp extends Component {
         // Password
         errors = validatePassword(errors, form, 'password')
 
+        // Password Confirm
+        errors = confirmPassword(errors, form, 'passwordConfirm')
         // Zip
-        errors = validatePresence(errors, form, 'zip')
-        errors = validateNumeric(errors, form, 'zip')
-        errors = validateLength(errors, form, 'zip', 5, 5)
+        errors = validateZip(errors, form, 'zip')
 
         return errors
     }
@@ -68,7 +69,7 @@ class SignUp extends Component {
 
 
     render() {
-        const { email, name, password, zip } = this.state.form
+        const { email, name, password, passwordConfirm, zip } = this.state.form
         const { errors } = this.state
 
         return (
@@ -78,11 +79,10 @@ class SignUp extends Component {
                         <div className='form-input'>
                         <label id='email-input'>Email</label>
                             <FormInput
-                                type="text"
+                                type="email"
                                 name='email'
                                 value={email}
                                 onChange={this.handleChange.bind(this)}
-                                placeholder="Enter Email"
                                 errors={errors.email}
                             />
                         </div>
@@ -93,18 +93,28 @@ class SignUp extends Component {
                                 name='name'
                                 value={name}
                                 onChange={this.handleChange.bind(this)}
-                                placeholder="Enter Name"
                                 errors={errors.name}
                             />
                         </div>
                         <div className='form-input'>
                         <label id='password-input'>Password</label>
                             <FormInput
-                                type="text"
+                                type="password"
                                 name='password'
                                 value={password}
                                 onChange={this.handleChange.bind(this)}
                                 errors={errors.password}
+                            />
+                        </div>
+
+                        <div className='form-input'>
+                        <label id='passwordConfirm-input'>Confirm Password</label>
+                            <FormInput
+                                type="password"
+                                name='passwordConfirm'
+                                value={passwordConfirm}
+                                onChange={this.handleChange.bind(this)}
+                                errors={errors.passwordConfirm}
                             />
                         </div>
 
@@ -115,13 +125,14 @@ class SignUp extends Component {
                                 name='zip'
                                 value={zip}
                                 onChange={this.handleChange.bind(this)}
-                                placeholder="Enter Zip Code"
                                 errors={errors.zip}
                             />
                         </div>
 
                         <div className= "button">
-                            <button onClick={this.handleSubmit.bind(this)}>
+                            <button
+                                id='submit'
+                                onClick={this.handleSubmit.bind(this)}>
                                 Submit
                             </button>
                         </div>
