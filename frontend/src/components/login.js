@@ -10,6 +10,11 @@ class Login extends Component {
 		}
 	}
 
+	//Calls loginRoute to set login state as true and route to dashboard
+	loginRoute(){
+		this.props.loginRoute();
+	}
+
 	//Sets user input email to state
 	handleEmail(e){
 		this.setState({email: e.target.value})
@@ -27,12 +32,6 @@ class Login extends Component {
 
 		let isValid = false;
 
-		// Checks for empty fields
-		if (email === "" || psw === ""){
-			this.setState({error: "Invalid login information"})
-		}
-		console.log(users);
-
 		for(let i=0; i < users.length; i++) {
 			if(email === users[i].email && psw === users[i].password){
 				isValid = true;
@@ -40,7 +39,10 @@ class Login extends Component {
 		}
 
 		if(isValid) {
-			console.log("success");
+			this.setState({error: ""})
+			this.loginRoute();
+		} else {
+			this.setState({error: "Invalid login"})
 		}
 
 	}
@@ -65,6 +67,7 @@ class Login extends Component {
 
 						<div className= "button">
 							<button
+								id="submit"
 								type="button"
 						 		onClick={this.handleSubmit.bind(this)}
 							> Login </button>

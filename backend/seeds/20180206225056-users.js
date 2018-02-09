@@ -11,6 +11,14 @@ module.exports = {
         zip: '92123',
         createdAt: new Date(), // we need to add the manually for seeds
         updatedAt: new Date()
+      },
+      {
+        email: 'sally@aol.com',
+        name: 'Sally Bobby',
+        password: 'sally',
+        zip: '92123',
+        createdAt: new Date(), // we need to add the manually for seeds
+        updatedAt: new Date()
       }
     ])
   },
