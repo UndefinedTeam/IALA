@@ -20,6 +20,15 @@ module.exports = {
       zip: {
         type: Sequelize.INTEGER
       },
+      authToken: {
+        type: Sequelize.DATE
+      },
+      authTokenExpiration:{
+        type: Sequelize.DATE
+      },
+      salt:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

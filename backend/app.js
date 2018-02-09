@@ -14,11 +14,28 @@ app.get('/', (req, res) => {
   res.json({message: 'API Example App'})
 });
 
-app.get('/user', (req, res) => {
-  User.findAll().then((user) => {
-      res.json({user: user})
-  })
-})
+app.post('/user', function(request, response){
+    User.create(
+        {
+            email: request.body.email,
+            name: request.body.name,
+            password: request.body.password,
+            zip: request.body.zip
+        }
+    ).then((user)=>{
+        response.json({
+            message: 'success',
+            user: user
+            })
+        }).catch((error)=>{
+            console.log(error);
+            response.status(400)
+            response.json({
+              message: "Unable to create User",
+              errors: error.errors
+            })
+        })
+    })
 
 app.get('/lists', (req, res) => {
   TodoList.findAll().then((todoList) => {
