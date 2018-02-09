@@ -146,9 +146,15 @@ h4 {
 h2 {
     font-size: 15px;
     text-align: center;
-    color: #D3D3D3;
+    color: #777;
 }
 
 h3 {
     padding: 10px;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
