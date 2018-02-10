@@ -12,6 +12,7 @@ app.use(cors())
 
 const authorization = function(req, res, next){
   const token = req.query.authToken || req.body.authToken
+  console.log(token);
   if(token){
     User.findOne({
       where: {authToken: token}
@@ -34,6 +35,16 @@ const authorization = function(req, res, next){
 app.get('/', (req, res) => {
   res.json({message: 'API Example App'})
 });
+
+app.post('/login', (req,res) => {
+  console.log(req.body.email);
+  User.findOne({
+    where:{email: req.body.email},
+    attributes: ['id', 'name', 'email', 'password']
+  }).then( user => {
+    console.log(User.verifyPassword(user.password))
+  })
+})
 
 app.get('/user',
 authorization ,

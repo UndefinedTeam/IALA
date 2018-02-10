@@ -16,18 +16,21 @@ class Main extends Component {
 		}
 	}
 
-	//Pass this function to login as prop
-	loginRoute() {
-		this.setState({login: true})
+	componentWillMount() {
+		fetch(`${API}/`)
 	}
 
-	componentWillMount() {
-		fetch(`${API}/user`)
-		.then((rawResponse) => {
-			return rawResponse.json()
-		})
-		.then((parsedResponse) => {
-			this.setState({users: parsedResponse.user})
+	loginRoute(params) {
+		fetch(`${API}/login`,
+			{
+				body: JSON.stringify(params),
+				headers: {
+					'Content-Type':'application/json'
+				},
+				method: "POST"
+			}).then((parsedResponse) => {
+				console.log(parsedResponse);
+				this.setState({users: parsedResponse.user})
 		})
 	}
 
