@@ -20,9 +20,9 @@ function validateLength(errors, form, field, min, max) {
 }
 
 function validateEmail(errors, form, field){
-	const filter = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/
+	const filter = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/
 
-	if(!filter.test(form[field])){
+	if(filter.test(form[field])){
 		return errors
 	}
 

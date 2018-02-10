@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormInput from './FormInput';
-import { validatePresence, validateLength, validateEmail, validatePassword, validateNumeric, confirmPassword, validateZip } from '../util/validations'
+import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
 
 
 class SignUp extends Component {
@@ -14,6 +14,8 @@ class SignUp extends Component {
                 passwordConfirm: "",
                 zip: ""
             },
+
+            message: "initial",
 
             errors: {}
         }
@@ -34,6 +36,7 @@ class SignUp extends Component {
 
         // Password Confirm
         errors = confirmPassword(errors, form, 'passwordConfirm')
+
         // Zip
         errors = validateZip(errors, form, 'zip')
 
@@ -52,29 +55,34 @@ class SignUp extends Component {
     }
 
     handleSubmit(e) {
-        console.log(e);
-
         e.preventDefault()
 
-        // now you just need to check errors
+        let { message, form } = this.state
 
-        if(this.state.errors.length > 0) {
-            // this is a failing case!!!
+        let errors = this.validateForm(form)
 
-            return
+        if(Object.keys(errors).length > 0) {
+            message = "You need to fix the errors below before submitting"
+        } else {
+            console.log(form)
+            message = ""
         }
 
-        console.log("this means we can submit the form! :)");
+        this.setState({
+            message: message,
+            errors: errors
+        })
     }
 
 
     render() {
         const { email, name, password, passwordConfirm, zip } = this.state.form
-        const { errors } = this.state
+        const { errors, message } = this.state
 
         return (
             <div className='form-container'>
                 <h3>Create an account with IALA!</h3>
+                <h4>{message}</h4>
                     <form>
                         <div className='form-input'>
                         <label id='email-input'>Email</label>
@@ -132,7 +140,8 @@ class SignUp extends Component {
                         <div className= "button">
                             <button
                                 id='submit'
-                                onClick={this.handleSubmit.bind(this)}>
+                                onClick={this.handleSubmit.bind(this)}
+                            >
                                 Submit
                             </button>
                         </div>

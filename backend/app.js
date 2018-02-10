@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/user',
-authorization ,
+// authorization ,
 (req, res) => {
   res.json({user: req.currentUser})
 })
@@ -50,6 +50,7 @@ app.post('/user', function(req, res){
       zip: req.body.zip
     }
   ).then((user)=>{
+      console.log(user);
     res.json({
       message: 'success',
       user: user

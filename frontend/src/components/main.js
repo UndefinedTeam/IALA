@@ -31,6 +31,21 @@ class Main extends Component {
 		})
 	}
 
+	handleNewUser(params){
+		fetch(`${API}/user`, {
+			body: JSON.stringify(params),
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			method: "POST"
+			}
+		)
+		.then((rawResponse) => {
+			console.log(rawResponse);
+			return rawResponse.json()
+		})
+	}
+
 	render() {
 		return (
 			<div>
