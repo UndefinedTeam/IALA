@@ -1,0 +1,49 @@
+.dash-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.userList-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 3%;
+
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    border: 2px solid;
+    text-align: center;
+}
+
+.circle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+    background-color: lightblue;
+}
+
+#bar {
+    margin: 2%;
+    width: 95%;
+}
+
+.vendorSearch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 40%;
+    border: 2px solid;
+    text-align: center;
+}

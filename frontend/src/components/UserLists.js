@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
+import { Panel } from 'react-bootstrap';
 
 class UserLists extends Component {
 
     render(){
-        console.log(this.props.user);
-       //  if(this.props.lists.length > 0) {
-       //     let lists;
-       //     let listId = this.props.id;
-       //
-       //     for (let i = 0; i < this.props.lists.length; i++){
-       //         if (listId === this.props.lists[i].id) {
-       //             lists = this.props.lists[i]
-       //         }
-       //     }
-       // }
 
         return(
-            <div>
-                <h2>{this.props.user} List&#39;s</h2>
+            <div className="userList-container">
+                <h2>UserName List&#39;s</h2>
                     <div>
-
+                        <Panel bsStyle="success" id="collapsible-panel">
+                            <Panel.Heading>
+                                <Panel.Title toggle componentClass="h3">
+                                    List title
+                                </Panel.Title>
+                            </Panel.Heading>
+                            <Panel.Collapse>
+                                <Panel.Body>
+                                    List description or list of tasks in ul
+                                </Panel.Body>
+                            </Panel.Collapse>
+                        </Panel>
                     </div>
             </div>
         )
