@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
 class UserLists extends Component {
-
-    render(){
-
+    render() {
+        const { user } = this.props
+        
         return(
             <div className="userList-container">
                 <h2>UserName List&#39;s</h2>

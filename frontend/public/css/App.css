@@ -101,6 +101,11 @@ form {
     width: 50%;
 }
 
+form > p {
+    color: red;
+    text-align: center;
+}
+
 .form-input {
     margin: 15px;
 }

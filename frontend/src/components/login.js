@@ -52,7 +52,7 @@ class Login extends Component {
 			<div className='form-container'>
 				<h3>Welcome back to IALA!</h3>
 					<form>
-
+						<p>{this.props.message}</p>
 						<div className='form-input'>
 							<input type="text" name='email' placeholder="Email" onChange={this.handleEmail.bind(this)}></input>
 						</div>
