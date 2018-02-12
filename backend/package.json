@@ -10,7 +10,8 @@
     "express-validator": "^4.3.0",
     "minimatch": "^3.0.4",
     "pg": "6.1.5",
-    "sequelize": "3.30.4"
+    "sequelize": "3.30.4",
+    "yelp-fusion": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
