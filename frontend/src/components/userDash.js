@@ -51,7 +51,9 @@ class Dashboard extends Component {
 			<div className="dash-container">
 				<UserLists />
 				<Progress />
-				<VendorSearch />
+				<div className="vendorResults">
+					<VendorSearch />
+				</div>
 			</div>
 		)
 	}

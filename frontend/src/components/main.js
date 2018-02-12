@@ -34,6 +34,7 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
+
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					{this.state.login && <Redirect from='/login' to='/dashboard' />}
