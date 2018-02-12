@@ -22,7 +22,7 @@ class Main extends Component {
 	}
 
 	componentWillMount() {
-		fetch(`${API}/user`)
+		fetch(`${API}/users`)
 		.then((rawResponse) => {
 			return rawResponse.json()
 		})
