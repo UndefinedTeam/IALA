@@ -5,6 +5,10 @@ var app = express();
 var User = require('./models').User
 var TodoList = require('./models').TodoList
 var Task = require('./models').Task
+var apiKey = 'M6w60G2RL_F_kiACA3VphibduaHe_ge5DwPkzFgJQj6GL6fq6eWnL_VV7pxcM6iAfvc2FAHg4G-5XXysQgtX8wU7JjdJkrhz1sklOA7J8FhPgj7shUfHVKNiYt17WnYx';
+const yelp = require('yelp-fusion');
+
+const client = yelp.client(apiKey);
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -52,6 +56,24 @@ app.get('/list/:id/tasks', function(req, res) {
   }).catch(function(error) {
     res.send(error)
   })
+})
+//backend API that fetches info from yelp
+//searches yelp and returns the results in a json body
+//https://www.npmjs.com/package/yelp-fusion <--yelps NPM package
+app.get('/yelp/:search/:location', function(req, res) {
+  console.log(req.params.search);
+  console.log(req.params.location);
+
+  client.search({
+    term: req.params.search,
+    location: req.params.location
+  }).then(response => {
+    //return entire json object from yelp 
+    res.json(response.jsonBody)
+
+  }).catch(e => {
+    console.log(e);
+  });
 })
 
 module.exports = app
