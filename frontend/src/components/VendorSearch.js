@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import {GridList, GridTile} from 'material-ui/GridList';
@@ -11,28 +10,27 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-
+//Material UI stuff for the vendor cards to display
 const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-  },
-  gridList: {
-    width: 800,
+    width: 700,
     height: 450,
     overflowY: 'auto',
   },
-  // gridTile: {
-  //   position: 'absolute',
-  //   left: '0 px',
-  //   right: '0 px',
-  //   bottom: '0 px',
-  //   height: '81 px',
-  //   background: 'rgba(0, 0, 0, 0.4)',
-  //   display: 'flex',
-  //   'align-items': 'center',
-  // }
+  gridList: {
+    width: 700,
+    height: 450,
+    overflowY: 'auto',
+  },
+  gridTile: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    'align-items': 'center',
+  }
 };
 
 class VendorSearch extends Component {
@@ -90,7 +88,7 @@ class VendorSearch extends Component {
 	render (){
 		return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-        <Paper zDepth={3} >
+
 
           <TextField
             hintText="Search a Business"
@@ -110,27 +108,25 @@ class VendorSearch extends Component {
           {this.state.isSubmitHit?
             <div>
               <div style={styles.root}>
-    <GridList
-      cellHeight={180}
-      style={styles.gridList}
-    >
-      <Subheader>Reults</Subheader>
-      {this.state.tableData.map((item) => (
-        <GridTile
-          style={styles.gridTile}
-          key={"na"}
-          title={item.name + " |" + item.phone}
-          subtitle={<span>{item.location.display_address}</span>}
-          actionIcon={<FloatingActionButton mini={true}><ContentAdd /></FloatingActionButton>}
-        >
-          <img src={item.image_url} />
-        </GridTile>
-      ))}
-    </GridList>
-  </div>
+                <GridList
+                  cellHeight={180}
+                  style={styles.gridList}
+                >
+                  <Subheader>Results</Subheader>
+                  {this.state.tableData.map((item) => (
+                    <GridTile
+                      style={styles.gridTile}
+                      key={"na"}
+                      title={item.name + " |" + item.phone}
+                      subtitle={<span>{item.location.display_address}</span>}
+                      actionIcon={<FloatingActionButton mini={true}><ContentAdd /></FloatingActionButton>}
+                    >
+                      <img src={item.image_url} />
+                    </GridTile>
+                  ))}
+                </GridList>
+              </div>
             </div>:<h1></h1>}
-
-        </ Paper>
 
       </MuiThemeProvider>
 		)
@@ -138,10 +134,3 @@ class VendorSearch extends Component {
 }
 
 export default VendorSearch;
-
-// var results = response.jsonBody.businesses;
-//
-// results.map((item) => {
-//   const {name, url, rating, location, display_phone} = item;
-//   let tempObject = {}
-// })
