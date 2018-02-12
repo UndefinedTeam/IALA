@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
+import VendorSearch from './VendorSearch.js';
 
 class Home extends Component {
 
@@ -31,6 +32,8 @@ class Home extends Component {
 						<img src={require("../images/calendar.jpeg")} alt="calendar"/>
 					</div>
 				</section>
+
+				<VendorSearch />
 			</div>
 		)
 	}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserLists from './UserLists';
 import Progress from './Progress';
-import VendorSearch from './VendorSearch';
+import VendorSearch from './VendorSearch.js';
 
 const API = "http://localhost:3001"
 
