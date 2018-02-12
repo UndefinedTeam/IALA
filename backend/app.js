@@ -14,32 +14,38 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/', (req, res) => {
-  res.json({message: 'API Example App'})
-});
-
 app.get('/user', (req, res) => {
   User.findAll().then((user) => {
-      res.json({user: user})
+      res.json({
+        user: user
+      })
   })
 })
 
 app.get('/lists', (req, res) => {
-  TodoList.findAll().then((todoList) => {
-      res.json({todoList: todoList})
-  })
+  TodoList.findAll().then((lists) => {
+      res.json({
+        lists: lists
+      })
+    })
 })
 
 app.get('/user/:id/list', function(req, res) {
   User.findById(req.params.id).then(function(user) {
     TodoList.findAll({
       where: {
-        userId: req.params.id
+        userId: user.id
       }
     }).then(function(lists) {
-      res.json({user:user, lists: lists})
+      res.json({
+        lists: lists
+      })
     })
   }).catch(function(error) {
+    res.send(error)
+  })
+})
+  .catch(function(error) {
     res.send(error)
   })
 })
@@ -48,10 +54,12 @@ app.get('/list/:id/tasks', function(req, res) {
   TodoList.findById(req.params.id).then(function(list) {
     Task.findAll({
       where: {
-        todoListId: req.params.id
+        todoListId: list.id
       }
     }).then(function(tasks) {
-        res.json({list:list, tasks:tasks})
+        res.json({
+          tasks:tasks
+        })
     })
   }).catch(function(error) {
     res.send(error)
@@ -68,7 +76,7 @@ app.get('/yelp/:search/:location', function(req, res) {
     term: req.params.search,
     location: req.params.location
   }).then(response => {
-    //return entire json object from yelp 
+    //return entire json object from yelp
     res.json(response.jsonBody)
 
   }).catch(e => {

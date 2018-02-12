@@ -9,6 +9,8 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const styles = {
   root: {
@@ -119,7 +121,7 @@ class VendorSearch extends Component {
           key={"na"}
           title={item.name + " |" + item.phone}
           subtitle={<span>{item.location.display_address}</span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          actionIcon={<FloatingActionButton mini={true}><ContentAdd /></FloatingActionButton>}
         >
           <img src={item.image_url} />
         </GridTile>
