@@ -91,7 +91,7 @@ class VendorSearch extends Component {
         <Paper zDepth={3} >
 
           <TextField
-            hintText="Search a Buisness"
+            hintText="Search a Business"
             floatingLabelText="Search Business or category"
             onChange={this.venSearchResults}
           /><br />
