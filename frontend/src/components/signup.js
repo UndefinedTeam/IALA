@@ -15,7 +15,8 @@ class SignUp extends Component {
                 zip: ""
             },
 
-            errors: {}
+            errors: {},
+            newUserSuccess: false,
         }
     }
 
@@ -52,21 +53,39 @@ class SignUp extends Component {
     }
 
     handleSubmit(e) {
+        const { form } = this.state
         console.log(e);
 
         e.preventDefault()
 
-        // now you just need to check errors
-
         if(this.state.errors.length > 0) {
             // this is a failing case!!!
-
-            return
+            return this.state.errors
+        } else {
+                this.handleNewUser(form)
         }
-
         console.log("this means we can submit the form! :)");
     }
 
+    handleNewUser(params){
+        const { api } = this.props
+        console.log("api:", api);
+        fetch(`${api}/users`,
+            {
+                body: JSON.stringify(params),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: "POST"
+            }
+        ).then((res)=>{
+            return res.json()
+        }).then(()=>{
+            this.setState({newUserSuccess: true})
+        }).catch((err)=>{
+            console.log("Error: failed to create new user", err)
+        })
+    }
 
     render() {
         const { email, name, password, passwordConfirm, zip } = this.state.form

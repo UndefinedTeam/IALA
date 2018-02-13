@@ -47,7 +47,11 @@ class Main extends Component {
 							loginRoute={this.loginRoute.bind(this)}
 						/>
 					}/>
-					<Route path='/register' component={SignUp}/>
+					<Route path='/register' render={(props)=>
+						<SignUp
+							api={API}
+						/>
+					}/>
 
 					<Route path='/dashboard' render={(props) => {
 								 if(login && users.length > 0){
