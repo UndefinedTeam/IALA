@@ -3,7 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './home';
 import Login from './login';
 import SignUp from './signup';
-import Dashboard from './userDash'
+import Dashboard from './userDash';
+import TaskDash from './tasksDash'
+
+
 
 const API = "http://localhost:3001"
 
@@ -22,7 +25,7 @@ class Main extends Component {
 	}
 
 	componentWillMount() {
-		fetch(`${API}/user`)
+		fetch(`${API}/users`)
 		.then((rawResponse) => {
 			return rawResponse.json()
 		})
@@ -46,6 +49,7 @@ class Main extends Component {
 					}/>
 					<Route path='/register' component={SignUp}/>
 					<Route path='/dashboard' component={Dashboard}/>
+					<Route path='/tasks-dash' component={TaskDash}/>
 				</Switch>
 			</div>
 		)

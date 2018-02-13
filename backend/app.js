@@ -38,6 +38,7 @@ app.get('/users/:id/list', function(req, res) {
     .then(function(lists) {
       res.json({
       lists: lists
+      })
     })
     .catch(function(error) {
       res.send(error)
@@ -77,7 +78,9 @@ app.get('/yelp/:search/:location', (req, res) => {
     //return entire json object from yelp
     res.json(response.jsonBody)
 
-  }).catch(e => console.log(e))
+  }).catch(e => {
+    console.log(e);
+  });
 })
 
-module.exports = app
+module.exports = app 
