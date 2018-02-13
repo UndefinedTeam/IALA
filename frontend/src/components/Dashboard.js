@@ -13,42 +13,6 @@ class Dashboard extends Component {
 		}
 	}
 
-	componentWillMount(){
-		let { users, api } = this.props
-		let id = users.id
-		console.log("Users in Dash:", users)
-
-		fetch(`${api}/users/${id}/list`)
-		.then((res) => {
-			console.log("Lists:",res)
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({
-				lists: res.lists
-			})
-		})
-		.catch((err) => {
-			console.log("List Error:",err)
-			return err
-		})
-
-		fetch(`${api}/lists/${id}/tasks`)
-		.then((res) => {
-			console.log("tasks:", res)
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({
-				tasks: res.tasks
-			})
-		})
-		.catch((err) => {
-			console.log("Task Error:", err)
-			return err
-		})
-	}
-
 	render() {
 		const { users } = this.props
 		let { lists, tasks } = this.state

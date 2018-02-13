@@ -11,8 +11,8 @@ class Main extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			login: false,
-			users: [],
+			login: true,
+			users: [1],
 		}
 	}
 
@@ -20,17 +20,6 @@ class Main extends Component {
 	// loginRoute() {
 	// 	this.setState({login: true})
 	// }
-
-	componentWillMount() {
-		fetch(`${API}/users`)
-		.then((res) => {
-			// console.log("Response from API:", res);
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({users: res.users})
-		})
-	}
 
 	render() {
 		let { login, users } = this.state
