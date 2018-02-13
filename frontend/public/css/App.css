@@ -25,6 +25,10 @@
     padding: 5px;
 }
 
+.progress-container {
+    width: 100%;
+}
+
 .jumbotron {
     margin: 0% 2%;
     padding: 15px;
@@ -173,3 +177,76 @@ h3 {
 .footer {
   width: 100%;
 }
+
+    
+{/* ----Tasks & tasksDash Component */}
+
+
+.tasks-list {
+    display: flex; 
+    flex-direction: column;
+    flex-basis: 75%;
+    margin: 2em;
+}
+
+.tasks-sidebar {
+    border: solid;
+    outline:none;
+    width: 30%;
+    padding: 25px;
+    height:100%;
+    background-color: #BFC3EA;
+    position:fixed!important;
+    overflow: hidden;
+    border:none;
+    
+}
+
+.tasks-main{
+    float: right;
+    background-color: yellow;
+    max-width: 50%;
+    padding: 5px;
+    position:relative;
+
+}   
+
+
+.todo-list-header > img {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
