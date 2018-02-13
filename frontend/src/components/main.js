@@ -12,15 +12,33 @@ class Main extends Component {
 		super(props)
 		this.state = {
 			users: [],
-			login: false
+			login: false,
+			authToken: this.getToken()
 		}
 	}
 
-	componentWillMount() {
-		fetch(`${API}/`)
+	//*********************************************************
+	//*****   Retrieve token and expiration from browser  *****
+	//*****	  	Nullify auth token if past expire date  	*****
+	//*********************************************************
+	getToken() {
+		let token = localStorage.getItem('authToken')
+		let expire = new Date(localStorage.getItem("tokenExpiration"))
+		var today = new Date()
+		if(today.getTime() > expire.getTime()) {
+			return null
+		} else {
+			return token
+		}
+		return 123
 	}
 
-	//Pass in login form, calls login POST endpoint
+	//*********************************************************
+	//***** Passes login form, calls login POST endpoint  *****
+	//*****		New auth token and store to local storage  	*****
+	//***** 			Redirect to dashboard after login				*****
+	//*****			 	༼ つ ◕_◕ ༽つ	It works  ༼ つ ◕_◕ ༽つ   	  *****
+	//*********************************************************
 	loginRoute(loginForm) {
 		fetch(`${API}/login`,
 		{
@@ -32,17 +50,21 @@ class Main extends Component {
 		})
 		.then(() => {
 			fetch(`${API}/login/${loginForm.email}`)
-			.then(token => {
-				console.log("hi", loginForm.email, token.authToken);
-				localStorage.setItem("authToken", token.authToken)
+			.then(response => {
+				return response.json()
+			})
+			.then(parsedResponse => {
+				localStorage.setItem("authToken", parsedResponse.token)
+				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
+				this.setState({
+					authToken: parsedResponse.token
+				})
 			})
 			.catch(error => {console.log("Unable to log in")})
 		})
 		.catch(error => {
 			console.log("Unable to set auth token");
 		})
-
-
 	}
 
 	render() {

@@ -42,7 +42,10 @@ app.get('/login/:email', (req, res) => {
     where:{email: req.params.email}
   })
   .then(user => {
-    res.json({authToken: user.authToken})
+    res.json({
+      token: user.authToken,
+      expiration: user.authTokenExpiration
+    })
     console.log(user.authToken);
   })
   .catch(error => {
