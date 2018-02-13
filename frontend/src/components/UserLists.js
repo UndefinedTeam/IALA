@@ -10,11 +10,13 @@ class UserLists extends Component {
         }
     }
 
-    render(){
+    render() {
+        const { user, lists, tasks } = this.props
+        console.log(this.props)
 
         return(
             <div className="userList-container">
-                <h2>UserName List&#39;s</h2>
+                <h2>user name List&#39;s</h2>
                     <div>
                         <Panel bsStyle="success" id="collapsible-panel">
                             <Panel.Heading>
@@ -24,7 +26,8 @@ class UserLists extends Component {
                             </Panel.Heading>
                             <Panel.Collapse>
                                 <Panel.Body>
-                                    List description or list of tasks in ul
+                                    list description & tasks
+                                    <div><button href="/dashboard/list/:id/tasks">View List</button></div>
                                 </Panel.Body>
                             </Panel.Collapse>
                         </Panel>

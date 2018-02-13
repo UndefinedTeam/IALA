@@ -15,11 +15,11 @@ class Header extends Component {
 					</Navbar.Header>
 					<Navbar.Collapse>
 						<Nav pullRight>
-							<NavItem eventKey={1} >
-								<Link to='/register'>Register</Link>
+							<NavItem  href='/register'>
+								Register
 							</NavItem>
-							<NavItem eventKey={2}>
-								<Link to='/login'>Login</Link>
+							<NavItem href='/login'>
+								Login
 							</NavItem>
 						</Nav>
 					</Navbar.Collapse>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import Tasks from './tasks'; 
 import Progress from './Progress';
 import TodoInput from './TodoInput'
@@ -35,13 +36,16 @@ class TasksDash extends Component {
   }
 
   handleAddTodo(todo) {
-  this.setState({todos: [...this.state.todos, todo]});
+  this.setState({todos: [...this.state.todos, todo]});  
 }
 
-
- handleEditTodo(todo) {
-  this.setState({todos: [...this.state.todos, todo]});
+handleEditTodo(todo) {
+  this.setState({todos: [...this.state.todos, todo]});  
 }
+ 
+
+
+
 
 
   render() {
@@ -91,3 +95,6 @@ class TasksDash extends Component {
 export default TasksDash;
 
 
+
+
+ 
