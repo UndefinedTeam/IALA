@@ -22,6 +22,25 @@ app.get('/users', (req, res) => {
   })
 })
 
+app.post('/users', (req, res) => {
+    User.create({
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password,
+        zip: req.body.zip
+    })
+    .then((user) =>{
+        res.status(201)
+        res.json({
+            user: user
+        })
+    })
+    .catch((err)=>{
+        res.status(404)
+        res.json("Error:", err)
+    })
+})
+
 app.get('/lists', (req, res) => {
   TodoList.findAll().then((lists) => {
     res.json({
