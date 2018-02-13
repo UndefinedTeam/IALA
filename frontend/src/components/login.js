@@ -31,9 +31,11 @@ class Login extends Component {
 	}
 
 	render (){
+		const { message } = this.props
 		return (
 			<div className='form-container'>
 				<h3>Welcome back to IALA!</h3>
+					<p>{message}</p>
 					<form>
 
 						<div className='form-input'>
