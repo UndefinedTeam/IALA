@@ -10,6 +10,10 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import RaisedButton from 'material-ui/RaisedButton';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
 //Material UI stuff for the vendor cards to display
 const styles = {
   root: {
@@ -40,7 +44,8 @@ class VendorSearch extends Component {
         venSearch: "",
         location: "",
         tableData: [],
-        isSubmitHit:false
+        isSubmitHit:false,
+        open: false
       }
       this.venSearchResults=this.venSearchResults.bind(this);
       this.locationResults=this.locationResults.bind(this);
@@ -85,6 +90,22 @@ class VendorSearch extends Component {
     console.log(youRL);
   }
 
+  handleClick = (event) => {
+    // This prevents ghost click.
+    event.preventDefault();
+
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget,
+    });
+  };
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+
 	render (){
 		return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
@@ -119,7 +140,24 @@ class VendorSearch extends Component {
                       key={"na"}
                       title={item.name + " |" + item.phone}
                       subtitle={<span>{item.location.display_address}</span>}
-                      actionIcon={<FloatingActionButton mini={true}><ContentAdd /></FloatingActionButton>}
+                      actionIcon={<FloatingActionButton mini={true} onClick={this.handleClick}
+                      >
+                      <ContentAdd />
+                        <Popover
+                          open={this.state.open}
+                          anchorEl={this.state.anchorEl}
+                          anchorOrigin={{horizontal:"right",vertical:"top"}}
+                          targetOrigin={{horizontal:"left",vertical:"top"}}
+                          onRequestClose={this.handleRequestClose}
+                        >
+                          <Menu>
+                            <MenuItem primaryText="Charlie's Party" />
+                            <MenuItem primaryText="Vacation" />
+                            <MenuItem primaryText="Meetup" />
+                            <MenuItem primaryText="Kids sleepOver" />
+                          </Menu>
+                        </Popover>
+                      </FloatingActionButton>}
                     >
                       <img src={item.image_url} />
                     </GridTile>
