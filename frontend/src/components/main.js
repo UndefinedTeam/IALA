@@ -20,18 +20,29 @@ class Main extends Component {
 		fetch(`${API}/`)
 	}
 
-	loginRoute(params) {
+	//Pass in login form, calls login POST endpoint
+	loginRoute(loginForm) {
 		fetch(`${API}/login`,
-			{
-				body: JSON.stringify(params),
-				headers: {
-					'Content-Type':'application/json'
-				},
-				method: "POST"
-			}).then((parsedResponse) => {
-				console.log(parsedResponse);
-				this.setState({users: parsedResponse.user})
+		{
+			body: JSON.stringify(loginForm),
+			headers: {
+				'Content-Type':'application/json'
+			},
+			method: "POST"
 		})
+		.then(() => {
+			fetch(`${API}/login/${loginForm.email}`)
+			.then(token => {
+				console.log("hi", loginForm.email, token.authToken);
+				localStorage.setItem("authToken", token.authToken)
+			})
+			.catch(error => {console.log("Unable to log in")})
+		})
+		.catch(error => {
+			console.log("Unable to set auth token");
+		})
+
+
 	}
 
 	render() {

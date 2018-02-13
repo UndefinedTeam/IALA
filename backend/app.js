@@ -1,7 +1,7 @@
-var express = require('express');
+var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
-var app = express();
+var app = express()
 var User = require('./models').User
 var TodoList = require('./models').TodoList
 var Task = require('./models').Task
@@ -12,7 +12,7 @@ app.use(cors())
 
 const authorization = function(req, res, next){
   const token = req.query.authToken || req.body.authToken
-  console.log(token);
+  console.log("Token:", token)
   if(token){
     User.findOne({
       where: {authToken: token}
@@ -34,15 +34,45 @@ const authorization = function(req, res, next){
 
 app.get('/', (req, res) => {
   res.json({message: 'API Example App'})
-});
+})
+
+app.get('/login/:email', (req, res) => {
+  console.log(req.params.email);
+  User.findOne({
+    where:{email: req.params.email}
+  })
+  .then(user => {
+    res.json({authToken: user.authToken})
+    console.log(user.authToken);
+  })
+  .catch(error => {
+    res.json({message: "Failed to retrieve authToken"})
+  })
+})
 
 app.post('/login', (req,res) => {
-  console.log(req.body.email);
   User.findOne({
-    where:{email: req.body.email},
-    attributes: ['id', 'name', 'email', 'password']
-  }).then( user => {
-    console.log(User.verifyPassword(user.password))
+    where:{email: req.body.email}
+  })
+  .then( user => {
+    if(user.verifyPassword(req.body.password)) {
+      user.setAuthToken()
+      user.update({
+        authToken: user.authToken
+      })
+      .then(user => {
+        res.json({token: user.authToken})
+      })
+      .catch(error => {
+        res.json({message: "Unabale to set auth token"})
+      })
+    } else {
+      res.status(401)
+      res.json({message: "Invalid Password"})
+    }
+  })
+  .catch(error => {
+    res.json({message: "Unable to log in"})
   })
 })
 

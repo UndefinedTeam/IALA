@@ -31,7 +31,7 @@ class Login extends Component {
 
 		loginRoute(this.state.form)
 
-		let isValid = false;
+		// let isValid = false;
 
 		// for(let i=0; i < users.length; i++) {
 		// 	if(email === users[i].email && psw === users[i].password){
@@ -39,12 +39,12 @@ class Login extends Component {
 		// 	}
 		// }
 
-		if(isValid) {
-			this.setState({error: ""})
-			this.loginRoute();
-		} else {
-			this.setState({error: "Invalid login"})
-		}
+		// if(isValid) {
+		// 	this.setState({error: ""})
+		// 	this.loginRoute();
+		// } else {
+		// 	this.setState({error: "Invalid login"})
+		// }
 
 	}
 
