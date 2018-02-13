@@ -108,6 +108,7 @@ class VendorSearch extends Component {
 		return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
 
+      <img src="./images/Yelp_Logo_Trademark_Screen_Yelp_trademark_RGB.eps" alt="yelpLogo"/>
 
           <TextField
             hintText="Search a Business"
