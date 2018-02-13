@@ -51,6 +51,10 @@ app.get('/users/:id/list', (req, res) => {
         res.send(error)
     })
 })
+  .catch(function(error) {
+    res.send(error)
+  })
+})
 
 app.get('/lists/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
