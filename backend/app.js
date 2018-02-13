@@ -138,6 +138,7 @@ app.get('/lists', (req, res) => {
   })
 })
 
+
 app.get('/users/:id/list', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
@@ -155,14 +156,6 @@ app.get('/users/:id/list', (req, res) => {
             res.send(error)
         })
     })
-    .catch((error) => {
-        res.send(error)
-    })
-})
-  .catch(function(error) {
-    res.send(error)
-  })
-})
 
 app.get('/lists/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
@@ -199,4 +192,4 @@ app.get('/yelp/:search/:location', (req, res) => {
     })
 })
 
-module.exports = app
+module.exports = app 
