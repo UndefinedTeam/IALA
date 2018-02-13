@@ -33,8 +33,6 @@ class Home extends Component {
 					</div>
 				</section>
 
-				<VendorSearch />
-
 			</div>
 		)
 	}
