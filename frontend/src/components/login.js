@@ -4,8 +4,10 @@ class Login extends Component {
 	constructor(){
 		super()
 		this.state = {
-			email: "",
-			psw: "",
+			form: {
+				email: "",
+				psw: ""
+			},
 			error: ""
 		}
 	}
@@ -15,36 +17,17 @@ class Login extends Component {
 		this.props.loginRoute();
 	}
 
-	//Sets user input email to state
-	handleEmail(e){
-		this.setState({email: e.target.value})
-	}
-
-	//Sets user input password to state
- 	handlePsw(e){
-		this.setState({psw: e.target.value})
+	//Sets user input form to state
+	handleChange(e){
+		const formState = Object.assign({}, this.state.form)
+  	formState[e.target.name] = e.target.value
+  	this.setState({form: formState})
 	}
 
 	// Checks user inputs on submit
 	handleSubmit(e){
-		const	{ users } = this.props
-		const { email, psw } = this.state
-
-		let isValid = false;
-
-		for(let i=0; i < users.length; i++) {
-			if(email === users[i].email && psw === users[i].password){
-				isValid = true;
-			}
-		}
-
-		if(isValid) {
-			this.setState({error: ""})
-			this.loginRoute();
-		} else {
-			this.setState({error: "Invalid login"})
-		}
-
+		const	{ loginRoute } = this.props
+		loginRoute(this.state.form)
 	}
 
 	render (){
@@ -56,11 +39,11 @@ class Login extends Component {
 					<form>
 
 						<div className='form-input'>
-							<input type="text" name='email' placeholder="Email" onChange={this.handleEmail.bind(this)}></input>
+							<input type="text" name='email' placeholder="Email" onChange={this.handleChange.bind(this)}></input>
 						</div>
 
 						<div className='form-input'>
-							<input type="password" name='password' placeholder="Password" onChange={this.handlePsw.bind(this)}></input>
+							<input type="password" name='password' placeholder="Password" onChange={this.handleChange.bind(this)}></input>
 						</div>
 
 						<div style={{textAlign:"center"}}>
