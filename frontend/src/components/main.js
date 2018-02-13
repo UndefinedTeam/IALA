@@ -17,10 +17,8 @@ class Main extends Component {
 		}
 	}
 
-	//*********************************************************
-	//*****   Retrieve token and expiration from browser  *****
-	//*****	  	Nullify auth token if past expire date  	*****
-	//*********************************************************
+	// Retrieve token and expiration from browser
+	// Nullify auth token if past expire date
 	getToken() {
 		let token = localStorage.getItem('authToken')
 		let expire = new Date(localStorage.getItem("tokenExpiration"))
@@ -32,13 +30,12 @@ class Main extends Component {
 		}
 	}
 
-	//*********************************************************
-	//***** Passes login form, calls login POST endpoint  *****
-	//*****		New auth token and store to local storage  	*****
-	//***** 			Redirect to dashboard after login				*****
-	//*****			 	༼ つ ◕_◕ ༽つ	It works  ༼ つ ◕_◕ ༽つ   	  *****
-	//*********************************************************
+
+	// Passes login form, calls login POST endpoint
+	// New auth token and store to local storage
+	// Redirect to dashboard after login
 	loginRoute(loginForm) {
+		// Send data from log in form
 		fetch(`${API}/login`,
 		{
 			body: JSON.stringify(loginForm),
@@ -53,6 +50,7 @@ class Main extends Component {
 				return response.json()
 			})
 			.then(parsedResponse => {
+				//Save response values to local storage
 				localStorage.setItem("authToken", parsedResponse.token)
 				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
 				this.setState({
