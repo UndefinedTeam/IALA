@@ -30,7 +30,6 @@ class Main extends Component {
 		} else {
 			return token
 		}
-		return 123
 	}
 
 	//*********************************************************

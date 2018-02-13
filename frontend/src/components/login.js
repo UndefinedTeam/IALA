@@ -27,25 +27,7 @@ class Login extends Component {
 	// Checks user inputs on submit
 	handleSubmit(e){
 		const	{ loginRoute } = this.props
-		const { form } = this.state
-
 		loginRoute(this.state.form)
-
-		// let isValid = false;
-
-		// for(let i=0; i < users.length; i++) {
-		// 	if(email === users[i].email && psw === users[i].password){
-		// 		isValid = true;
-		// 	}
-		// }
-
-		// if(isValid) {
-		// 	this.setState({error: ""})
-		// 	this.loginRoute();
-		// } else {
-		// 	this.setState({error: "Invalid login"})
-		// }
-
 	}
 
 	render (){
