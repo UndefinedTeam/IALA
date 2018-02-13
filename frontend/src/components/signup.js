@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormInput from './FormInput';
-import { validatePresence, validateLength, validateEmail, validatePassword, validateNumeric, confirmPassword, validateZip } from '../util/validations'
+import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
 
 
 class SignUp extends Component {

@@ -11,7 +11,7 @@ class UserLists extends Component {
     }
 
     render() {
-        const { user, lists, tasks } = this.props
+        // const { user, lists, tasks } = this.props
         console.log(this.props)
 
         return(
