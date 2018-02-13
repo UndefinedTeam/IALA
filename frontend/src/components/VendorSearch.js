@@ -5,9 +5,7 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 //Material UI stuff for the vendor cards to display
@@ -73,16 +71,16 @@ class VendorSearch extends Component {
           return responseData.json();
         })
         .catch((error) => {
-          console.log("Error Message: " + error);
+          console.log("Error Message: " + error)
         })
         .then((responseJSON) => {
           this.setState({
             isSubmitHit:true,
             tableData: responseJSON.businesses
           })
-          console.log(responseJSON.businesses);
+          console.log(responseJSON.businesses)
         })
-    console.log(youRL);
+    console.log(youRL)
   }
 
 	render (){
@@ -121,7 +119,7 @@ class VendorSearch extends Component {
                       subtitle={<span>{item.location.display_address}</span>}
                       actionIcon={<FloatingActionButton mini={true}><ContentAdd /></FloatingActionButton>}
                     >
-                      <img src={item.image_url} />
+                      <img src={item.image_url} alt="yelp vendor"/>
                     </GridTile>
                   ))}
                 </GridList>

@@ -6,6 +6,7 @@ var User = require('./models').User
 var TodoList = require('./models').TodoList
 var Task = require('./models').Task
 var apiKey = 'M6w60G2RL_F_kiACA3VphibduaHe_ge5DwPkzFgJQj6GL6fq6eWnL_VV7pxcM6iAfvc2FAHg4G-5XXysQgtX8wU7JjdJkrhz1sklOA7J8FhPgj7shUfHVKNiYt17WnYx'
+
 const yelp = require('yelp-fusion')
 
 const client = yelp.client(apiKey)
@@ -78,6 +79,7 @@ app.get('/yelp/:search/:location', (req, res) => {
     res.json(response.jsonBody)
 
   }).catch(e => console.log(e))
+});
 })
 
 module.exports = app
