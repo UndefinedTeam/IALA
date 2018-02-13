@@ -14,7 +14,6 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors())
 
-<<<<<<< HEAD
 const authorization = function(req, res, next){
   const token = req.query.authToken || req.body.authToken
   console.log("Token:", token)
@@ -109,13 +108,6 @@ app.post('/user', function(req, res){
       message: "Unable to create User",
       errors: error.errors
     })
-=======
-app.get('/users', (req, res) => {
-  User.findAll().then((users) => {
-      res.json({
-        users: users
-      })
->>>>>>> master
   })
 })
 

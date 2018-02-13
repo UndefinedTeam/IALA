@@ -13,7 +13,6 @@ class Main extends Component {
 		this.state = {
 			login: false,
 			users: [],
-			login: false,
 			authToken: this.getToken()
 		}
 	}
