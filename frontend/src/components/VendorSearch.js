@@ -126,7 +126,9 @@ class VendorSearch extends Component {
   }
 
   addVenToTask = (event) => {
+
     console.log(event.target.value);
+    console.log(event.target.tasks.id);
 
   }
 
@@ -190,7 +192,7 @@ class VendorSearch extends Component {
                           }}
                           onRequestClose={this.handleRequestClose}
                         >
-                          <Menu>
+                          <Menu className="popOver">
                           {
                             this.state.listNames.map((item) => {
                               return <MenuItem primaryText= {item.title} id={item.id}
