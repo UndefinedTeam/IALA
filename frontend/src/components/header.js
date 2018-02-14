@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
 	logInOrOut(){
 		let token = localStorage.getItem('authToken')
-		const login = <NavItem href='/login'>Log In</NavItem>
-		const logout = <NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem>
+		const login = 	<Nav pullRight><NavItem  href='/register'>Register</NavItem><NavItem href='/login'>Log In</NavItem></Nav>
+		const logout = <Nav pullRight><NavItem  href='/dashboard'>Dasshboard</NavItem><NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem></Nav>
 
 		if(token !== "logout") {
 			return logout
@@ -32,12 +32,7 @@ class Header extends Component {
 						<Navbar.Toggle />
 					</Navbar.Header>
 					<Navbar.Collapse>
-						<Nav pullRight>
-							<NavItem  href='/register'>
-								Register
-							</NavItem>
-							{this.logInOrOut()}
-						</Nav>
+						{this.logInOrOut()}
 					</Navbar.Collapse>
 				</Navbar>
 			</div>

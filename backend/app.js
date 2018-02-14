@@ -83,7 +83,9 @@ app.post('/login', (req,res) => {
   })
 })
 
-app.get('/user',
+
+//APIURL/user?authToken=putTokenHere
+ 
 authorization ,
 (req, res) => {
   res.json({user: req.currentUser})
