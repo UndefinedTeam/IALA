@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        TodoList.belongsTo(models.User,{
+        TodoList.belongsTo(models.User, {
           foreignKey: 'userId',
           onDelete: 'CASCADE'
         })
