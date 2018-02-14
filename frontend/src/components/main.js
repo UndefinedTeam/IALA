@@ -14,9 +14,25 @@ class Main extends Component {
 
 		this.state = {
 			login: false,
-			users: [],
+			users: this.getUser(),
 			authToken: this.getToken()
 		}
+	}
+
+	getUser(){
+		this.fetchUser()
+		.then((user) => {
+			console.log(user);
+			return user
+		})
+	}
+
+	fetchUser() {
+		let token = localStorage.getItem('authToken')
+		return fetch(`${API}/user?authToken=${token}`)
+		.then(res => {
+			return res.json()
+		})
 	}
 
 	// Retrieve token and expiration from browser
@@ -55,7 +71,8 @@ class Main extends Component {
 				localStorage.setItem("authToken", parsedResponse.token)
 				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
 				this.setState({
-					authToken: parsedResponse.token
+					login: true,
+					users: this.getUser()
 				})
 			})
 			.catch(error => {console.log("Unable to log in")})
@@ -67,8 +84,10 @@ class Main extends Component {
 
 
 	render() {
-		let { login, users, authToken } = this.state
-
+		let { login, users } = this.state;
+		// let login = this.state.log;
+		// let users = this.state.users;
+		console.log("Users in main:", users)
 		return (
 			<div>
 				<Switch>
@@ -83,6 +102,11 @@ class Main extends Component {
 					<Route path='/dashboard' render={(props) =>
 						<Dashboard
 							token={authToken}
+						/>
+					}/>
+					<Route path='/register' render={(props)=>
+						<SignUp
+							api={API}
 						/>
 					}/>
 

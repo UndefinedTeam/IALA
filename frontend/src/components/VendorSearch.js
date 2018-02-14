@@ -5,12 +5,9 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { GridList, GridTile } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -45,7 +42,8 @@ class VendorSearch extends Component {
         location: "",
         tableData: [],
         isSubmitHit:false,
-        open: false
+        open: false,
+        listNames:[]
       }
       this.venSearchResults=this.venSearchResults.bind(this);
       this.locationResults=this.locationResults.bind(this);
@@ -106,11 +104,47 @@ class VendorSearch extends Component {
     });
   };
 
+  componentWillMount() {
+    console.log(this.props);
+    fetch(`http://localhost:3001/users/${this.props.id}/list`)
+    .then((data) => {
+      return data.json()
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .then((dataObject) => {
+      this.setState({
+        listNames: dataObject.lists
+      })
+      console.log(this.state.listNames);
+    })
+    .catch((error) => {
+
+    })
+    console.log("I'm here");
+  }
+
+  addVenToTask = (event) => {
+
+    console.log(event.target.value);
+    console.log(event.target.tasks.id);
+
+  }
+
 	render (){
 		return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-
-
+      <div>
+      {/*
+      yelp logo displayed
+      */}
+          <div>
+            <img src={require("../images/yelp_fullcolor.png"
+            )}
+            alt="yelpLogo"
+            />
+          </div>
           <TextField
             hintText="Search a Business"
             floatingLabelText="Search Business or category"
@@ -143,29 +177,39 @@ class VendorSearch extends Component {
                       actionIcon={<FloatingActionButton mini={true} onClick={this.handleClick}
                       >
                       <ContentAdd />
+
                         <Popover
                           open={this.state.open}
                           anchorEl={this.state.anchorEl}
-                          anchorOrigin={{horizontal:"right",vertical:"top"}}
-                          targetOrigin={{horizontal:"left",vertical:"top"}}
+                          anchorOrigin={{
+                            horizontal:"right",
+                            vertical:"top"
+                          }}
+                          targetOrigin={{
+                            horizontal:"left",
+                            vertical:"top"
+                          }}
                           onRequestClose={this.handleRequestClose}
                         >
-                          <Menu>
-                            <MenuItem primaryText="Charlie's Party" />
-                            <MenuItem primaryText="Vacation" />
-                            <MenuItem primaryText="Meetup" />
-                            <MenuItem primaryText="Kids sleepOver" />
+                          <Menu className="popOver">
+                          {
+                            this.state.listNames.map((item) => {
+                              return <MenuItem primaryText= {item.title} id={item.id}
+                              onClick={this.addVenToTask}
+                              />
+                            })
+                          }
                           </Menu>
                         </Popover>
                       </FloatingActionButton>}
                     >
-                      <img src={item.image_url} />
+                      <img src={item.image_url} alt="stuff"/>
                     </GridTile>
                   ))}
                 </GridList>
               </div>
-            </div>:<h1></h1>}
-
+            </div>:<h1>{/**/}</h1>}
+        </div>
       </MuiThemeProvider>
 		)
 	}

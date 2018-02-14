@@ -83,7 +83,7 @@ class Dashboard extends Component {
 				/>
 				<Progress />
 				<div className="vendorResults">
-					<VendorSearch />
+					<VendorSearch id={2}/>
 				</div>
 			</div>
 		)
