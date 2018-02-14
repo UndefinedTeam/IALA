@@ -10,7 +10,10 @@ module.exports = {
         password: 'password',
         zip: '92123',
         createdAt: new Date(), // we need to add the manually for seeds
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        authToken: 0,
+        authTokenExpiration: new Date(),
+        salt: ""
       },
       {
         email: 'sally@aol.com',
@@ -18,7 +21,10 @@ module.exports = {
         password: 'sally',
         zip: '92123',
         createdAt: new Date(), // we need to add the manually for seeds
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        authToken: 0,
+        authTokenExpiration: new Date(),
+        salt: ""
       }
     ])
   },
