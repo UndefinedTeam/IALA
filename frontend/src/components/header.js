@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 class Header extends Component {
+	logInOrOut(){
+		let token = localStorage.getItem('authToken')
+		const login = <NavItem href='/login'>Log In</NavItem>
+		const logout = <NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem>
+
+		if(token !== "logout") {
+			return logout
+		}
+
+		return login
+	}
+
+	logOut(e){
+		if(e) {
+			localStorage.setItem("authToken", "logout")
+		}
+	}
 
 	render() {
 		return(
@@ -18,9 +36,7 @@ class Header extends Component {
 							<NavItem  href='/register'>
 								Register
 							</NavItem>
-							<NavItem href='/login'>
-								Login
-							</NavItem>
+							{this.logInOrOut()}
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
@@ -30,14 +46,3 @@ class Header extends Component {
 }
 
 export default Header;
-
-
-
-//   <Navbar.Text>
-// 	Hello: <Navbar.Link href="#">Link client name here</Navbar.Link>
-//   </Navbar.Text>
-//   <Nav pullRight>
-// 	<NavItem eventKey={2} href="#">
-// 	  Sign Out
-// 	</NavItem>
-//   </Nav>

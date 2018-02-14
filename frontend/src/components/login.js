@@ -20,8 +20,8 @@ class Login extends Component {
 	//Sets user input form to state
 	handleChange(e){
 		const formState = Object.assign({}, this.state.form)
-  	formState[e.target.name] = e.target.value
-  	this.setState({form: formState})
+  		formState[e.target.name] = e.target.value
+  		this.setState({form: formState})
 	}
 
 	// Checks user inputs on submit

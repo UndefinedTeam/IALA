@@ -12,9 +12,25 @@ class Main extends Component {
 		super(props)
 		this.state = {
 			login: false,
-			users: [],
+			users: this.getUser(),
 			authToken: this.getToken()
 		}
+	}
+
+	getUser(){
+		this.fetchUser()
+		.then((user) => {
+			console.log(user);
+			return user
+		})
+	}
+
+	fetchUser() {
+		let token = localStorage.getItem('authToken')
+		return fetch(`${API}/user?authToken=${token}`)
+		.then(res => {
+			return res.json()
+		})
 	}
 
 	// Retrieve token and expiration from browser
@@ -54,7 +70,8 @@ class Main extends Component {
 				localStorage.setItem("authToken", parsedResponse.token)
 				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
 				this.setState({
-					authToken: parsedResponse.token
+					login: true,
+					users: this.getUser()
 				})
 			})
 			.catch(error => {console.log("Unable to log in")})
@@ -65,8 +82,7 @@ class Main extends Component {
 	}
 
 	render() {
-		let { login, users } = this.state
-		console.log("Users in main:", users)
+		let { login, user } = this.state
 		return (
 			<div>
 
@@ -75,7 +91,6 @@ class Main extends Component {
 					{ login && <Redirect from='/login' to='/dashboard' />}
 					<Route path='/login' render={(props)=>
 						<Login
-							users={users}
 							loginRoute={this.loginRoute.bind(this)}
 						/>
 					}/>
@@ -85,20 +100,12 @@ class Main extends Component {
 						/>
 					}/>
 
-					<Route path='/dashboard' render={(props) => {
-								 if(login && users.length > 0){
-									 return <Dashboard
-		 								users={users}
-		 								api={API}
-		 							/>
-								}  else {
-									return <Login
-										message={<strong>Please login</strong>}
-									/>
-								}
-							}
-						}
-					/>
+					<Route path='/dashboard' render={(props) =>
+ 						<Dashboard
+							user={user}
+		 					api={API}
+		 				/>
+					}/>
 				</Switch>
 			</div>
 		)
