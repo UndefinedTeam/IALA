@@ -63,5 +63,5 @@ module.exports = {
     fetchUser: fetchUser,
     addNewUser: addNewUser,
     fetchUserLists: fetchUserLists,
-    fetchUserTasks: fetchUserTasks,
+    fetchListTasks: fetchListTasks,
 }

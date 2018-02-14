@@ -5,40 +5,41 @@ class UserLists extends Component {
 
     render() {
         const { user, lists, tasks } = this.props
-        console.log(this.props)
+        // console.log( "User:", user)
+        // console.log("Lists:", lists)
+        // console.log("Tasks:",tasks)
 
-        return (
-            <h1>Ignoring for Now</h1>
+        return(
+            <div className="userList-container">
+                        <div>
+                            <h2>{user.name} List&#39;s</h2>
+                        </div>
+                <div>
+                    <Panel bsStyle="success" id="collapsible-panel">
+                            <Panel.Heading >
+                                <Panel.Title toggle componentClass="h3">
+                                    <h3>{lists.title}</h3>
+                                </Panel.Title>
+                            </Panel.Heading>
+                        <Panel.Collapse>
+                            <Panel.Body>
+                            {Object.keys(tasks).map((task, index) => {
+                                return(
+                                    <ul key={index} >
+                                        <li>{tasks.name}</li>
+                                    </ul>
+                                )
+                            })}
+                                <button
+                                    href={`/dashboard/list/${tasks.id}/tasks`}>
+                                        View List
+                                </button>
+                            </Panel.Body>
+                        </Panel.Collapse>
+                    </Panel>
+                </div>
+            </div>
         )
-
-        // return(
-        //     <div className="userList-container">
-        //         <h2>user name List&#39;s</h2>
-        //             <div>
-        //                         <Panel bsStyle="success" id="collapsible-panel">
-        //                             <Panel.Heading>
-        //                                 <Panel.Title toggle componentClass="h3">
-        //                                     {lists.title}
-        //                                 </Panel.Title>
-        //                             </Panel.Heading>
-        //                             <Panel.Collapse>
-        //                                 {tasks.map((task, index) => {
-        //                                     return(
-        //                                         <Panel.Body key={index}>
-        //                                             <div>{tasks.task}</div>
-        //                                             <div>{tasks.desc}</div>
-        //                                             <div>{tasks.isComplete}</div>
-        //                                             <div><button href=`/dashboard/list/${id}/tasks`>View List</button></div>
-        //                                         </Panel.Body>
-        //                                 )
-        //                             })
-        //                         }
-        //                             </Panel.Collapse>
-        //                         </Panel>
-        //
-        //             </div>
-        //     </div>
-        // )
     }
 }
 
