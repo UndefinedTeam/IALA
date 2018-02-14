@@ -85,7 +85,14 @@ class Main extends Component {
 
 
 	render() {
+<<<<<<< HEAD
+		let { login, users } = this.state;
+		// let login = this.state.log;
+		// let users = this.state.users;
+		console.log("Users in main:", users)
+=======
 		let { login, user } = this.state
+>>>>>>> master
 		return (
 			<div>
 

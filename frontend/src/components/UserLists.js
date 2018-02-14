@@ -21,7 +21,7 @@ class UserLists extends Component {
                         <Panel bsStyle="success" id="collapsible-panel">
                             <Panel.Heading>
                                 <Panel.Title toggle componentClass="h3">
-                                    List title
+                                    My ToDo Lists 
                                 </Panel.Title>
                             </Panel.Heading>
                             <Panel.Collapse>
