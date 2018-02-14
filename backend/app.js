@@ -138,6 +138,7 @@ app.get('/lists', (req, res) => {
   })
 })
 
+
 app.get('/users/:id/list', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
@@ -195,4 +196,4 @@ app.get('/yelp/:search/:location', (req, res) => {
     })
 })
 
-module.exports = app
+module.exports = app 

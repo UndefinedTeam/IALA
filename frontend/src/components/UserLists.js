@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
 class UserLists extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            user: [],
+            lists: []
+        }
+    }
 
     render() {
         // const { user, lists, tasks } = this.props
