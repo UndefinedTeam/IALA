@@ -6,13 +6,14 @@ import SignUp from './signup'
 import Dashboard from './Dashboard'
 import TaskDash from './tasksDash'
 
+const API = "http://localhost:3001"
 
 class Main extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			login: true,
+			login: false,
 			users: [],
 			authToken: this.getToken()
 		}
@@ -30,8 +31,6 @@ class Main extends Component {
 			return token
 		}
 	}
-
-
 
 	// Passes login form, calls login POST endpoint
 	// New auth token and store to local storage
@@ -63,7 +62,8 @@ class Main extends Component {
 		})
 		.catch(error => {
 			console.log("Unable to set auth token");
-
+		})
+	}
 
 
 	render() {
@@ -73,29 +73,18 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-
+					{login && <Redirect from='/login' to='/dashboard' />}
 					<Route path='/login' render={(props) => {
-						 <Login users={users} />
+						 <Login
+						 loginRoute={this.loginRoute.bind(this)}
+						  />
 					}}/>
 
-					<Route path='/register' component={SignUp} />
-
-<<<<<<< HEAD
 					<Route path='/dashboard' component={Dashboard} />
-=======
+
 					<Route path='/register' component={SignUp}/>
 					<Route path='/tasks-dash' component={TaskDash}/>
-					<Route path='/dashboard' render={(props) => {
-								return (
-									<ProtectedPage>
-										<Dashboard users={users} />
-									</ProtectedPage>
-								)
-							}
-						}
-					/>
 
->>>>>>> 7a61ce51e141c6b32c41a555184ad2c352d188c1
 				</Switch>
 			</div>
 		)
@@ -117,3 +106,12 @@ export default Main;
 // 		)
 // 	}
 // }
+// <Route path='/dashboard' render={(props) => {
+// 			return (
+// 				<ProtectedPage>
+// 					<Dashboard users={users} />
+// 				</ProtectedPage>
+// 			)
+// 		}
+// 	}
+// />
