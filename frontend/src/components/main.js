@@ -67,20 +67,24 @@ class Main extends Component {
 
 
 	render() {
-		let { login, users } = this.state
+		let { login, users, authToken } = this.state
 
 		return (
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					{login && <Redirect from='/login' to='/dashboard' />}
-					<Route path='/login' render={(props) => {
+					<Route path='/login' render={(props) =>
 						 <Login
-						 loginRoute={this.loginRoute.bind(this)}
+						 	loginRoute={this.loginRoute.bind(this)}
 						  />
-					}}/>
+					}/>
 
-					<Route path='/dashboard' component={Dashboard} />
+					<Route path='/dashboard' render={(props) =>
+						<Dashboard
+							token={authToken}
+						/>
+					}/>
 
 					<Route path='/register' component={SignUp}/>
 					<Route path='/tasks-dash' component={TaskDash}/>

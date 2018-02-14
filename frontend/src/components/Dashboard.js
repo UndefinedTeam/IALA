@@ -16,15 +16,17 @@ class Dashboard extends Component {
 	}
 
 	componentWillMount() {
-		this.setUserDetails()
+		let { token } = this.props
+		console.log("The Token is here!", token);
+		this.setUserDetails(token)
 	}
 
 	componentDidMount(){
 		this.setListDetails()
 	}
 
-	getUser() {
-		fetchUser()
+	getUser(token) {
+		fetchUser(token)
 		.then((users) => {
 			console.log("Users in get user:", users.users[0].id);
 			this.setState({
@@ -54,9 +56,8 @@ class Dashboard extends Component {
 		.catch(e => {console.log(e) })
 	}
 
-	setUserDetails() {
-
-		this.getUser()
+	setUserDetails(token) {
+		this.getUser(token)
 	}
 
 	setListDetails(){

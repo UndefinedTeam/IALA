@@ -36,10 +36,6 @@ const authorization = function(req, res, next){
 }
 
 
-app.get('/', (req, res) => {
-  res.json({message: 'API Example App'})
-})
-
 app.get('/login/:email', (req, res) => {
   console.log(req.params.email);
   User.findOne({
@@ -199,4 +195,4 @@ app.get('/yelp/:search/:location', (req, res) => {
     })
 })
 
-module.exports = app 
+module.exports = app
