@@ -11,27 +11,40 @@ class UserLists extends Component {
     }
 
     render() {
-        // const { user, lists, tasks } = this.props
-        console.log(this.props)
+        const { user, lists, tasks } = this.props
+        // console.log( "User:", user)
+        // console.log("Lists:", lists)
+        // console.log("Tasks:",tasks)
 
         return(
             <div className="userList-container">
-                <h2>user name List&#39;s</h2>
-                    <div>
-                        <Panel bsStyle="success" id="collapsible-panel">
-                            <Panel.Heading>
+                        <div>
+                            <h2>{user.name} List&#39;s</h2>
+                        </div>
+                <div>
+                    <Panel bsStyle="success" id="collapsible-panel">
+                            <Panel.Heading >
                                 <Panel.Title toggle componentClass="h3">
-                                    My ToDo Lists 
+                                    <h3>{lists.title}</h3>
                                 </Panel.Title>
                             </Panel.Heading>
-                            <Panel.Collapse>
-                                <Panel.Body>
-                                    list description & tasks
-                                    <div><button href="/dashboard/list/:id/tasks">View List</button></div>
-                                </Panel.Body>
-                            </Panel.Collapse>
-                        </Panel>
-                    </div>
+                        <Panel.Collapse>
+                            <Panel.Body>
+                            {Object.keys(tasks).map((task, index) => {
+                                return(
+                                    <ul key={index} >
+                                        <li>{tasks.name}</li>
+                                    </ul>
+                                )
+                            })}
+                                <button
+                                    href={`/dashboard/list/${tasks.id}/tasks`}>
+                                        View List
+                                </button>
+                            </Panel.Body>
+                        </Panel.Collapse>
+                    </Panel>
+                </div>
             </div>
         )
     }

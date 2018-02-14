@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FormInput from './FormInput';
+import { addNewUser } from '../util/ApiCalls'
 import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
-
 
 class SignUp extends Component {
     constructor(props){
@@ -55,36 +55,26 @@ class SignUp extends Component {
     handleSubmit(e) {
         const { form } = this.state
         console.log(e);
-
+        let status
         e.preventDefault()
 
         if(this.state.errors.length > 0) {
             // this is a failing case!!!
             return this.state.errors
         } else {
-                this.handleNewUser(form)
+             status = addNewUser(form)
         }
-        console.log("this means we can submit the form! :)");
+        return status
     }
 
-    handleNewUser(params){
-        const { api } = this.props
-        console.log("api:", api);
-        fetch(`${api}/users`,
-            {
-                body: JSON.stringify(params),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method: "POST"
-            }
-        ).then((res)=>{
-            return res.json()
-        }).then(()=>{
-            this.setState({newUserSuccess: true})
-        }).catch((err)=>{
-            console.log("Error: failed to create new user", err)
-        })
+    handleNewUser(status){
+        let message
+        if (status == true){
+            this.setState({newUserSuccess: status})
+            return message = "Success! your account has been created"
+        } else {
+            return message = "Error unable to create an account"
+        }
     }
 
     render() {

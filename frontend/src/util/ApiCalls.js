@@ -1,15 +1,24 @@
 
 const API = "http://localhost:3001"
 
+<<<<<<< HEAD
+function fetchUser(token) {
+    return fetch(`${API}/user?authToken=${token}`)
+=======
 function fetchUser() {
     return fetch(`${API}/users`)
+>>>>>>> master
     .then((res) => {
         return res.json()
     })
 }
 
 function addNewUser(params){
+<<<<<<< HEAD
+    return fetch(`${API}/user`, {
+=======
     return fetch(`${API}/users`, {
+>>>>>>> master
             body: JSON.stringify(params),
             headers: {
                 'Content-Type': 'application/json'

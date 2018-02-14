@@ -36,8 +36,22 @@ app.use(cors())
   }
 
 
+<<<<<<< HEAD
+app.get('/login/:email', (req, res) => {
+  console.log(req.params.email);
+  User.findOne({
+    where:{email: req.params.email}
+  })
+  .then(user => {
+    res.json({
+      token: user.authToken,
+      expiration: user.authTokenExpiration
+    })
+    console.log(user.authToken);
+=======
   app.get('/', (req, res) => {
     res.json({message: 'API Example App'})
+>>>>>>> master
   })
 
   app.get('/login/:email', (req, res) => {
@@ -173,19 +187,21 @@ app.get('/lists/:id/tasks', (req, res) => {
 //backend API that fetches info from yelp
 //searches yelp and returns the results in a json body
 //https://www.npmjs.com/package/yelp-fusion <--yelps NPM package
-  app.get('/yelp/:search/:location', (req, res) => {
-      console.log(req.params.search)
-      console.log(req.params.location)
+app.get('/yelp/:search/:location', (req, res) => {
+    console.log(req.params.search)
+    console.log(req.params.location)
 
-      client.search({
-          term: req.params.search,
-          location: req.params.location
-      }).then((response) => {
-      //return entire json object from yelp
-      res.json(response.jsonBody)
-      }).catch(e => {
-          console.log(e)
-      })
-  })
+    client.search({
+        term: req.params.search,
+        location: req.params.location
+    })
+    .then((response) => {
+    //return entire json object from yelp
+        res.json(response.jsonBody)
+    })
+    .catch(e => {
+        console.log(e)
+    })
+})
 
 module.exports = app
