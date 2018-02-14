@@ -62,37 +62,47 @@ class Main extends Component {
 			},
 			method: "POST"
 		})
-		.then(() => {
+		.then((token) => {
 			fetch(`${API}/login/${loginForm.email}`)
 			.then(response => {
 				return response.json()
 			})
 			.then(parsedResponse => {
-				//Save response values to local storage
-				localStorage.setItem("authToken", parsedResponse.token)
-				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
-				this.setState({
-					login: true,
-					users: this.getUser()
-				})
+				console.log(parsedResponse);
 			})
-			.catch(error => {console.log("Unable to log in")})
 		})
 		.catch(error => {
-			console.log("Unable to set auth token");
+			console.log("Unable to log in");
 		})
 	}
+
+	// .then(parsedResponse => {
+	// 	//Save response values to local storage
+	// 	localStorage.setItem("authToken", parsedResponse.token)
+	// 	localStorage.setItem("tokenExpiration", parsedResponse.expiration)
+	// 	this.setState({
+	// 		users: this.getUser()
+	// 	})
+	// })
+	// .catch(error => {console.log("Set auth token")})
+
+	// const login = () => (
+   //
+	// )
 
 
 	render() {
 		let { login, user } = this.state
+
+
+
 		return (
 			<div>
 
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					{ login && <Redirect from='/login' to='/dashboard' />}
-					<Route path='/login' render={(props)=> 
+					<Route path='/login' render={(props)=>
 						<Login loginRoute={this.loginRoute.bind(this)} />
 					}/>
 

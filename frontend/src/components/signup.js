@@ -70,7 +70,7 @@ class SignUp extends Component {
     handleNewUser(params){
         const { api } = this.props
         console.log("api:", api);
-        fetch(`${api}/users`,
+        fetch(`${api}/user`,
             {
                 body: JSON.stringify(params),
                 headers: {

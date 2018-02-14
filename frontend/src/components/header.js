@@ -6,7 +6,7 @@ class Header extends Component {
 	logInOrOut(){
 		let token = localStorage.getItem('authToken')
 		const login = 	<Nav pullRight><NavItem  href='/register'>Register</NavItem><NavItem href='/login'>Log In</NavItem></Nav>
-		const logout = <Nav pullRight><NavItem  href='/dashboard'>Dasshboard</NavItem><NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem></Nav>
+		const logout = <Nav pullRight><NavItem  href='/dashboard'>Dashboard</NavItem><NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem></Nav>
 
 		if(token !== "logout") {
 			return logout

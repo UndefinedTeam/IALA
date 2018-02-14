@@ -74,8 +74,11 @@ app.post('/login', (req,res) => {
         res.json({message: "Unabale to set auth token"})
       })
     } else {
-      res.status(401)
-      res.json({message: "Invalid Password"})
+      console.log("Fail?");
+      res.json({
+         message: "Invalid Password",
+         token: "logout"
+      })
     }
   })
   .catch(error => {
@@ -84,8 +87,9 @@ app.post('/login', (req,res) => {
 })
 
 
-//APIURL/user?authToken=putTokenHere
- 
+//APIURL/user?authToken=putTokenHeretoken
+//Gets user info for user with matching auth token
+app.get('/user',
 authorization ,
 (req, res) => {
   res.json({user: req.currentUser})
@@ -139,7 +143,6 @@ app.get('/lists', (req, res) => {
     })
   })
 })
-
 
 app.get('/users/:id/list', (req, res) => {
     User.findById(req.params.id)
@@ -198,4 +201,4 @@ app.get('/yelp/:search/:location', (req, res) => {
     })
 })
 
-module.exports = app 
+module.exports = app
