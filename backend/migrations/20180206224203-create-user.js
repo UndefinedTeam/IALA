@@ -9,15 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       email: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        validate: {
+          isEmail: true
+        }
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       zip: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -27,6 +34,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      authToken: {
+        type: Sequelize.STRING
+      },
+      authTokenExpiration: {
+        type: Sequelize.DATE
+      },
+      salt: {
+        type: Sequelize.STRING
       }
     });
   },

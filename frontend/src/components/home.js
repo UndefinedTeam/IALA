@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
-import VendorSearch from './VendorSearch.js';
+// import VendorSearch from './VendorSearch.js';
 
 class Home extends Component {
 
