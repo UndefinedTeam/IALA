@@ -25,6 +25,10 @@
     padding: 5px;
 }
 
+.progress-container {
+    width: 100%;
+}
+
 .jumbotron {
     padding: 15px;
     border-radius: 4px;
@@ -163,7 +167,17 @@ form {
 .panel-success>.panel-heading {
     color: #e6e4d3;
     background-color: #848FC0;
-    border-color: #848FC0;
+    border-color: #d6e9c6;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 10px;
+
+}
+
+.panel-success>.panel-heading+.panel-collapse>.panel-body {
+    border-top-color: #d6e9c6;
+    background-color: #cad9ff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 10px;
 }
 
 .progress-container {
@@ -172,7 +186,6 @@ form {
     justify-content: flex-start;
     align-items: center;
     width: 40%;
-    border: 1px solid;
     border-color: #e6e4d3;
     text-align: center;
     width: 350px;
@@ -217,3 +230,76 @@ h3 {
 .footer {
   width: 100%;
 }
+
+    
+{/* ----Tasks & tasksDash Component */}
+
+
+.tasks-list {
+    display: flex; 
+    flex-direction: column;
+    flex-basis: 75%;
+    margin: 2em;
+}
+
+.tasks-sidebar {
+    border: solid;
+    outline:none;
+    width: 30%;
+    padding: 25px;
+    height:100%;
+    background-color: #BFC3EA;
+    position:fixed!important;
+    overflow: hidden;
+    border:none;
+    
+}
+
+.tasks-main{
+    float: right;
+    background-color: yellow;
+    max-width: 50%;
+    padding: 5px;
+    position:relative;
+
+}   
+
+
+.todo-list-header > img {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

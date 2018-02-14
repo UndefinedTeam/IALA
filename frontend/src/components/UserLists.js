@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
 class UserLists extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            user: [],
+            lists: []
+        }
+    }
 
     render() {
-        const { user, lists, tasks } = this.props
+        // const { user, lists, tasks } = this.props
         console.log(this.props)
 
         return(
@@ -14,7 +21,7 @@ class UserLists extends Component {
                         <Panel bsStyle="success" id="collapsible-panel">
                             <Panel.Heading>
                                 <Panel.Title toggle componentClass="h3">
-                                    List title
+                                    My ToDo Lists 
                                 </Panel.Title>
                             </Panel.Heading>
                             <Panel.Collapse>
