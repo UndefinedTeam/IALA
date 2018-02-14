@@ -82,7 +82,7 @@ class Main extends Component {
 			console.log("Unable to set auth token");
 		})
 	}
-	
+
 
 	render() {
 		let { login, user } = this.state
@@ -92,9 +92,9 @@ class Main extends Component {
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					{ login && <Redirect from='/login' to='/dashboard' />}
-					<Route path='/login' render={(props)=>
-						<Login users={users} />
-					}}/>
+					<Route path='/login' render={(props)=> 
+						<Login loginRoute={this.loginRoute.bind(this)} />
+					}/>
 
 
 					<Route path='/dashboard' render={(props) =>
@@ -106,7 +106,7 @@ class Main extends Component {
 
 					<Route path='/register' component={SignUp}/>
 					<Route path='/tasks-dash' component={TaskDash}/>
-			
+
 				</Switch>
 			</div>
 		)
