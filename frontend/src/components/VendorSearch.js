@@ -109,8 +109,15 @@ class VendorSearch extends Component {
 	render (){
 		return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-
-
+      {/*
+      yelp logo displayed
+      */}
+          <div>
+            <img src={require("../images/yelp_fullcolor.png"
+            )}
+            alt="yelpLogo"
+            />
+          </div>
           <TextField
             hintText="Search a Business"
             floatingLabelText="Search Business or category"
