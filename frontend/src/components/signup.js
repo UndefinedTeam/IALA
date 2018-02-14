@@ -67,26 +67,6 @@ class SignUp extends Component {
         return status
     }
 
-<<<<<<< HEAD
-    handleNewUser(params){
-        const { api } = this.props
-        console.log("api:", api);
-        fetch(`${api}/user`,
-            {
-                body: JSON.stringify(params),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method: "POST"
-            }
-        ).then((res)=>{
-            return res.json()
-        }).then(()=>{
-            this.setState({newUserSuccess: true})
-        }).catch((err)=>{
-            console.log("Error: failed to create new user", err)
-        })
-=======
     handleNewUser(status){
         let message
         if (status == true){
@@ -95,7 +75,6 @@ class SignUp extends Component {
         } else {
             return message = "Error unable to create an account"
         }
->>>>>>> master
     }
 
     render() {

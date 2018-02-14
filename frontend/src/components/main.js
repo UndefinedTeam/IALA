@@ -61,7 +61,7 @@ class Main extends Component {
 			},
 			method: "POST"
 		})
-		.then((token) => {
+		.then(() => {
 			fetch(`${API}/login/${loginForm.email}`)
 			.then(response => {
 				return response.json()
@@ -91,7 +91,7 @@ class Main extends Component {
 
 
 	render() {
-		let { login, user } = this.state
+		let { login, user, authToken } = this.state
 
 
 

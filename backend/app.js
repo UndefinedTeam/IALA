@@ -36,7 +36,6 @@ app.use(cors())
   }
 
 
-<<<<<<< HEAD
 app.get('/login/:email', (req, res) => {
   console.log(req.params.email);
   User.findOne({
@@ -48,10 +47,6 @@ app.get('/login/:email', (req, res) => {
       expiration: user.authTokenExpiration
     })
     console.log(user.authToken);
-=======
-  app.get('/', (req, res) => {
-    res.json({message: 'API Example App'})
->>>>>>> master
   })
 
   app.get('/login/:email', (req, res) => {
@@ -64,7 +59,6 @@ app.get('/login/:email', (req, res) => {
         token: user.authToken,
         expiration: user.authTokenExpiration
       })
-<<<<<<< HEAD
     } else {
       console.log("Fail?");
       res.json({
@@ -86,14 +80,6 @@ authorization ,
 (req, res) => {
   res.json({user: req.currentUser})
 })
-=======
-      console.log(user.authToken);
-    })
-    .catch(error => {
-      res.json({message: "Failed to retrieve authToken"})
-    })
-  })
->>>>>>> master
 
   app.post('/login', (req,res) => {
     User.findOne({
