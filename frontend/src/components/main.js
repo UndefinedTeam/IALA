@@ -6,12 +6,12 @@ import SignUp from './signup'
 import Dashboard from './Dashboard'
 import TaskDash from './tasksDash'
 
-
 const API = "http://localhost:3001"
 
 class Main extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
+
 		this.state = {
 			login: false,
 			users: this.getUser(),
@@ -47,7 +47,6 @@ class Main extends Component {
 			return token
 		}
 	}
-
 
 	// Passes login form, calls login POST endpoint
 	// New auth token and store to local storage
@@ -98,20 +97,24 @@ class Main extends Component {
 
 		return (
 			<div>
-
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					{ login && <Redirect from='/login' to='/dashboard' />}
-					<Route path='/login' render={(props)=>
-						<Login loginRoute={this.loginRoute.bind(this)} />
+					{login && <Redirect from='/login' to='/dashboard' />}
+					<Route path='/login' render={(props) =>
+						 <Login
+						 	loginRoute={this.loginRoute.bind(this)}
+						  />
 					}/>
 
-
 					<Route path='/dashboard' render={(props) =>
- 						<Dashboard
-							user={user}
-		 					api={API}
-		 				/>
+						<Dashboard
+							token={authToken}
+						/>
+					}/>
+					<Route path='/register' render={(props)=>
+						<SignUp
+							api={API}
+						/>
 					}/>
 
 					<Route path='/register' component={SignUp}/>
@@ -124,3 +127,26 @@ class Main extends Component {
 }
 
 export default Main;
+
+// class ProtectedPage extends Component {
+// 	render() {
+// 		const { login, children } = this.props
+//
+// 		if(!login) {
+// 			return (<Redirect to='/login' />)
+// 		}
+//
+// 		return (
+// 			{children}
+// 		)
+// 	}
+// }
+// <Route path='/dashboard' render={(props) => {
+// 			return (
+// 				<ProtectedPage>
+// 					<Dashboard users={users} />
+// 				</ProtectedPage>
+// 			)
+// 		}
+// 	}
+// />
