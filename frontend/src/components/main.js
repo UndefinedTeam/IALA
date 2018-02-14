@@ -11,8 +11,8 @@ class Main extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			login: false,
-			users: [],
+			login: true,
+			users: [1],
 			authToken: this.getToken()
 		}
 	}
@@ -65,7 +65,9 @@ class Main extends Component {
 	}
 
 	render() {
-		let { login, users } = this.state
+		let { login, users } = this.state;
+		// let login = this.state.log;
+		// let users = this.state.users;
 		console.log("Users in main:", users)
 		return (
 			<div>
