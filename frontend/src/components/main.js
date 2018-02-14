@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
+import TaskDash from './tasksDash'
+
 
 const API = "http://localhost:3001"
 
@@ -80,6 +82,7 @@ class Main extends Component {
 			console.log("Unable to set auth token");
 		})
 	}
+	
 
 	render() {
 		let { login, user } = this.state
@@ -90,15 +93,9 @@ class Main extends Component {
 					<Route exact path='/' component={Home}/>
 					{ login && <Redirect from='/login' to='/dashboard' />}
 					<Route path='/login' render={(props)=>
-						<Login
-							loginRoute={this.loginRoute.bind(this)}
-						/>
-					}/>
-					<Route path='/register' render={(props)=>
-						<SignUp
-							api={API}
-						/>
-					}/>
+						<Login users={users} />
+					}}/>
+
 
 					<Route path='/dashboard' render={(props) =>
  						<Dashboard
@@ -106,6 +103,10 @@ class Main extends Component {
 		 					api={API}
 		 				/>
 					}/>
+
+					<Route path='/register' component={SignUp}/>
+					<Route path='/tasks-dash' component={TaskDash}/>
+			
 				</Switch>
 			</div>
 		)
