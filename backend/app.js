@@ -129,52 +129,46 @@ app.use(cors())
           res.json("Error:", err)
       })
   })
+})
 
-  app.get('/lists', (req, res) => {
-    TodoList.findAll().then((lists) => {
-      res.json({
-          lists: lists
-      })
+
+app.get('/users/:id/list', (req, res) => {
+    User.findById(req.params.id)
+    .then((user) => {
+        TodoList.findAll({
+            where: {
+                userId: user.id
+            }
+        })
+        .then((lists) => {
+            res.json({
+                lists: lists
+            })
+        })
+        .catch((error) => {
+            res.send(error)
+        })
     })
-  })
+    .catch((error) => {
+        res.send(error)
+    })
+})
 
-  app.get('/users/:id/list', (req, res) => {
-      User.findById(req.params.id)
-      .then((user) => {
-          TodoList.findAll({
-              where: {
-                  userId: user.id
-              }
-          })
-          .then((lists) => {
-              res.json({
-                  lists: lists
-              })
-          })
-          .catch((error) => {
-              res.send(error)
-          })
-      })
-      .catch((error) => {
-          res.send(error)
-      })
-  })
-
-  app.get('/lists/:id/tasks', (req, res) => {
-      TodoList.findById(req.params.id).then((list) => {
-          Task.findAll({
-              where: {
-                  todoListId: list.id
-              }
-          }).then((tasks) => {
-              res.json({
-                  tasks: tasks
-              })
-          })
-      }).catch((error) => {
-          res.send(error)
-      })
-  })
+app.get('/lists/:id/tasks', (req, res) => {
+    TodoList.findById(req.params.id).then((list) => {
+        Task.findAll({
+            where: {
+                todoListId: list.id
+            }
+        }).then((tasks) => {
+            res.json({
+                tasks: tasks
+            })
+        })
+    }).catch((error) => {
+        res.send(error)
+    })
+})
 
 //backend API that fetches info from yelp
 //searches yelp and returns the results in a json body

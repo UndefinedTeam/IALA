@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
+import TaskDash from './tasksDash'
+
 
 const API = "http://localhost:3001"
 
@@ -11,10 +13,26 @@ class Main extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			login: true,
-			users: [1],
+			login: false,
+			users: this.getUser(),
 			authToken: this.getToken()
 		}
+	}
+
+	getUser(){
+		this.fetchUser()
+		.then((user) => {
+			console.log(user);
+			return user
+		})
+	}
+
+	fetchUser() {
+		let token = localStorage.getItem('authToken')
+		return fetch(`${API}/user?authToken=${token}`)
+		.then(res => {
+			return res.json()
+		})
 	}
 
 	// Retrieve token and expiration from browser
@@ -54,7 +72,8 @@ class Main extends Component {
 				localStorage.setItem("authToken", parsedResponse.token)
 				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
 				this.setState({
-					authToken: parsedResponse.token
+					login: true,
+					users: this.getUser()
 				})
 			})
 			.catch(error => {console.log("Unable to log in")})
@@ -64,11 +83,16 @@ class Main extends Component {
 		})
 	}
 
+
 	render() {
+<<<<<<< HEAD
 		let { login, users } = this.state;
 		// let login = this.state.log;
 		// let users = this.state.users;
 		console.log("Users in main:", users)
+=======
+		let { login, user } = this.state
+>>>>>>> master
 		return (
 			<div>
 
@@ -76,31 +100,20 @@ class Main extends Component {
 					<Route exact path='/' component={Home}/>
 					{ login && <Redirect from='/login' to='/dashboard' />}
 					<Route path='/login' render={(props)=>
-						<Login
-							users={users}
-							loginRoute={this.loginRoute.bind(this)}
-						/>
-					}/>
-					<Route path='/register' render={(props)=>
-						<SignUp
-							api={API}
-						/>
+						<Login users={users} />
+					}}/>
+
+
+					<Route path='/dashboard' render={(props) =>
+ 						<Dashboard
+							user={user}
+		 					api={API}
+		 				/>
 					}/>
 
-					<Route path='/dashboard' render={(props) => {
-								 if(login && users.length > 0){
-									 return <Dashboard
-		 								users={users}
-		 								api={API}
-		 							/>
-								}  else {
-									return <Login
-										message={<strong>Please login</strong>}
-									/>
-								}
-							}
-						}
-					/>
+					<Route path='/register' component={SignUp}/>
+					<Route path='/tasks-dash' component={TaskDash}/>
+
 				</Switch>
 			</div>
 		)

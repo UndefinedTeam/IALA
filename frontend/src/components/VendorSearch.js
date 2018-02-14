@@ -145,7 +145,6 @@ class VendorSearch extends Component {
             alt="yelpLogo"
             />
           </div>
-
           <TextField
             hintText="Search a Business"
             floatingLabelText="Search Business or category"
