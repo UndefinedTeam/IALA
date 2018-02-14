@@ -21,16 +21,6 @@ class Main extends Component {
 	// 	this.setState({login: true})
 	// }
 
-	componentWillMount() {
-		fetch(`${API}/users`)
-		.then((res) => {
-			// console.log("Response from API:", res);
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({users: res.users})
-		})
-	}
 
 	render() {
 		let { login, users } = this.state
@@ -43,7 +33,6 @@ class Main extends Component {
 					{ login && <Redirect from='/login' to='/dashboard' />}
 					<Route path='/login' render={(props)=>
 						<Login
-							users={users}
 							loginRoute={this.loginRoute.bind(this)}
 						/>
 					}/>
