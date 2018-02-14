@@ -16,7 +16,7 @@ class SignUp extends Component {
             },
 
             errors: {},
-            newUserSuccess: false,
+            newUserSuccess: null,
         }
     }
 
@@ -71,19 +71,21 @@ class SignUp extends Component {
         let message
         if (status == true){
             this.setState({newUserSuccess: status})
-            return message = "Success! your account has been created"
+            return message = <h3>Success! your account has been created</h3>
         } else {
-            return message = "Error unable to create an account"
+            return message = <h3>Error unable to create an account</h3>
         }
     }
 
     render() {
         const { email, name, password, passwordConfirm, zip } = this.state.form
         const { errors } = this.state
-
+        let message
+        
         return (
             <div className='form-container'>
                 <h3>Create an account with IALA!</h3>
+                     {message}
                     <form>
                         <div className='form-input'>
                         <label id='email-input'>Email</label>

@@ -19,9 +19,6 @@ class Dashboard extends Component {
 		let { token } = this.props
 		console.log("The Token is here!", token);
 		this.setUserDetails(token)
-	}
-
-	componentDidMount(){
 		this.setListDetails()
 	}
 
@@ -65,7 +62,7 @@ class Dashboard extends Component {
 		let id = users.id
 		console.log("this is the user id:", id);
 		let listId = lists.id
-		this.getLists(id)
+		this.getLists(2)
 		this.getTasks(listId)
 	}
 

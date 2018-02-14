@@ -1,24 +1,18 @@
 
 const API = "http://localhost:3001"
 
-<<<<<<< HEAD
-function fetchUser(token) {
-    return fetch(`${API}/user?authToken=${token}`)
-=======
 function fetchUser() {
-    return fetch(`${API}/users`)
->>>>>>> master
+    let token = localStorage.getItem('authToken')
+    return fetch(`${API}/user?authToken=${token}`)
     .then((res) => {
         return res.json()
     })
 }
 
+
 function addNewUser(params){
-<<<<<<< HEAD
     return fetch(`${API}/user`, {
-=======
-    return fetch(`${API}/users`, {
->>>>>>> master
+
             body: JSON.stringify(params),
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +25,7 @@ function addNewUser(params){
 }
 
 function fetchUserLists(id){
-    return fetch(`${API}/users/${id}/list`)
+    return fetch(`${API}/user/${id}/lists`)
     .then((res) => {
         console.log("Lists:",res)
         return res.json()
@@ -39,7 +33,7 @@ function fetchUserLists(id){
 }
 
 function fetchListTasks(listId){
-    return fetch(`${API}/lists/${listId}/tasks`)
+    return fetch(`${API}/list/${listId}/tasks`)
     .then((res) => {
         console.log("Tasks:", res)
         return res.json()

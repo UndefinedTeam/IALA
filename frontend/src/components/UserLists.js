@@ -21,6 +21,7 @@ class UserLists extends Component {
                         <div>
                             <h2>{user.name} List&#39;s</h2>
                         </div>
+                        <div><button href='/addlist'>Add A New List</button></div>
                 <div>
                     <Panel bsStyle="success" id="collapsible-panel">
                             <Panel.Heading >
@@ -38,7 +39,7 @@ class UserLists extends Component {
                                 )
                             })}
                                 <button
-                                    href={`/dashboard/list/${tasks.id}/tasks`}>
+                                    href='/task-dash'>
                                         View List
                                 </button>
                             </Panel.Body>

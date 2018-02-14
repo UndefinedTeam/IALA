@@ -36,24 +36,6 @@ app.use(cors())
   }
 
 
-<<<<<<< HEAD
-app.get('/login/:email', (req, res) => {
-  console.log(req.params.email);
-  User.findOne({
-    where:{email: req.params.email}
-  })
-  .then(user => {
-    res.json({
-      token: user.authToken,
-      expiration: user.authTokenExpiration
-    })
-    console.log(user.authToken);
-=======
-  app.get('/', (req, res) => {
-    res.json({message: 'API Example App'})
->>>>>>> master
-  })
-
   app.get('/login/:email', (req, res) => {
     console.log(req.params.email);
     User.findOne({
@@ -76,21 +58,21 @@ app.get('/login/:email', (req, res) => {
       where:{email: req.body.email}
     })
     .then( user => {
-      if(user.verifyPassword(req.body.password)) {
-        user.setAuthToken()
-        user.update({
-          authToken: user.authToken
-        })
-        .then(user => {
-          res.json({token: user.authToken})
-        })
-        .catch(error => {
-          res.json({message: "Unabale to set auth token"})
-        })
-      } else {
-        res.status(401)
-        res.json({message: "Invalid Password"})
-      }
+        if(user.verifyPassword(req.body.password)) {
+            user.setAuthToken()
+            user.update({
+              authToken: user.authToken
+            })
+            .then(user => {
+              res.json({token: user.authToken})
+            })
+            .catch(error => {
+              res.json({message: "Unabale to set auth token"})
+            })
+        } else {
+            res.status(401)
+            res.json({message: "Invalid Password"})
+        }
     })
     .catch(error => {
       res.json({message: "Unable to log in"})
@@ -125,28 +107,8 @@ app.get('/login/:email', (req, res) => {
     })
   })
 
-  app.post('/users', (req, res) => {
-      User.create({
-          email: req.body.email,
-          name: req.body.name,
-          password: req.body.password,
-          zip: req.body.zip
-      })
-      .then((user) =>{
-          res.status(201)
-          res.json({
-              user: user
-          })
-      })
-      .catch((err)=>{
-          res.status(404)
-          res.json("Error:", err)
-      })
-  })
-})
 
-
-app.get('/users/:id/list', (req, res) => {
+app.get('/user/:id/lists', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
         TodoList.findAll({
@@ -168,7 +130,7 @@ app.get('/users/:id/list', (req, res) => {
     })
 })
 
-app.get('/lists/:id/tasks', (req, res) => {
+app.get('/list/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
         Task.findAll({
             where: {
