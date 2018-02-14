@@ -13,7 +13,7 @@ class Home extends Component {
 							It&rsquo;s A List App! Take your organization to a new level with all your lists and tasks in one place.
 						</p>
 						<p>
-							<Button className="jumbo-button">Start Here</Button>
+							<Button className="jumbo-button" href="/register">Start Here</Button>
 						</p>
 				</Jumbotron>
 				<section id="labels">

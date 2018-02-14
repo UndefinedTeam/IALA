@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getUserLists, getUserTasks } from '../util/ApiCalls'
 import UserLists from './UserLists'
 import Progress from './Progress'
 import VendorSearch from './VendorSearch'
@@ -13,39 +14,26 @@ class Dashboard extends Component {
 		}
 	}
 
-	componentWillMount(){
-		let { users, api } = this.props
+	componentWillMount() {
+		this.setUserDetails()
+	}
+
+	setUserDetails() {
+		let { users } = this.props
+		let { list } = this.state
 		let id = users.id
-		console.log("Users in Dash:", users)
+		let listId = this.state.list.id
 
-		fetch(`${api}/users/${id}/list`)
-		.then((res) => {
-			console.log("Lists:",res)
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({
-				lists: res.lists
-			})
-		})
-		.catch((err) => {
-			console.log("List Error:",err)
-			return err
+		let lists = getUserLists(id)
+
+		this.setState({
+			lists: lists
 		})
 
-		fetch(`${api}/lists/${id}/tasks`)
-		.then((res) => {
-			console.log("tasks:", res)
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({
-				tasks: res.tasks
-			})
-		})
-		.catch((err) => {
-			console.log("Task Error:", err)
-			return err
+		let tasks = getUserTasks(listId)
+
+		this.setState({
+			tasks: tasks
 		})
 	}
 

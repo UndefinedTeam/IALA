@@ -70,10 +70,7 @@ app.get('/users/:id/list', (req, res) => {
         res.send(error)
     })
 })
-  .catch(function(error) {
-    res.send(error)
-  })
-})
+
 
 app.get('/lists/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
@@ -101,11 +98,12 @@ app.get('/yelp/:search/:location', (req, res) => {
     client.search({
         term: req.params.search,
         location: req.params.location
-    }).then((response) => {
+    })
+    .then((response) => {
     //return entire json object from yelp
-    res.json(response.jsonBody)
-
-    }).catch(e => {
+        res.json(response.jsonBody)
+    })
+    .catch(e => {
         console.log(e)
     })
 })
