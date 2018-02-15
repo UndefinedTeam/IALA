@@ -23,7 +23,11 @@ class UserLists extends Component {
                         </div>
                         <form action='/addlist'>
                             <div class="button">
-                                <button type='submit' value="go to add list form">Add A New List</button>
+                                <button
+                                    type='submit'
+                                    value="go to add list form">
+                                        Add A New List
+                                </button>
                             </div>
                         </form>
                 <div>
@@ -44,7 +48,9 @@ class UserLists extends Component {
                             })}
                                 <form action='/task-dash'>
                                     <div class="button">
-                                        <button type="submit" value="view list">
+                                        <button
+                                            type="submit"
+                                            value="view list">
                                                 View List
                                         </button>
                                     </div>
