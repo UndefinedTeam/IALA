@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { fetchUser, fetchUserLists, fetchListTasks } from '../util/ApiCalls'
+import AddList from './AddList'
 import UserLists from './UserLists'
-import Progress from './Progress'
 import VendorSearch from './VendorSearch'
 
 class Dashboard extends Component {
@@ -15,8 +15,6 @@ class Dashboard extends Component {
 		}
 		this.getUser()
 	}
-
-
 
 	// componentDidMount(){
 	// 	this.setListDetails()
@@ -80,7 +78,6 @@ class Dashboard extends Component {
 					lists={lists}
 					tasks={tasks}
 				/>
-				<Progress />
 				<div className="vendorResults">
 					<VendorSearch id={2}/>
 				</div>

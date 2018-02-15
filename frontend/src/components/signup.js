@@ -96,6 +96,7 @@ class SignUp extends Component {
     render() {
         const { email, name, password, passwordConfirm, zip } = this.state.form
         const { errors } = this.state
+        let message
 
         return (
             <div className='form-container'>

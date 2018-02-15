@@ -17,8 +17,8 @@ module.exports = {
       isComplete: {
         type: Sequelize.BOOLEAN
       },
-      categoryId: {
-        type: Sequelize.INTEGER
+      type: {
+        type: Sequelize.STRING
       },
       dateStart: {
         type: Sequelize.STRING
@@ -34,13 +34,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      todoListId: {
+      listId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
           model: 'TodoLists',
           key: 'id',
-          as: 'todoListId'
+          as: 'listId'
         }
       }
     });
