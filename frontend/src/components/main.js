@@ -5,12 +5,9 @@ import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-<<<<<<< HEAD
 import TasksDash from './tasksDash'
 import AddList from './AddList'
-=======
 import Tasks from './tasks'
->>>>>>> master
 
 const API = "http://localhost:3001"
 
