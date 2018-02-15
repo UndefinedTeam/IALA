@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import  { fetchUser } from '../util/ApiCalls'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import TaskDash from './tasksDash'
+import AddList from './AddList'
+import Tasks from './tasks'
+
 
 const API = "http://localhost:3001"
 
@@ -144,12 +147,8 @@ class Main extends Component {
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					<Route path='/register' component={SignUp}/>
-
+					<Route path='/tasks-dash' component={Tasks}/>
 					{this.showContent()}
-
-
-					<Route path='/tasks-dash' component={TaskDash}/>
-
 				</Switch>
 			</div>
 		)
