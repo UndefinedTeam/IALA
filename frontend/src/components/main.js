@@ -126,11 +126,11 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-
+					<Route path='/tasks' component={Tasks}/>
 					{this.showContent()}
 
 					<Route path='/register' component={SignUp}/>
-					<Route path='/tasks' component={Tasks}/>
+
 					<Route path='/dashboard' render={(props) => {
 								// if(login && users.length > 0){
 									 return <Dashboard
