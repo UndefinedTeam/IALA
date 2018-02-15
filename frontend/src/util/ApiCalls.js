@@ -11,17 +11,16 @@ function fetchUser() {
 
 
 function addNewUser(params){
-    return fetch(`${API}/user`, {
-
-            body: JSON.stringify(params),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST"
-    })
-    .then((res) => {
+   return fetch(`${API}/user`, {
+      body: JSON.stringify(params),
+      headers: {
+          'Content-Type': 'application/json'
+       },
+      method: "POST"
+   })
+   .then((res) => {
         return res.json()
-    })
+   })
 }
 
 function fetchUserLists(id){
@@ -49,14 +48,35 @@ function fetchListTasks(listId){
 //
 // }
 //
-// function createList(id){
-//
-// }
-//
-// function createTask(listId){
-//
-// }
-//
+function createList(id, params){
+    return fetch(`${API}/user/${id}/lists`,
+        {
+            body: JSON.stringify(params),
+            headers: {
+            'Content-Type': 'application/json'
+        },
+        method: "POST"
+    })
+    .then((res) => {
+        return res.json()
+    })
+}
+
+
+function createTask(listId, params){
+    return fetch(`${API}/list/${listId}/tasks`,
+        {
+            body: JSON.stringify(params),
+            headers: {
+            'Content-Type': 'application/json'
+        },
+        method: "POST"
+    })
+    .then((res) => {
+        return res.json()
+    })
+}
+
 // function destroyTask(listId){
 //
 // }
