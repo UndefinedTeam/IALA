@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     isComplete: DataTypes.BOOLEAN,
     categoryId: DataTypes.INTEGER,
     dateStart: DataTypes.STRING,
-    dateDone: DataTypes.STRING
+    dateDone: DataTypes.STRING,
+    priority: DataTypes.STRING
   }, {
     classMethods: {
       // associate: function(models) {

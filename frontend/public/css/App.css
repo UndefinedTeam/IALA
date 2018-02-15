@@ -289,40 +289,27 @@ p {
   width: 100%;
 }
 
-{/* ----Tasks & tasksDash Component */}
 
-.tasks-list {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 75%;
-    margin: 2em;
+{/* ----Tasks & TodoInput & tasksDash Component */}
+
+.todo-input-form {
+	width: 200%;
+	margin-right: 25px;
 }
 
-.tasks-sidebar {
-    border: solid;
-    outline:none;
-    width: 30%;
-    padding: 25px;
-    height:100%;
-    background-color: #BFC3EA;
-    position:fixed!important;
-    overflow: hidden;
-    border:none;
-
+.task-list-subheader > img {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
 }
 
-.tasks-main{
-    float: right;
-    background-color: yellow;
-    max-width: 50%;
-    padding: 5px;
-    position:relative;
-
+#remove-task-btn {
+  float:right
 }
 
 
-.todo-list-header > img {
-    width: 50px;
-    height: 50px;
-    padding: 5px;
+.edit-btn {
+  float: right;
+  padding: 5px;
+  margin-right: 15px;
 }

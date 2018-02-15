@@ -4,7 +4,7 @@ import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import TaskDash from './tasksDash'
+import Tasks from './tasks'
 
 const API = "http://localhost:3001"
 
@@ -130,8 +130,21 @@ class Main extends Component {
 					{this.showContent()}
 
 					<Route path='/register' component={SignUp}/>
-					<Route path='/tasks-dash' component={TaskDash}/>
-
+					<Route path='/tasks' component={Tasks}/>
+					<Route path='/dashboard' render={(props) => {
+								 if(login && users.length > 0){
+									 return <Dashboard
+		 								users={users}
+		 								api={API}
+		 							/>
+								}  else {
+									return <Login
+										message={<strong>Please login</strong>}
+									/>
+								}
+							}
+						}
+					/>
 				</Switch>
 			</div>
 		)
