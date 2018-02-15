@@ -1,24 +1,15 @@
 
 const API = "http://localhost:3001"
 
-<<<<<<< HEAD
 function fetchUser(token) {
     return fetch(`${API}/user?authToken=${token}`)
-=======
-function fetchUser() {
-    return fetch(`${API}/users`)
->>>>>>> master
     .then((res) => {
         return res.json()
     })
 }
 
 function addNewUser(params){
-<<<<<<< HEAD
     return fetch(`${API}/user`, {
-=======
-    return fetch(`${API}/users`, {
->>>>>>> master
             body: JSON.stringify(params),
             headers: {
                 'Content-Type': 'application/json'
@@ -38,6 +29,19 @@ function fetchUserLists(id){
     })
 }
 
+// function addNewList(params){
+//     return fetch(`${API}/user/${id}/addlist`, {
+//             body: JSON.stringify(params),
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             method: "POST"
+//     })
+//     .then((res) => {
+//         return res.json()
+//     })
+// }
+
 function fetchListTasks(listId){
     return fetch(`${API}/lists/${listId}/tasks`)
     .then((res) => {
@@ -54,11 +58,7 @@ function fetchListTasks(listId){
 //         })
 //
 // }
-//
-// function createList(id){
-//
-// }
-//
+
 // function createTask(listId){
 //
 // }
@@ -74,3 +74,5 @@ module.exports = {
     fetchUserLists: fetchUserLists,
     fetchListTasks: fetchListTasks,
 }
+
+    // addNewList: addNewList,

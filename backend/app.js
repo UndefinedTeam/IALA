@@ -36,7 +36,7 @@ app.use(cors())
   }
 
 
-<<<<<<< HEAD
+
 app.get('/login/:email', (req, res) => {
   console.log(req.params.email);
   User.findOne({
@@ -48,11 +48,8 @@ app.get('/login/:email', (req, res) => {
       expiration: user.authTokenExpiration
     })
     console.log(user.authToken);
-=======
-  app.get('/', (req, res) => {
-    res.json({message: 'API Example App'})
->>>>>>> master
   })
+})
 
   app.get('/login/:email', (req, res) => {
     console.log(req.params.email);
@@ -125,26 +122,6 @@ app.get('/login/:email', (req, res) => {
     })
   })
 
-  app.post('/users', (req, res) => {
-      User.create({
-          email: req.body.email,
-          name: req.body.name,
-          password: req.body.password,
-          zip: req.body.zip
-      })
-      .then((user) =>{
-          res.status(201)
-          res.json({
-              user: user
-          })
-      })
-      .catch((err)=>{
-          res.status(404)
-          res.json("Error:", err)
-      })
-  })
-})
-
 
 app.get('/users/:id/list', (req, res) => {
     User.findById(req.params.id)
@@ -165,6 +142,29 @@ app.get('/users/:id/list', (req, res) => {
     })
     .catch((error) => {
         res.send(error)
+    })
+})
+
+// Not being used yet but will add new lists to list table by user id
+app.post('/user/:id/addlist', (req, res) => {
+    User.findById(req.params.id)
+    .then((user) => {
+        TodoList.create({
+            title: req.body.title,
+            categoryID: req.body.categoryID,
+            isComplete: false,
+            userId: req.params.id,
+        })
+        .then((list) => {
+            res.status(201)
+            res.json({
+                list: list
+            })
+        })
+        .catch((err)=>{
+            res.status(404)
+            res.json("Error:", err)
+        })
     })
 })
 

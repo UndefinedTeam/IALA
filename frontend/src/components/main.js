@@ -84,7 +84,7 @@ class Main extends Component {
 
 
 	render() {
-		let { login, users } = this.state;
+		let { login, users, authToken } = this.state;
 		// let login = this.state.log;
 		// let users = this.state.users;
 		console.log("Users in main:", users)

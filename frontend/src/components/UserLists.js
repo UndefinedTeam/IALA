@@ -38,7 +38,7 @@ class UserLists extends Component {
                                 )
                             })}
                                 <button
-                                    href={`/dashboard/list/${tasks.id}/tasks`}>
+                                    href={`/dashboard/list/${user.id}/tasks`}>
                                         View List
                                 </button>
                             </Panel.Body>
