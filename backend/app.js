@@ -6,8 +6,8 @@ var User = require('./models').User
 var TodoList = require('./models').TodoList
 var Task = require('./models').Task
 var apiKey = 'M6w60G2RL_F_kiACA3VphibduaHe_ge5DwPkzFgJQj6GL6fq6eWnL_VV7pxcM6iAfvc2FAHg4G-5XXysQgtX8wU7JjdJkrhz1sklOA7J8FhPgj7shUfHVKNiYt17WnYx'
-const yelp = require('yelp-fusion')
 
+const yelp = require('yelp-fusion')
 const client = yelp.client(apiKey)
 
 app.use(express.static('public'))
@@ -34,7 +34,6 @@ const authorization = function(req, res, next){
     res.json({message: 'Authorization Token Required'})
   }
 }
-
 
 app.get('/', (req, res) => {
   res.json({message: 'API Example App'})
@@ -138,7 +137,6 @@ app.get('/lists', (req, res) => {
   })
 })
 
-
 app.get('/users/:id/list', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
@@ -156,6 +154,8 @@ app.get('/users/:id/list', (req, res) => {
             res.send(error)
         })
     })
+})
+
 
 app.get('/lists/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
@@ -179,17 +179,16 @@ app.get('/lists/:id/tasks', (req, res) => {
 app.get('/yelp/:search/:location', (req, res) => {
     console.log(req.params.search)
     console.log(req.params.location)
-
     client.search({
         term: req.params.search,
         location: req.params.location
     }).then((response) => {
     //return entire json object from yelp
-    res.json(response.jsonBody)
-
+      res.json(response.jsonBody)
     }).catch(e => {
         console.log(e)
     })
 })
 
-module.exports = app 
+module.exports = app
+ 
