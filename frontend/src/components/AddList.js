@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
+import { createList } from '../util/ApiCalls'
+import { validatePresence } from '../util/validations'
 
 // form below adds a new list then redirects to tasksDash for user to add tasks to the list.
 
@@ -12,10 +13,47 @@ class AddList extends Component {
             form: {
                 title: "",
                 type: "",
+                // userId: this.props.user.id,
             },
             errors: {}
         }
     }
+
+    validateForm(form) {
+		let errors = {}
+
+        // Title field
+        errors = validatePresence(errors, form, 'title')
+        
+        // Type field
+        errors = validatePresence(errors, form, 'type')
+
+		return errors
+	}
+
+	handleChange(e) {
+		const { form } = this.state
+
+		form[e.target.name] = e.target.value
+
+		this.setState({
+			form: form,
+			errors: this.validateForm(form)
+		})
+	}
+
+	handleSubmit(e) {
+		const { form } = this.state
+
+		e.preventDefault()
+
+		if(this.state.errors.length > 0) {
+			return this.state.errors
+		} else {
+			createList(form)
+		}
+	}
+
 
     render(){
         const { title, type } = this.state.form
@@ -45,9 +83,15 @@ class AddList extends Component {
                                 errors={errors.type}
                             />
                         </div>
-                        <form action="/tasks-dash">
+                        <form action='/tasks-dash'>
                             <div className= "button">
-                                <button type="submit" value="go to task dashboard">Create List</button>
+                                <button
+                                    type='submit'
+                                    value='go to task dashboard'
+                                    onChange={this.handleSubmit.bind(this)}
+                                >
+                                    Create List
+                                </button>
                             </div>
                         </form>
                     </form>
