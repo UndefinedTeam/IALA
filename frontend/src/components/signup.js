@@ -1,81 +1,97 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import FormInput from './FormInput';
 import { addNewUser } from '../util/ApiCalls'
 import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
 
 class SignUp extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            form: {
-                email: "",
-                name: "",
-                password: "",
-                passwordConfirm: "",
-                zip: ""
-            },
+	constructor(props){
+		super(props)
+		this.state = {
+			form: {
+			email: "",
+			name: "",
+			password: "",
+			passwordConfirm: "",
+			zip: ""
+		},
+		errors: {},
+		newUserSuccess: false,
+		}
+	}
 
-            errors: {},
-            newUserSuccess: false,
-        }
-    }
+	validateForm(form) {
+		let errors = {}
 
-    validateForm(form) {
-        let errors = {}
+		// Email
+		errors = validatePresence(errors, form, 'email')
+		errors = validateEmail(errors, form, 'email')
 
-        // Email
-        errors = validatePresence(errors, form, 'email')
-        errors = validateEmail(errors, form, 'email')
+		// Name
+		errors = validatePresence(errors, form, 'name')
 
-        // Name
-        errors = validatePresence(errors, form, 'name')
+		// Password
+		errors = validatePassword(errors, form, 'password')
 
-        // Password
-        errors = validatePassword(errors, form, 'password')
+		// Password Confirm
+		errors = confirmPassword(errors, form, 'passwordConfirm')
+		// Zip
+		errors = validateZip(errors, form, 'zip')
 
-        // Password Confirm
-        errors = confirmPassword(errors, form, 'passwordConfirm')
-        // Zip
-        errors = validateZip(errors, form, 'zip')
+		return errors
+	}
 
-        return errors
-    }
+	handleChange(e) {
+		const { form } = this.state
 
-    handleChange(e) {
-        const { form } = this.state
+		form[e.target.name] = e.target.value
+		this.setState({
+			form: form,
+			errors: this.validateForm(form)
+		})
+	}
 
-        form[e.target.name] = e.target.value
+	handleSubmit(e) {
+		const { form } = this.state
+		console.log(e);
+		let status
+		e.preventDefault()
 
-        this.setState({
-            form: form,
-            errors: this.validateForm(form)
-        })
-    }
+		if(this.state.errors.length > 0) {
+			return this.state.errors
+		} else {
+			this.handleNewUser(true)
+			addNewUser(form)
+		}
+	}
 
-    handleSubmit(e) {
-        const { form } = this.state
-        console.log(e);
-        let status
-        e.preventDefault()
+	successReg(){
+		if(this.state.newUserSuccess === true){
+			return (<Link to='/dashboard'><button
+				 id='submit'
+				 >
+				 Go to log in
+			</button></Link>)
+		} else {
+			return (<button
+				 id='submit'
+				 onClick={this.handleSubmit.bind(this)}>
+				 Submit
+			</button>)
+		}
+	}
 
-        if(this.state.errors.length > 0) {
-            // this is a failing case!!!
-            return this.state.errors
-        } else {
-             status = addNewUser(form)
-        }
-        return status
-    }
 
-    handleNewUser(status){
-        let message
-        if (status == true){
-            this.setState({newUserSuccess: status})
-            return message = "Success! your account has been created"
-        } else {
-            return message = "Error unable to create an account"
-        }
-    }
+
+
+	handleNewUser(status){
+		if (status) {
+			this.setState({newUserSuccess: status})
+			return ("Success! your account has been created")
+		} else {
+			return("")
+		}
+	}
 
     render() {
         const { email, name, password, passwordConfirm, zip } = this.state.form
@@ -84,6 +100,7 @@ class SignUp extends Component {
         return (
             <div className='form-container'>
                 <h3>Create an account with IALA!</h3>
+
                     <form>
                         <div className='form-input'>
                         <label id='email-input'>Email</label>
@@ -139,11 +156,7 @@ class SignUp extends Component {
                         </div>
 
                         <div className= "button">
-                            <button
-                                id='submit'
-                                onClick={this.handleSubmit.bind(this)}>
-                                Submit
-                            </button>
+                            {this.successReg()}
                         </div>
                     </form>
             </div>

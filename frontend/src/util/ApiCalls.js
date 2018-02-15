@@ -1,6 +1,7 @@
 
 const API = "http://localhost:3001"
 
+
 function fetchUser(token) {
     return fetch(`${API}/user?authToken=${token}`)
     .then((res) => {
@@ -9,16 +10,16 @@ function fetchUser(token) {
 }
 
 function addNewUser(params){
-    return fetch(`${API}/user`, {
-            body: JSON.stringify(params),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST"
-    })
-    .then((res) => {
+   return fetch(`${API}/user`, {
+      body: JSON.stringify(params),
+      headers: {
+          'Content-Type': 'application/json'
+       },
+      method: "POST"
+   })
+   .then((res) => {
         return res.json()
-    })
+   })
 }
 
 function fetchUserLists(id){

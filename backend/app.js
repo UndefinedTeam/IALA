@@ -14,116 +14,109 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors())
 
-  const authorization = function(req, res, next){
-    const token = req.query.authToken || req.body.authToken
-    console.log("Token:", token)
-    if(token){
-      User.findOne({
-        where: {authToken: token}
-      }).then((user)=>{
-        if(user){
-          req.currentUser = user
-          next()
-        }else{
-          res.status(401)
-          res.json({message:'Authorization Token Invalid'})
-        }
-      })
-    }else{
-      res.status(401)
-      res.json({message: 'Authorization Token Required'})
-    }
+const authorization = function(req, res, next){
+  const token = req.query.authToken || req.body.authToken
+  console.log("Token:", token)
+  if(token){
+    User.findOne({
+      where: {authToken: token}
+    }).then((user)=>{
+      if(user){
+        req.currentUser = user
+        next()
+      }else{
+        res.status(401)
+        res.json({message:'Authorization Token Invalid'})
+      }
+    })
+  }else{
+    res.status(401)
+    res.json({message: 'Authorization Token Required'})
   }
-
-
+}
 
 app.get('/login/:email', (req, res) => {
-  console.log(req.params.email);
+   console.log(req.params.email);
+   User.findOne({
+      where:{email: req.params.email}
+   })
+   .then(user => {
+      res.json({
+         token: user.authToken,
+         expiration: user.authTokenExpiration
+      })
+      console.log(user.authToken);
+   })
+   .catch(error => {
+      res.json({message: "Failed to retrieve authToken"})
+   })
+})
+
+app.post('/login', (req,res) => {
   User.findOne({
-    where:{email: req.params.email}
+    where:{email: req.body.email}
   })
-  .then(user => {
+   .then( user => {
+      if(user.verifyPassword(req.body.password)) {
+         user.setAuthToken()
+         user.update({
+            authToken: user.authToken
+         })
+         .then(user => {
+            res.json({token: user.authToken})
+         })
+         .catch(error => {
+            res.json({message: "Unabale to set auth token"})
+         })
+      } else {
+         res.status(401)
+      }
+   })
+   .catch(error => {
+      res.json({message: "Unable to log in"})
+   })
+})
+
+
+//APIURL/user?authToken=putTokenHeretoken
+//Gets user info for user with matching auth token
+app.get('/user',
+authorization ,
+(req, res) => {
+  res.json({user: req.currentUser})
+})
+
+app.post('/user', function(req, res){
+  User.create(
+    {
+      email: req.body.email,
+      name: req.body.name,
+      password: req.body.password,
+      zip: req.body.zip
+    }
+  ).then((user)=>{
     res.json({
-      token: user.authToken,
-      expiration: user.authTokenExpiration
+      message: 'success',
+      user: user
     })
-    console.log(user.authToken);
+  }).catch((error)=>{
+    res.status(400)
+    res.json({
+      message: "Unable to create User",
+      errors: error.errors
+    })
   })
 })
 
-  app.get('/login/:email', (req, res) => {
-    console.log(req.params.email);
-    User.findOne({
-      where:{email: req.params.email}
-    })
-    .then(user => {
-      res.json({
-        token: user.authToken,
-        expiration: user.authTokenExpiration
-      })
-      console.log(user.authToken);
-    })
-    .catch(error => {
-      res.json({message: "Failed to retrieve authToken"})
+app.get('/lists', (req, res) => {
+  TodoList.findAll().then((lists) => {
+    res.json({
+        lists: lists
     })
   })
+})
 
-  app.post('/login', (req,res) => {
-    User.findOne({
-      where:{email: req.body.email}
-    })
-    .then( user => {
-      if(user.verifyPassword(req.body.password)) {
-        user.setAuthToken()
-        user.update({
-          authToken: user.authToken
-        })
-        .then(user => {
-          res.json({token: user.authToken})
-        })
-        .catch(error => {
-          res.json({message: "Unabale to set auth token"})
-        })
-      } else {
-        res.status(401)
-        res.json({message: "Invalid Password"})
-      }
-    })
-    .catch(error => {
-      res.json({message: "Unable to log in"})
-    })
-  })
-
-  app.get('/user',
-  authorization ,
-  (req, res) => {
-    res.json({user: req.currentUser})
-  })
-
-  app.post('/user', function(req, res){
-    User.create(
-      {
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
-        zip: req.body.zip
-      }
-    ).then((user)=>{
-      res.json({
-        message: 'success',
-        user: user
-      })
-    }).catch((error)=>{
-      res.status(400)
-      res.json({
-        message: "Unable to create User",
-        errors: error.errors
-      })
-    })
-  })
-
-
-app.get('/users/:id/list', (req, res) => {
+app.get('/user/:id/lists', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
         TodoList.findAll({
@@ -145,30 +138,7 @@ app.get('/users/:id/list', (req, res) => {
     })
 })
 
-// Not being used yet but will add new lists to list table by user id
-app.post('/user/:id/addlist', (req, res) => {
-    User.findById(req.params.id)
-    .then((user) => {
-        TodoList.create({
-            title: req.body.title,
-            categoryID: req.body.categoryID,
-            isComplete: false,
-            userId: req.params.id,
-        })
-        .then((list) => {
-            res.status(201)
-            res.json({
-                list: list
-            })
-        })
-        .catch((err)=>{
-            res.status(404)
-            res.json("Error:", err)
-        })
-    })
-})
-
-app.get('/lists/:id/tasks', (req, res) => {
+app.get('/list/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
         Task.findAll({
             where: {
@@ -194,12 +164,11 @@ app.get('/yelp/:search/:location', (req, res) => {
     client.search({
         term: req.params.search,
         location: req.params.location
-    })
-    .then((response) => {
+    }).then((response) => {
     //return entire json object from yelp
-        res.json(response.jsonBody)
-    })
-    .catch(e => {
+    res.json(response.jsonBody)
+
+    }).catch(e => {
         console.log(e)
     })
 })

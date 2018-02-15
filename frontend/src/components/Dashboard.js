@@ -13,30 +13,29 @@ class Dashboard extends Component {
 			lists: [],
 			tasks: [],
 		}
+		this.getUser()
 	}
 
-	componentWillMount() {
-		let { token } = this.props
-		console.log("The Token is here!", token);
-		this.setUserDetails(token)
-	}
 
-	componentDidMount(){
-		this.setListDetails()
-	}
 
-	getUser(token) {
+	// componentDidMount(){
+	// 	this.setListDetails()
+	// }
+
+	getUser() {
+		const { token, users } = this.props
 		fetchUser(token)
 		.then((users) => {
-			console.log("Users in get user:", users.users[0].id);
+			console.log("Users in get user:", users.user);
 			this.setState({
-				users: users.users[0],
+				users: users.user,
 			})
 		})
 		.catch(e => { console.log(e) })
 	}
 
-	getLists(id){
+	getLists(){
+		const { id } = this.props.users
 		fetchUserLists(id)
 		.then((lists) => {
 			this.setState({
@@ -56,18 +55,18 @@ class Dashboard extends Component {
 		.catch(e => {console.log(e) })
 	}
 
-	setUserDetails(token) {
-		this.getUser(token)
-	}
+	// setUserDetails(token) {
+	// 	this.getUser(token)
+	// }
 
-	setListDetails(){
-		let { users, lists } = this.state
-		let id = users.id
-		console.log("this is the user id:", id);
-		let listId = lists.id
-		this.getLists(id)
-		this.getTasks(listId)
-	}
+	// setListDetails(){
+	// 	let { users, lists } = this.state
+	// 	let id = users.id
+	// 	console.log("this is the user id:", id);
+	// 	let listId = lists.id
+	// 	this.getLists(id)
+	// 	this.getTasks(listId)
+	// }
 
 	render() {
 		let { users, lists, tasks } = this.state
