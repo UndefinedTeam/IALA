@@ -10,17 +10,16 @@ function fetchUser(token) {
 }
 
 function addNewUser(params){
-
-    return fetch(`${API}/user`, {
+   return fetch(`${API}/user`, {
       body: JSON.stringify(params),
       headers: {
           'Content-Type': 'application/json'
-      },
+       },
       method: "POST"
-    })
-    .then((res) => {
+   })
+   .then((res) => {
         return res.json()
-    })
+   })
 }
 
 function fetchUserLists(id){
