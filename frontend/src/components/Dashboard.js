@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { fetchUser, fetchUserLists, fetchListTasks } from '../util/ApiCalls'
 import UserLists from './UserLists'
-import Progress from './Progress'
 import VendorSearch from './VendorSearch'
 
 class Dashboard extends Component {
@@ -80,7 +79,6 @@ class Dashboard extends Component {
 					lists={lists}
 					tasks={tasks}
 				/>
-				<Progress />
 				<div className="vendorResults">
 					<VendorSearch id={2}/>
 				</div>

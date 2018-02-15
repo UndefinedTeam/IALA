@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import Tasks from './tasks'; 
-import Progress from './Progress';
+import Tasks from './tasks';
 import TodoInput from './TodoInput'
 
 var todos = [
@@ -36,13 +35,13 @@ class TasksDash extends Component {
   }
 
   handleAddTodo(todo) {
-  this.setState({todos: [...this.state.todos, todo]});  
+  this.setState({todos: [...this.state.todos, todo]});
 }
 
 handleEditTodo(todo) {
-  this.setState({todos: [...this.state.todos, todo]});  
+  this.setState({todos: [...this.state.todos, todo]});
 }
- 
+
 
 
 
@@ -55,17 +54,15 @@ handleEditTodo(todo) {
 
           <div className="tasks-sidebar">
             <TodoInput onAddTodo={this.handleAddTodo}/>
-            <br/>  
-            <Progress />     
           </div>
 
-   
+
           <div className="tasks-main">
           <div className="todo-list-header">
             <img className="todo-list-header" src={require("../images/list-icon.png")} alt="list-icon" />
             Todo Count: <span className="badge badge-pill badge-primary">{this.state.todos.length}</span>
           </div>
-          
+
           <div className="col">
             <ul className="list-group">
               { this.state.todos.map((todo, index) =>
@@ -86,15 +83,10 @@ handleEditTodo(todo) {
             </ul>
           </div>
           </div>
-      </div>     
+      </div>
     );
   }
 }
 
 
 export default TasksDash;
-
-
-
-
- 

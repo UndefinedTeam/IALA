@@ -23,16 +23,6 @@
     text-align: center;
 }
 
-.circle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  	border-radius: 50%;
-  	width: 200px;
-  	height: 200px;
-    background-color: lightblue;
-}
-
 #bar {
     margin: 2%;
     width: 95%;
@@ -50,7 +40,15 @@
 .vendorResults {
   align-content: center;
   padding: 0, 15px, 0, 15px;
-  width: 700,
-  height: 450,
+  width: inherit;,
+  height: inherit;,
   overflowY: 'auto',
+}
+
+.navbar-default {
+    background-color: #CAEBF2;
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
 }
