@@ -19,8 +19,13 @@ class UserLists extends Component {
         return(
             <div className="userList-container">
                         <div>
-                            <h2>User&rsquo;s Lists</h2>
+                            <h2> user &rsquo;s Lists</h2>
                         </div>
+                        <form action='/addlist'>
+                            <div class="button">
+                                <button type='submit' value="go to add list form">Add A New List</button>
+                            </div>
+                        </form>
                 <div>
                     <Panel bsStyle="success" id="collapsible-panel">
                             <Panel.Heading >
@@ -37,10 +42,13 @@ class UserLists extends Component {
                                     </ul>
                                 )
                             })}
-                                <button
-                                    href={`/dashboard/list/${tasks.id}/tasks`}>
-                                        View List
-                                </button>
+                                <form action='/task-dash'>
+                                    <div class="button">
+                                        <button type="submit" value="view list">
+                                                View List
+                                        </button>
+                                    </div>
+                                </form>
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>

@@ -11,8 +11,8 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      categoryID: {
-        type: Sequelize.INTEGER
+      type: {
+        type: Sequelize.STRING
       },
       isComplete: {
         type: Sequelize.BOOLEAN

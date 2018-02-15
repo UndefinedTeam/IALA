@@ -10,8 +10,14 @@ class Home extends Component {
 				<Jumbotron>
 					<h1>Welcome to IALA!</h1>
 						<p>
-							It&rsquo;s A List App! Take your organization to a new level with all your lists and tasks in one place.
+							It&rsquo;s A List App! Take your organization skills to a new level with all your lists and tasks in one place.
 						</p>
+                        // please put bullets on this list :)
+							<ul>
+								<li>View all of your lists</li>
+								<li>Search for Vendors</li>
+								<li>Complete Tasks</li>
+							</ul>
 						<p>
 							<Button className="jumbo-button" href="/register">Start Here</Button>
 						</p>

@@ -12,10 +12,10 @@ module.exports = {
               task: 'Task 1',
               desc: 'Test this thing',
               isComplete: false,
-              categoryId: 0,
+              type: "Party",
               dateStart: 'today',
               dateDone : 'tommorow',
-              todoListId: task.get('id'),
+              listId: task.get('id'),
               createdAt: new Date(),
               updatedAt: new Date()
             },
@@ -23,10 +23,10 @@ module.exports = {
               task: 'Task 2',
               desc: 'Test this thing again',
               isComplete: false,
-              categoryId: 0,
+              type: "Work",
               dateStart: 'today',
               dateDone : 'tommorow',
-              todoListId: task.get('id'),
+              listId: task.get('id'),
               createdAt: new Date(),
               updatedAt: new Date()
             }

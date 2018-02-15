@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import  { fetchUser } from '../util/ApiCalls'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
+<<<<<<< HEAD
+import TasksDash from './tasksDash'
+import AddList from './AddList'
+=======
 import Tasks from './tasks'
+>>>>>>> master
 
 const API = "http://localhost:3001"
 
@@ -14,7 +20,7 @@ class Main extends Component {
 
 		this.state = {
 			login: false,
-			users: this.getUser(),
+			user: this.getUser(),
 			authToken: this.getToken()
 		}
 	}
@@ -33,20 +39,13 @@ class Main extends Component {
 	}
 
 	getUser(){
-		this.fetchUser()
+		fetchUser()
 		.then((user) => {
 			console.log(user);
 			return user
 		})
 	}
 
-	fetchUser() {
-		let token = localStorage.getItem('authToken')
-		return fetch(`${API}/user?authToken=${token}`)
-		.then(res => {
-			return res.json()
-		})
-	}
 
 	// Retrieve token and expiration from browser
 	// Nullify auth token if past expire date
@@ -96,14 +95,14 @@ class Main extends Component {
 	}
 
 	showContent(){
-		const { login, authToken, users } = this.state
-		console.log(users);
+		const { login, authToken, user } = this.state
+		console.log(user);
 		if(!login) {
 			return(
 				<div><Redirect from='/login' to='/dashboard' />
 				<Route path='/dashboard' render={(props) =>
 					<Dashboard
-						user={users}
+						user={user}
 						token={authToken}
 					/>
 				}/></div>
@@ -126,7 +125,11 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-
+					<Route path='/addlist' render={(props) =>
+						<AddList
+							user={user}
+						/>
+					}/>
 					{this.showContent()}
 
 					<Route path='/register' component={SignUp}/>

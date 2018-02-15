@@ -139,12 +139,34 @@ app.get('/user/:id/lists', (req, res) => {
     })
 })
 
+app.post('/user/:id/lists', (req, res) => {
+        Todolist.create(
+            {
+                title: req.body.title,
+                type: req.body.type,
+                userId: req.params.id
+            }
+        )
+        .then((list)=>{
+          res.json({
+            message: 'success',
+            list: list
+          })
+        })
+        .catch((error)=>{
+          res.status(400)
+          res.json({
+            message: "Unable to create list",
+            errors: error.errors
+          })
+      })
+})
 
 app.get('/list/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
         Task.findAll({
             where: {
-                todoListId: list.id
+                listId: list.id
             }
         }).then((tasks) => {
             res.json({
@@ -153,6 +175,33 @@ app.get('/list/:id/tasks', (req, res) => {
         })
     }).catch((error) => {
         res.send(error)
+    })
+})
+
+app.post('/list/:id/tasks', (req,res) => {
+    Tasks.create(
+        {
+            task: req.body.task,
+            desc: req.body.desc,
+            isComplete: false,
+            type: req.body.type,
+            dateStart: req.body.dateStart,
+            dateDone : req.body.dateDone,
+            listId: req.params.id
+        }
+    )
+    .then((task)=>{
+        res.json({
+            message: 'success',
+            task: task
+        })
+    })
+    .catch((error)=>{
+        res.status(400)
+        res.json({
+        message: "Unable to create task",
+        errors: error.errors
+        })
     })
 })
 

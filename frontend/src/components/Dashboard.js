@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fetchUser, fetchUserLists, fetchListTasks } from '../util/ApiCalls'
+import AddList from './AddList'
 import UserLists from './UserLists'
 import VendorSearch from './VendorSearch'
 
@@ -14,8 +15,6 @@ class Dashboard extends Component {
 		}
 		this.getUser()
 	}
-
-
 
 	// componentDidMount(){
 	// 	this.setListDetails()
