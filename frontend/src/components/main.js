@@ -19,6 +19,19 @@ class Main extends Component {
 		}
 	}
 
+	getLogin(){
+		let token = localStorage.getItem('authToken')
+		this.fetchUser()
+		.then(res => {
+			if(res.user){
+				console.log("yes");
+				return true
+			} else {
+				return false
+			}
+		})
+	}
+
 	getUser(){
 		this.fetchUser()
 		.then((user) => {
@@ -61,7 +74,7 @@ class Main extends Component {
 			},
 			method: "POST"
 		})
-		.then(() => {
+		.then(()=> {
 			fetch(`${API}/login/${loginForm.email}`)
 			.then(response => {
 				return response.json()
@@ -71,44 +84,50 @@ class Main extends Component {
 				localStorage.setItem("authToken", parsedResponse.token)
 				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
 				this.setState({
-					login: true,
-					users: this.getUser()
+					users: this.getUser(),
+					login: true
 				})
 			})
-			.catch(error => {console.log("Unable to log in")})
+			.catch(error => {console.log("Set auth token")})
 		})
 		.catch(error => {
-			console.log("Unable to set auth token");
+			console.log("Unable to log in");
 		})
 	}
 
+	showContent(){
+		const { login, authToken, users } = this.state
+		console.log(users);
+		if(!login) {
+			return(
+				<div><Redirect from='/login' to='/dashboard' />
+				<Route path='/dashboard' render={(props) =>
+					<Dashboard
+						user={users}
+						token={authToken}
+					/>
+				}/></div>
+			)
+		} else {
+			return (
+				<Route path='/login' render={(props) =>
+					 <Login
+						loginRoute={this.loginRoute.bind(this)}
+					  />
+				}/>
+			)
+		}
+	}
 
 	render() {
-		let { login, users } = this.state;
-		// let login = this.state.log;
-		// let users = this.state.users;
-		console.log("Users in main:", users)
+		let { login, user, authToken } = this.state
+
 		return (
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					{login && <Redirect from='/login' to='/dashboard' />}
-					<Route path='/login' render={(props) =>
-						 <Login
-						 	loginRoute={this.loginRoute.bind(this)}
-						  />
-					}/>
 
-					<Route path='/dashboard' render={(props) =>
-						<Dashboard
-							token={authToken}
-						/>
-					}/>
-					<Route path='/register' render={(props)=>
-						<SignUp
-							api={API}
-						/>
-					}/>
+					{this.showContent()}
 
 					<Route path='/register' component={SignUp}/>
 					<Route path='/tasks-dash' component={TaskDash}/>
@@ -143,3 +162,16 @@ export default Main;
 // 		}
 // 	}
 // />
+// {login && <Redirect from='/login' to='/dashboard' />}
+// <Route path='/login' render={(props) =>
+// 	 <Login
+// 		loginRoute={this.loginRoute.bind(this)}
+// 	  />
+// }/>
+// {login && <Redirect from='/dashboard' to='/login' />}
+//
+// <Route path='/register' render={(props)=>
+// 	<SignUp
+// 		api={API}
+// 	/>
+// }/>
