@@ -5,17 +5,23 @@ class TodoInput extends Component {
     super(props);
 
     this.state = {
-      todoTitle: '',
-      todoDescription: '',
-      todoPriority: 'lowest'
+      todoListId: 1,
+			categoryId: 0,
+      task: '',
+			priority: 'low',
+      desc: '',
+      isComplete: false,
+      dateStart: '',
+      dateDone : ''
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
    }
 
-   handleInputChange(event) {
-     const target = event.target;
+
+   handleInputChange(e) {
+     const target = e.target;
      const value = target.value;
      const name = target.name;
 
@@ -24,66 +30,71 @@ class TodoInput extends Component {
      })
    }
 
-   handleSubmit(event) {
-    event.preventDefault();
-    this.props.onAddTodo(this.state);
+   handleSubmit(e) {
+    e.preventDefault();
+    this.props.onAddTask(this.state);
     this.setState({
-      todoTitle: '',
-      todoDescription: '',
-      todoPriority: 'lowest'
+      todoListId: 1,
+			categoryId: 0,
+      task: '',
+			priority: 'low',
+      desc: '',
+      isComplete: false,
+      dateStart: '',
+      dateDone: ''
     });
   }
 
   render() {
     return (
-      <div className="todo">
-        <h4>Add a New Todo Item</h4><br/>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input  name="todoTitle"
-                    type="text"
-                    className="form-control"
-                    id="inputTodoTitle"
-                    value={this.state.todoTitle}
-                    onChange={this.handleInputChange}
-                    aria-describedby="Todo Title"
-                    placeholder="Task Title"></input>
-            </div>
+          <div className="todo-input-form">
+            <form onSubmit={this.handleSubmit}>
+						<h4>Add a New Task</h4><br/>
 
-
-            <div className="form-group">
-              <label htmlFor="inputTodoPriority" className="control-label text-muted"><small>Priority</small></label>
-              <select   name="todoPriority"
+              <div className="form-group">
+                <input  name="task"
                         type="text"
                         className="form-control"
-                        id="inputTodoPriority"
-                        value={this.state.todoPriority}
+                        id="inputTask"
+                        value={this.state.task}
                         onChange={this.handleInputChange}
-                        aria-describedby="Todo Priority">
-                
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-              </select><br/>
-            </div>
+                        aria-describedby="Task"
+                        placeholder="Task Title"></input>
+              </div>
 
 
-            <div className="form-group">
-              <label htmlFor="inputTodoDescription" className="control-label text-muted"><small>Description</small></label>
-              <textarea   name="todoDescription"
+              <div className="form-group">
+                <label htmlFor="inputPriority" className="control-label text-muted"><small>Priority</small></label>
+                <select   name="priority"
                           type="text"
                           className="form-control"
-                          id="inputTodoDescription"
-                          value={this.state.todoDescription}
+                          id="inputPriority"
+                          value={this.state.priority}
                           onChange={this.handleInputChange}
-                          aria-describedby="Todo Description"></textarea>
-            </div>
-           
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary">Add To List</button>
-            </div>
-        </form>
-      </div>
+                          aria-describedby="Priority">
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                </select><br/>
+              </div>
+
+
+              <div className="form-group">
+                <label htmlFor="inputDesc" className="control-label text-muted"><small>Description</small></label>
+                <textarea   name="desc"
+                            type="text"
+                            className="form-control"
+                            id="inputDesc"
+                            value={this.state.desc}
+                            onChange={this.handleInputChange}
+                            aria-describedby="Description"></textarea>
+              </div>
+
+	            <div className="form-group">
+	              <button type="submit" className="btn btn-primary">Add To List</button>
+	            </div>
+        		</form>
+      		</div>
     )
   }
 }

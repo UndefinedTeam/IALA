@@ -4,7 +4,7 @@ import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import TaskDash from './tasksDash'
+import Tasks from './tasks'
 
 
 const API = "http://localhost:3001"
@@ -65,7 +65,7 @@ class Main extends Component {
 			console.log("Unable to set auth token");
 		})
 	}
-	
+
 
 	render() {
 		let { login, users } = this.state
@@ -84,7 +84,7 @@ class Main extends Component {
 					}/>
 
 					<Route path='/register' component={SignUp}/>
-					<Route path='/tasks-dash' component={TaskDash}/>
+					<Route path='/tasks' component={Tasks}/>
 					<Route path='/dashboard' render={(props) => {
 								 if(login && users.length > 0){
 									 return <Dashboard
