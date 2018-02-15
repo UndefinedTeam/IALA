@@ -6,8 +6,8 @@ var User = require('./models').User
 var TodoList = require('./models').TodoList
 var Task = require('./models').Task
 var apiKey = 'M6w60G2RL_F_kiACA3VphibduaHe_ge5DwPkzFgJQj6GL6fq6eWnL_VV7pxcM6iAfvc2FAHg4G-5XXysQgtX8wU7JjdJkrhz1sklOA7J8FhPgj7shUfHVKNiYt17WnYx'
-const yelp = require('yelp-fusion')
 
+const yelp = require('yelp-fusion')
 const client = yelp.client(apiKey)
 
 app.use(express.static('public'))
@@ -116,6 +116,7 @@ app.get('/lists', (req, res) => {
   })
 })
 
+
 app.get('/user/:id/lists', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
@@ -210,14 +211,12 @@ app.post('/list/:id/tasks', (req,res) => {
 app.get('/yelp/:search/:location', (req, res) => {
     console.log(req.params.search)
     console.log(req.params.location)
-
     client.search({
         term: req.params.search,
         location: req.params.location
     }).then((response) => {
     //return entire json object from yelp
-    res.json(response.jsonBody)
-
+      res.json(response.jsonBody)
     }).catch(e => {
         console.log(e)
     })
