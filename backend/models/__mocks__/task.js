@@ -11,5 +11,6 @@ module.exports = function(sequelize, DataTypes){
     dateStart: 'today',
     dateDone : 'tommorow',
     todoListId: 1,
+    priority: 'low',
   })
 }
