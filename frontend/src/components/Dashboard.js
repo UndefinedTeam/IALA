@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { fetchUser, fetchUserLists, fetchListTasks } from '../util/ApiCalls'
 import UserLists from './UserLists'
 import Progress from './Progress'
 import VendorSearch from './VendorSearch'
@@ -8,60 +9,80 @@ class Dashboard extends Component {
 		super(props)
 
 		this.state = {
+			users: [],
 			lists: [],
 			tasks: [],
 		}
+		this.getUser()
 	}
 
-	componentWillMount(){
-		let { users, api } = this.props
-		let id = users.id
-		console.log("Users in Dash:", users)
 
-		fetch(`${api}/users/${id}/list`)
-		.then((res) => {
-			console.log("Lists:",res)
-			return res.json()
-		})
-		.then((res) => {
+
+	// componentDidMount(){
+	// 	this.setListDetails()
+	// }
+
+	getUser() {
+		const { token, users } = this.props
+		fetchUser(token)
+		.then((users) => {
+			console.log("Users in get user:", users.user);
 			this.setState({
-				lists: res.lists
+				users: users.user,
 			})
 		})
-		.catch((err) => {
-			console.log("List Error:",err)
-			return err
-		})
-
-		fetch(`${api}/lists/${id}/tasks`)
-		.then((res) => {
-			console.log("tasks:", res)
-			return res.json()
-		})
-		.then((res) => {
-			this.setState({
-				tasks: res.tasks
-			})
-		})
-		.catch((err) => {
-			console.log("Task Error:", err)
-			return err
-		})
+		.catch(e => { console.log(e) })
 	}
+
+	getLists(){
+		const { id } = this.props.users
+		fetchUserLists(id)
+		.then((lists) => {
+			this.setState({
+				lists: lists.lists[0],
+			})
+		})
+		.catch(e => {console.log(e) })
+	}
+
+	getTasks(listId){
+		fetchListTasks(listId)
+		.then((tasks) => {
+			this.setState({
+				tasks: tasks.tasks[0],
+			})
+		})
+		.catch(e => {console.log(e) })
+	}
+
+	// setUserDetails(token) {
+	// 	this.getUser(token)
+	// }
+
+	// setListDetails(){
+	// 	let { users, lists } = this.state
+	// 	let id = users.id
+	// 	console.log("this is the user id:", id);
+	// 	let listId = lists.id
+	// 	this.getLists(id)
+	// 	this.getTasks(listId)
+	// }
 
 	render() {
-		const { users } = this.props
-		let { lists, tasks } = this.state
-
+		let { users, lists, tasks } = this.state
+		console.log("Users in render:", users);
+		console.log("Lists in render:", lists);
+		console.log("Tasks in render:", tasks);
 		return(
 			<div className="dash-container">
 				<UserLists
 					user={users}
 					lists={lists}
-					tasks={tasks} />
+					tasks={tasks}
+				/>
 				<Progress />
 				<div className="vendorResults">
-					<VendorSearch />
+					<VendorSearch id={2}/>
 				</div>
 			</div>
 		)
