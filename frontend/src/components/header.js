@@ -27,7 +27,7 @@ class Header extends Component {
 				<Navbar collapseOnSelect>
 					<Navbar.Header>
 						<Navbar.Brand>
-							<Link to="/">IALA</Link>
+							<Link to="/"><img src={require("../images/logo.png")} alt="cofee-cup" className="logo" /></Link>
 						</Navbar.Brand>
 						<Navbar.Toggle />
 					</Navbar.Header>
