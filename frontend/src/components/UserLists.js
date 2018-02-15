@@ -19,7 +19,7 @@ class UserLists extends Component {
         return(
             <div className="userList-container">
                         <div>
-                            <h2>{user.name}&rsquo;s Lists</h2>
+                            <h2> user &rsquo;s Lists</h2>
                         </div>
                         <form action='/addlist'>
                             <div class="button">

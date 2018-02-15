@@ -16,7 +16,7 @@ class Main extends Component {
 
 		this.state = {
 			login: false,
-			users: this.getUser(),
+			user: this.getUser(),
 			authToken: this.getToken()
 		}
 	}
@@ -91,14 +91,14 @@ class Main extends Component {
 	}
 
 	showContent(){
-		const { login, authToken, users } = this.state
-		console.log(users);
+		const { login, authToken, user } = this.state
+		console.log(user);
 		if(!login) {
 			return(
 				<div><Redirect from='/login' to='/dashboard' />
 				<Route path='/dashboard' render={(props) =>
 					<Dashboard
-						user={users}
+						user={user}
 						token={authToken}
 					/>
 				}/></div>
@@ -121,7 +121,11 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					<Route path='/addlist' component={AddList}/>
+					<Route path='/addlist' render={(props) =>
+						<AddList
+							user={user}
+						/>
+					}/>
 					{this.showContent()}
 
 					<Route path='/tasks-dash' component={TasksDash}/>
