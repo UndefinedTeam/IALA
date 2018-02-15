@@ -8,14 +8,14 @@ class SignUp extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			form: {
+		form: {
 			email: "",
 			name: "",
 			password: "",
 			passwordConfirm: "",
 			zip: ""
 		},
-		errors: {},
+		errors: [""],
 		newUserSuccess: false,
 		}
 	}
@@ -45,123 +45,149 @@ class SignUp extends Component {
 		const { form } = this.state
 
 		form[e.target.name] = e.target.value
-		this.setState({
-			form: form,
-			errors: this.validateForm(form)
-		})
+		if(Object.keys(this.validateForm(form).length > 0)) {
+			this.setState({
+				form: form,
+				errors: this.validateForm(form),
+				newUserSuccess: false
+			})
+		} else {
+			this.setState({
+				form: form,
+				errors: this.validateForm(form),
+				newUserSuccess: true
+			})
+		}
 	}
 
 	handleSubmit(e) {
 		const { form } = this.state
-		console.log(e);
-		let status
+		//console.log(e);
 		e.preventDefault()
 
-		if(this.state.errors.length > 0) {
+		if(Object.keys(this.state.errors).length > 0) {
+			console.log("nein");
+			this.handleNewUser(false)
 			return this.state.errors
 		} else {
+			let response
+			console.log('ja');
 			this.handleNewUser(true)
 			addNewUser(form)
 		}
 	}
 
-	successReg(){
-		if(this.state.newUserSuccess === true){
-			return (<Link to='/dashboard'><button
-				 id='submit'
-				 >
-				 Go to log in
-			</button></Link>)
+	handleInvalid(e) {
+		e.preventDefault()
+		if(Object.keys(this.state.errors).length > 0) {
+			console.log("nein");
+			this.handleNewUser(false)
+			return this.state.errors
 		} else {
-			return (<button
-				 id='submit'
-				 onClick={this.handleSubmit.bind(this)}>
-				 Submit
-			</button>)
+			this.handleNewUser(true)
 		}
 	}
-
-
-
 
 	handleNewUser(status){
 		if (status) {
 			this.setState({newUserSuccess: status})
 			return ("Success! your account has been created")
 		} else {
-			return("")
+			this.setState({newUserSuccess: status})
+			return("Registration failed")
 		}
 	}
 
-    render() {
-        const { email, name, password, passwordConfirm, zip } = this.state.form
-        const { errors } = this.state
+	renderButton(){
+		if(this.state.newUserSuccess === true){
+			return (
+				<button
+					id='submit'
+					onClick={this.handleSubmit.bind(this)}>
+					<Link to='/login'><span style={{color:"black"}}>Create your account!</span></Link>
+				</button>
+			)
+		} else {
+			return (
+				<button
+					id='submit'
+					onClick={this.handleInvalid.bind(this)}>
+					Confirm Info
+				</button>
+			)
+		}
+	}
 
-        return (
-            <div className='form-container'>
-                <h3>Create an account with IALA!</h3>
+	render() {
+		const { email, name, password, passwordConfirm, zip } = this.state.form
+		const { errors } = this.state
 
-                    <form>
-                        <div className='form-input'>
-                        <label id='email-input'>Email</label>
-                            <FormInput
-                                type="email"
-                                name='email'
-                                value={email}
-                                onChange={this.handleChange.bind(this)}
-                                errors={errors.email}
-                            />
-                        </div>
-                        <div className='form-input'>
-                        <label id='name-input'>Name</label>
-                            <FormInput
-                                type="text"
-                                name='name'
-                                value={name}
-                                onChange={this.handleChange.bind(this)}
-                                errors={errors.name}
-                            />
-                        </div>
-                        <div className='form-input'>
-                        <label id='password-input'>Password</label>
-                            <FormInput
-                                type="password"
-                                name='password'
-                                value={password}
-                                onChange={this.handleChange.bind(this)}
-                                errors={errors.password}
-                            />
-                        </div>
+		console.log(this.state);
 
-                        <div className='form-input'>
-                        <label id='passwordConfirm-input'>Confirm Password</label>
-                            <FormInput
-                                type="password"
-                                name='passwordConfirm'
-                                value={passwordConfirm}
-                                onChange={this.handleChange.bind(this)}
-                                errors={errors.passwordConfirm}
-                            />
-                        </div>
+		return (
+			<div className='form-container'>
+				<h3>Create an account with IALA!</h3>
+				<form>
+					<div className='form-input'>
+						<label id='email-input'>Email</label>
+						<FormInput
+							type="email"
+							name='email'
+							value={email}
+							onChange={this.handleChange.bind(this)}
+							errors={errors.email}
+						/>
+					</div>
+						<div className='form-input'>
+						<label id='name-input'>Name</label>
+						<FormInput
+							type="text"
+							name='name'
+							value={name}
+							onChange={this.handleChange.bind(this)}
+							errors={errors.name}
+						/>
+					</div>
+					<div className='form-input'>
+						<label id='password-input'>Password</label>
+						<FormInput
+							type="password"
+							name='password'
+							value={password}
+							onChange={this.handleChange.bind(this)}
+							errors={errors.password}
+						/>
+					</div>
 
-                        <div className='form-input'>
-                            <label id='zip-input'>Zip</label>
-                            <FormInput
-                                type="text"
-                                name='zip'
-                                value={zip}
-                                onChange={this.handleChange.bind(this)}
-                                errors={errors.zip}
-                            />
-                        </div>
+					<div className='form-input'>
+						<label id='passwordConfirm-input'>Confirm Password</label>
+						<FormInput
+							type="password"
+							name='passwordConfirm'
+							value={passwordConfirm}
+							onChange={this.handleChange.bind(this)}
+							errors={errors.passwordConfirm}
+						/>
+					</div>
 
-                        <div className= "button">
-                            {this.successReg()}
-                        </div>
-                    </form>
-            </div>
-        )
-    }
+					<div className='form-input'>
+						<label id='zip-input'>Zip</label>
+						<FormInput
+							type="text"
+							name='zip'
+							value={zip}
+							onChange={this.handleChange.bind(this)}
+							errors={errors.zip}
+						/>
+					</div>
+
+					<div className= "button">
+						{this.renderButton()}
+					</div>
+				</form>
+			</div>
+		)
+	}
 }
 
 

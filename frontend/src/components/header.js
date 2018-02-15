@@ -8,7 +8,7 @@ class Header extends Component {
 		const login = 	<Nav pullRight><NavItem  href='/register'>Register</NavItem><NavItem href='/login'>Log In</NavItem></Nav>
 		const logout = <Nav pullRight><NavItem  href='/dashboard'>Dashboard</NavItem><NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem></Nav>
 
-		if(token !== "") {
+		if(token !== "logout") {
 			return logout
 		}
 
@@ -17,7 +17,7 @@ class Header extends Component {
 
 	logOut(e){
 		if(e) {
-			localStorage.setItem("authToken", "")
+			localStorage.setItem("authToken", "logout")
 		}
 	}
 

@@ -9,7 +9,7 @@ class Dashboard extends Component {
 		super(props)
 
 		this.state = {
-			users: [],
+			user: [],
 			lists: [],
 			tasks: [],
 		}
@@ -23,19 +23,19 @@ class Dashboard extends Component {
 	// }
 
 	getUser() {
-		const { token, users } = this.props
+		const { token } = this.props
 		fetchUser(token)
-		.then((users) => {
-			console.log("Users in get user:", users.user);
+		.then((user) => {
+			console.log("Users in get user:", user.user);
 			this.setState({
-				users: users.user,
+				user: user.user,
 			})
 		})
 		.catch(e => { console.log(e) })
 	}
 
 	getLists(){
-		const { id } = this.props.users
+		const { id } = this.props.user
 		fetchUserLists(id)
 		.then((lists) => {
 			this.setState({
@@ -60,8 +60,8 @@ class Dashboard extends Component {
 	// }
 
 	// setListDetails(){
-	// 	let { users, lists } = this.state
-	// 	let id = users.id
+	// 	let { user, lists } = this.state
+	// 	let id = user.id
 	// 	console.log("this is the user id:", id);
 	// 	let listId = lists.id
 	// 	this.getLists(id)
@@ -69,20 +69,20 @@ class Dashboard extends Component {
 	// }
 
 	render() {
-		let { users, lists, tasks } = this.state
-		console.log("Users in render:", users);
+		let { user, lists, tasks } = this.state
+		console.log("Users in render:", user);
 		console.log("Lists in render:", lists);
 		console.log("Tasks in render:", tasks);
 		return(
 			<div className="dash-container">
 				<UserLists
-					user={users}
+					user={user}
 					lists={lists}
 					tasks={tasks}
 				/>
 				<Progress />
 				<div className="vendorResults">
-					<VendorSearch id={2}/>
+					<VendorSearch />
 				</div>
 			</div>
 		)
@@ -90,3 +90,4 @@ class Dashboard extends Component {
 }
 
 export default Dashboard
+//id={user.id}
