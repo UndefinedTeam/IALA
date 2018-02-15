@@ -10,7 +10,7 @@ module.exports = {
         [
           {
             title: 'Test',
-            categoryID: 0,
+            type: "Party",
             isComplete: false,
             userId: list.get('id'),
             createdAt: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
           },
           {
             title: 'Test 2',
-            categoryID: 0,
+            type: "Work",
             isComplete: false,
             userId: list.get('id'),
             createdAt: new Date(),

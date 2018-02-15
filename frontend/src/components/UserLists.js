@@ -10,11 +10,16 @@ class UserLists extends Component {
         }
     }
 
-    render() {
-        const { user, lists, tasks } = this.props
-        // console.log( "User:", user)
-        // console.log("Lists:", lists)
-        // console.log("Tasks:",tasks)
+	render() {
+		let { user, lists, tasks } = this.props
+		if(user) {
+			console.log("user");
+		} else {
+			user = "test"
+		}
+		// console.log( "User:", user)
+		// console.log("Lists:", lists)
+		// console.log("Tasks:",tasks)
 
         return(
             <div className="userList-container">

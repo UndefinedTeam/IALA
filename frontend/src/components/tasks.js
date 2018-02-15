@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Checkbox, Button, Grid, PageHeader, Row, Col} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import Tasks from './tasks';
-import Progress from './Progress';
 import TodoInput from './TodoInput'
 import VendorSearch from './VendorSearch'
 import { validatePresence} from '../util/validations'
