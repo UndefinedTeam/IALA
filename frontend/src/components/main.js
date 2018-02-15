@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import  { fetchUser } from '../util/ApiCalls'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import TaskDash from './tasksDash'
+import TasksDash from './tasksDash'
+import AddList from './AddList'
 
 const API = "http://localhost:3001"
 
@@ -33,20 +35,13 @@ class Main extends Component {
 	}
 
 	getUser(){
-		this.fetchUser()
+		fetchUser()
 		.then((user) => {
 			console.log(user);
 			return user
 		})
 	}
 
-	fetchUser() {
-		let token = localStorage.getItem('authToken')
-		return fetch(`${API}/user?authToken=${token}`)
-		.then(res => {
-			return res.json()
-		})
-	}
 
 	// Retrieve token and expiration from browser
 	// Nullify auth token if past expire date
@@ -126,11 +121,10 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-
+					<Route path='/addlist' component={AddList}/>
 					{this.showContent()}
 
-					<Route path='/register' component={SignUp}/>
-					<Route path='/tasks-dash' component={TaskDash}/>
+					<Route path='/tasks-dash' component={TasksDash}/>
 
 				</Switch>
 			</div>

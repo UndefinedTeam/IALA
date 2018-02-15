@@ -20,13 +20,12 @@ class TasksDash extends Component {
 
 		return(
 			<div>
-				
-					<Tasks />	
-				
+
+					<Tasks />
+
 				</div>
 		)
 	}
 }
 
 export default TasksDash;
-

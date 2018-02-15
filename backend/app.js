@@ -138,6 +138,37 @@ app.get('/user/:id/lists', (req, res) => {
     })
 })
 
+app.post('/user/:id/lists', (req, res) => {
+    User.findbyId(req.params.id)
+    .then((user) => {
+        TodoList.findAll({
+            where: {
+                userId: user.id
+            }
+        })
+    })
+    .then()
+        Todolist.create(
+            {
+                title: req.body.title,
+                type: req.body.type
+            }
+        )
+        .then((list)=>{
+          res.json({
+            message: 'success',
+            list: list
+          })
+        })
+        .catch((error)=>{
+          res.status(400)
+          res.json({
+            message: "Unable to create list",
+            errors: error.errors
+          })
+      })
+})
+
 app.get('/list/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
         Task.findAll({
@@ -154,6 +185,17 @@ app.get('/list/:id/tasks', (req, res) => {
     })
 })
 
+app.post('/list/:id/tasks', (req,res) => {
+    TodoList.findById(req.params.id).then((list) => {
+        Task.findAll({
+            where: {
+                todoListId: list.id
+            }
+        }).then()
+        Task.create({
+            
+        })
+})
 //backend API that fetches info from yelp
 //searches yelp and returns the results in a json body
 //https://www.npmjs.com/package/yelp-fusion <--yelps NPM package
