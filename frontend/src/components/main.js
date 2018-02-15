@@ -132,16 +132,16 @@ class Main extends Component {
 					<Route path='/register' component={SignUp}/>
 					<Route path='/tasks' component={Tasks}/>
 					<Route path='/dashboard' render={(props) => {
-								 if(login && users.length > 0){
+								// if(login && users.length > 0){
 									 return <Dashboard
-		 								users={users}
+		 								user={user}
 		 								api={API}
 		 							/>
-								}  else {
-									return <Login
-										message={<strong>Please login</strong>}
-									/>
-								}
+								//}  else {
+									//return <Login
+										//message={<strong>Please login</strong>}
+									///>
+								//}
 							}
 						}
 					/>
