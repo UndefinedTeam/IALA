@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var TodoList = sequelize.define('TodoList', {
     title: DataTypes.STRING,
-    categoryID: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     isComplete: DataTypes.BOOLEAN
   }, {
     classMethods: {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       associate: function(models) {
         TodoList.hasMany(models.Task, {
-          foreignKey: 'todoListId',
+          foreignKey: 'listId',
           as: 'tasks'
         })
       }

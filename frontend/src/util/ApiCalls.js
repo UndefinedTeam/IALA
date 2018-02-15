@@ -31,19 +31,6 @@ function fetchUserLists(id){
     })
 }
 
-// function addNewList(params){
-//     return fetch(`${API}/user/${id}/addlist`, {
-//             body: JSON.stringify(params),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             method: "POST"
-//     })
-//     .then((res) => {
-//         return res.json()
-//     })
-// }
-
 function fetchListTasks(listId){
     return fetch(`${API}/list/${listId}/tasks`)
     .then((res) => {
@@ -52,15 +39,6 @@ function fetchListTasks(listId){
     })
 }
 
-//in process
-// function destroyList(listId){
-//     return fetch(`${API}/users/${id}/list`,
-//         {
-//
-//         })
-//
-// }
-//
 function createList(id, params){
     return fetch(`${API}/user/${id}/lists`,
         {
@@ -75,6 +53,19 @@ function createList(id, params){
     })
 }
 
+//in process
+// // function updateList(id, params){
+//
+// }
+
+// function destroyList(id){
+//     return fetch(`${API}/users/${id}/list`,
+//         {
+//
+//         })
+//
+// }
+//
 
 function createTask(listId, params){
     return fetch(`${API}/list/${listId}/tasks`,
@@ -90,6 +81,11 @@ function createTask(listId, params){
     })
 }
 
+//in process
+// function updateTask(){
+//
+// }
+
 // function destroyTask(listId){
 //
 // }
@@ -98,8 +94,8 @@ function createTask(listId, params){
 module.exports = {
     fetchUser: fetchUser,
     addNewUser: addNewUser,
+    createList: createList,
+    createTask: createTask,
     fetchUserLists: fetchUserLists,
     fetchListTasks: fetchListTasks,
 }
-
-    // addNewList: addNewList,

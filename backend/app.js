@@ -139,19 +139,11 @@ app.get('/user/:id/lists', (req, res) => {
 })
 
 app.post('/user/:id/lists', (req, res) => {
-    User.findbyId(req.params.id)
-    .then((user) => {
-        TodoList.findAll({
-            where: {
-                userId: user.id
-            }
-        })
-    })
-    .then()
         Todolist.create(
             {
                 title: req.body.title,
-                type: req.body.type
+                type: req.body.type,
+                userId: req.params.id
             }
         )
         .then((list)=>{
@@ -173,7 +165,7 @@ app.get('/list/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
         Task.findAll({
             where: {
-                todoListId: list.id
+                listId: list.id
             }
         }).then((tasks) => {
             res.json({
@@ -186,16 +178,32 @@ app.get('/list/:id/tasks', (req, res) => {
 })
 
 app.post('/list/:id/tasks', (req,res) => {
-    TodoList.findById(req.params.id).then((list) => {
-        Task.findAll({
-            where: {
-                todoListId: list.id
-            }
-        }).then()
-        Task.create({
-            
+    Tasks.create(
+        {
+            task: req.body.task,
+            desc: req.body.desc,
+            isComplete: false,
+            type: req.body.type,
+            dateStart: req.body.dateStart,
+            dateDone : req.body.dateDone,
+            listId: req.params.id
+        }
+    )
+    .then((task)=>{
+        res.json({
+            message: 'success',
+            task: task
         })
+    })
+    .catch((error)=>{
+        res.status(400)
+        res.json({
+        message: "Unable to create task",
+        errors: error.errors
+        })
+    })
 })
+
 //backend API that fetches info from yelp
 //searches yelp and returns the results in a json body
 //https://www.npmjs.com/package/yelp-fusion <--yelps NPM package
