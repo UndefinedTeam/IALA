@@ -128,8 +128,7 @@ app.use(cors())
           res.status(404)
           res.json("Error:", err)
       })
-  })
-})
+    })
 
 
 app.get('/users/:id/list', (req, res) => {

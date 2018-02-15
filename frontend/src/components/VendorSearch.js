@@ -31,7 +31,10 @@ const styles = {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     'align-items': 'center',
-  }
+  },
+  display: 'inline-block',
+  margin: '5px 32px 16px 0',
+  maxHeight: '30px',
 };
 
 class VendorSearch extends Component {

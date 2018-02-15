@@ -85,14 +85,8 @@ class Main extends Component {
 
 
 	render() {
-<<<<<<< HEAD
-		let { login, users } = this.state;
-		// let login = this.state.log;
-		// let users = this.state.users;
-		console.log("Users in main:", users)
-=======
+		console.log("Users in main:", user)
 		let { login, user } = this.state
->>>>>>> master
 		return (
 			<div>
 
@@ -100,8 +94,8 @@ class Main extends Component {
 					<Route exact path='/' component={Home}/>
 					{ login && <Redirect from='/login' to='/dashboard' />}
 					<Route path='/login' render={(props)=>
-						<Login users={users} />
-					}}/>
+						<Login users={user} />
+					}/>
 
 
 					<Route path='/dashboard' render={(props) =>

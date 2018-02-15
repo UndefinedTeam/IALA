@@ -79,8 +79,6 @@
     text-align: center;
 }
 
-
-
 .feat-vendor {
     display: flex;
     justify-content: center;
@@ -103,6 +101,13 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.popOver {
+  padding: 0 0 15px 0;
+  width: 85px;
+  height: 90px;
+  text-align: center;
 }
 
 form {
@@ -231,12 +236,12 @@ h3 {
   width: 100%;
 }
 
-    
+
 {/* ----Tasks & tasksDash Component */}
 
 
 .tasks-list {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     flex-basis: 75%;
     margin: 2em;
@@ -252,7 +257,7 @@ h3 {
     position:fixed!important;
     overflow: hidden;
     border:none;
-    
+
 }
 
 .tasks-main{
@@ -262,44 +267,10 @@ h3 {
     padding: 5px;
     position:relative;
 
-}   
-
+}
 
 .todo-list-header > img {
     width: 50px;
     height: 50px;
     padding: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
