@@ -5,7 +5,6 @@ import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import AddList from './AddList'
 import Tasks from './tasks'
 
 
@@ -22,11 +21,6 @@ class Main extends Component {
 		}
 	}
 
-	// componentWillMount(){
-	// 	let token = localStorage.getItem('authToken')
-	// 	this.getUser(token)
-	// }
-
 	componentDidMount(){
 		let token = localStorage.getItem('authToken')
 		console.log("did mount token", this.getToken());
@@ -35,7 +29,7 @@ class Main extends Component {
 	}
 
 	getUser(token){
-		this.fetchUser(token)
+		fetchUser(token)
 		.then((res) => {
 			console.log('fetch', res.user);
 			if(res.user) {
@@ -53,13 +47,6 @@ class Main extends Component {
 			this.setState({
 				login: false
 			})
-		})
-	}
-
-	fetchUser(token) {
-		return fetch(`${API}/user?authToken=${token}`)
-		.then(res => {
-			return res.json()
 		})
 	}
 
@@ -142,6 +129,7 @@ class Main extends Component {
 	}
 
 	render() {
+		const { login, authToken, user } = this.state
 		return (
 			<div>
 				<Switch>

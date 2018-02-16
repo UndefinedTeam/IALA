@@ -1,41 +1,51 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
+import { fetchUser, fetchUserLists, fetchListTasks } from '../util/ApiCalls'
+import AddList from './AddList';
+
 
 class UserLists extends Component {
     constructor(props){
         super(props)
+
         this.state = {
-            user: [],
-            lists: []
+            lists: {},
+            tasks: {}
         }
     }
 
+
+    getLists(id){
+        fetchUserLists(id)
+        .then((res) => {
+            console.log("fetch", res.lists)
+            this.setState({
+                lists: res.lists,
+            })
+        })
+        .catch(e => {console.log(e) })
+    }
+
+    getTasks(listId){
+        fetchListTasks(listId)
+        .then((tasks) => {
+            this.setState({
+                tasks: tasks.tasks,
+            })
+        })
+        .catch(e => {console.log(e) })
+    }
+
+
 	render() {
-		let { user, lists, tasks } = this.props
-		if(user) {
-			console.log("user");
-		} else {
-			user = "test"
-		}
-		// console.log( "User:", user)
-		// console.log("Lists:", lists)
-		// console.log("Tasks:",tasks)
+		let { user } = this.props
+        let { lists, tasks } = this.state
 
         return(
             <div className="userList-container">
                 <div>
-                    <h2> user &rsquo;s Lists</h2>
-                </div>
-                <form action='/addlist'>
-                    <div class="button">
-                        <button
-                            type='submit'
-                            value="go to add list form">
-                                Add A New List
-                        </button>
-                    </div>
-                </form>
-                <div>
+                    <h2> {user.name} &rsquo;s Lists</h2>
+
                     <Panel bsStyle="success" id="collapsible-panel">
                         <Panel.Heading >
                             <Panel.Title toggle componentClass="h3">
@@ -51,8 +61,8 @@ class UserLists extends Component {
                                         </ul>
                                     )
                                 })}
-                                <form action='/task-dash'>
-                                    <div class="button">
+                                <form action='/tasks-dash'>
+                                    <div className="button">
                                         <button
                                             type="submit"
                                             value="view list">
@@ -63,6 +73,10 @@ class UserLists extends Component {
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
+                </div>
+
+                <div>
+                    <AddList />
                 </div>
             </div>
         )

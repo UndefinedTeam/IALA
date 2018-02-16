@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import {
+        Navbar,
+        Nav,
+        NavItem,
+        Grid,
+        PageHeader,
+        Row,
+        Col,
+        Checkbox,
+        Button
+                } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import Tasks from './tasks';
 import TodoInput from './TodoInput'
 
@@ -74,7 +85,7 @@ class TasksDash extends Component {
 							<img src={require("../images/list-icon.png")} alt="list-icon" />
             	Task Count: <span className="badge badge-pill badge-primary">{this.state.tasks.length}</span>
             	<Button className="edit-btn btn-warning btn-sm float-right">
-              	<Link to={`/tasks/${tasks.id}/edit`}>Edit List</Link>
+              	<Link to={`/tasks/${tasks.id}/edit`}>Edit Task</Link>
             	</Button>
           	</div>
 							<ul className="list-group">
