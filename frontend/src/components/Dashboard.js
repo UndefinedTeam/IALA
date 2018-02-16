@@ -8,6 +8,7 @@ class Dashboard extends Component {
 
 	render() {
 		let { user } = this.props
+		console.log(user);
 
 		return(
 			<Switch>
