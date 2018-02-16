@@ -50,7 +50,7 @@ class Login extends Component {
 							{this.state.error}
 						</div>
 
-						<div className= "button">
+						<div className="button">
 							<button
 								id="submit"
 								type="button"

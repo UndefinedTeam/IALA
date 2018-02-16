@@ -186,9 +186,16 @@ form {
     text-align: center;
 }
 
-.button {
+.button-front {
     display: flex;
     justify-content: flex-start;
+    align-content: center;
+    padding: 5px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
     align-content: center;
     padding: 5px;
 }

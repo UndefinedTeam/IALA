@@ -17,7 +17,7 @@ class Home extends Component {
 								<li>Search for Vendors</li>
 								<li>Complete Tasks</li>
 							</ul>
-						<div className="button">
+						<div className="button-front">
 							<Button className="jumbo-button" href="/register">Start Here</Button>
 						</div>
 				</Jumbotron>
