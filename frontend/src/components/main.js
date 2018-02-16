@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import  { fetchUser } from '../util/ApiCalls'
+import  { fetchUser } from '../api/sessions'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'

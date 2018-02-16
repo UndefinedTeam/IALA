@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { fetchUser, fetchUserLists, fetchListTasks } from '../util/ApiCalls'
+import { fetchUserLists } from '../api/lists'
+import { fetchTasks } from '../api/tasks'
 import AddList from './AddList';
 
 
@@ -10,10 +11,13 @@ class UserLists extends Component {
 
         this.state = {
             lists: {},
-            tasks: {}
         }
     }
 
+    componentDidMount(){
+        let { user } = this.props
+        this.getLists(user.id)
+    }
 
     getLists(id){
         fetchUserLists(id)
@@ -26,20 +30,10 @@ class UserLists extends Component {
         .catch(e => {console.log(e) })
     }
 
-    getTasks(listId){
-        fetchListTasks(listId)
-        .then((tasks) => {
-            this.setState({
-                tasks: tasks.tasks,
-            })
-        })
-        .catch(e => {console.log(e) })
-    }
-
 
 	render() {
 		let { user } = this.props
-        let { lists, tasks } = this.state
+        let { lists } = this.state
 
         return(
             <div className="userList-container">
@@ -54,13 +48,6 @@ class UserLists extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
-                                {Object.keys(tasks).map((task, index) => {
-                                    return(
-                                        <ul key={index} >
-                                            <li>{tasks.name}</li>
-                                        </ul>
-                                    )
-                                })}
                                 <form action='/tasks-dash'>
                                     <div className="button">
                                         <button
@@ -76,7 +63,7 @@ class UserLists extends Component {
                 </div>
 
                 <div>
-                    <AddList />
+                    <AddList userId={user.id} />
                 </div>
             </div>
         )

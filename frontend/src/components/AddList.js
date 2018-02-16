@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { createList } from '../util/ApiCalls'
+import { createList } from '../api/lists'
 import { validatePresence } from '../util/validations'
 
 // form below adds a new list then redirects to tasksDash for user to add tasks to the list.
@@ -53,6 +53,7 @@ class AddList extends Component {
 
 	handleSubmit(e) {
         const { form } = this.state
+		let { userId } = this.props
 		//console.log(e);
 		e.preventDefault()
 
@@ -61,7 +62,7 @@ class AddList extends Component {
 			return this.state.errors
 		} else {
 			let response
-			createList(form)
+			createList(form, userId)
 		}
 	}
 

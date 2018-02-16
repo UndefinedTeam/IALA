@@ -13,16 +13,6 @@
     margin: 3%;
 }
 
-.progress-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 40%;
-    border: 2px solid;
-    text-align: center;
-}
-
 #bar {
     margin: 2%;
     width: 95%;

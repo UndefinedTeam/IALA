@@ -12,15 +12,14 @@ class Home extends Component {
 						<p>
 							It&rsquo;s A List App! Take your organization skills to a new level with all your lists and tasks in one place.
 						</p>
-						// please put bullets on this list :)
-							<ul>
+							<ul className="home-list">
 								<li>View all of your lists</li>
 								<li>Search for Vendors</li>
 								<li>Complete Tasks</li>
 							</ul>
-						<p>
+						<div className="button">
 							<Button className="jumbo-button" href="/register">Start Here</Button>
-						</p>
+						</div>
 				</Jumbotron>
 				<section id="labels">
 					<div className="feat-list">

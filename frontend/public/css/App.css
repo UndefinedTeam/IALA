@@ -39,14 +39,16 @@ body {
     flex-direction: column;
     align-content: center;
     width: 100%;
-    padding: 5px;
+    padding: 15px;
 }
 
 .jumbotron {
+    justify-content: space-around;
     border-radius: 4px;
     background-color: #CAEBF2;
-    text-align: center;
-    margin-top: 90px;
+    text-align: left;
+    margin-top: 7%;
+    padding: 15px;
 }
 
 .jumbo-button {
@@ -65,6 +67,10 @@ body {
     color: #FF3B3F;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.jumbotron > .home-list {
+    list-style: initial;
 }
 
 .navbar-default {
@@ -182,12 +188,13 @@ form {
 
 .button {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: center;
+    padding: 5px;
 }
 
 #submit {
-    width: 50%;
+	width: 50%;
     border: 2px hidden;
     border-radius: 4px;
     padding: 2px 5px 2px 5px;
@@ -278,9 +285,10 @@ h3 {
     padding: 10px;
 }
 
-p {
+p, li {
   font-family: 'Permanent Marker', cursive;
   font-family: 'Righteous', cursive;
+  font-size: 15px;
   padding: auto;
   margin: auto;
 }
