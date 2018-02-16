@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Grid, Page, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
+import {  Grid, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import Tasks from './tasks';
+//import Tasks from './tasks';
 import TodoInput from './TodoInput';
-import VendorSearch from './VendorSearch';
-import { validatePresence} from '../util/validations';
+// import VendorSearch from './VendorSearch';
+// import { validatePresence} from '../util/validations';
 
 
 var tasks = [
