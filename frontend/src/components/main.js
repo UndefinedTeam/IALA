@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import  { fetchUser } from '../util/ApiCalls'
 import Home from './home'
 import Login from './login'
@@ -113,27 +113,19 @@ class Main extends Component {
 					<Route path='/register' component={SignUp}/>
 
 					{login &&
-						<div>
+						<Switch>
 							<Route path='/dashboard' render={(props) =>
 								<Dashboard
 									user={user}
 									token={authToken}
 								/>
 							}/>
-							<Route path='/login' render={(props) =>
-								<Dashboard
-									user={user}
-									token={authToken}
-								/>
-							}/>
-						</div>
+
+						</Switch>
 					}
 					{!login &&
 						<div>
 							<Route path='/login' render={(props) =>
-								 <Login loginRoute={this.loginRoute.bind(this)} />
-							}/>
-							<Route path='/dashboard' render={(props) =>
 								 <Login loginRoute={this.loginRoute.bind(this)} />
 							}/>
 						</div>
