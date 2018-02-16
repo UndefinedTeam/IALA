@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Grid, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavItem, Grid, Page, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import Tasks from './tasks';
 import TodoInput from './TodoInput';
 import VendorSearch from './VendorSearch';
