@@ -30,44 +30,66 @@ class UserLists extends Component {
         .catch(e => {console.log(e) })
     }
 
+    getTasks(listId){
+        fetchListTasks(listId)
+        .then((tasks) => {
+            this.setState({
+                tasks: tasks.tasks,
+            })
+        })
+        .catch(e => console.log(e))
+    }
+
 
 	render() {
 		let { user } = this.props
-        let { lists } = this.state
+		let { lists, tasks } = this.state
+		console.log("hi", user);
 
-        return(
-            <div className="userList-container">
-                <div>
-                    <h2> {user.name} &rsquo;s Lists</h2>
+		if(!user) {
+			return (
+				<h1>Loading...</h1>
+			)
+		}
 
-                    <Panel bsStyle="success" id="collapsible-panel">
-                        <Panel.Heading >
-                            <Panel.Title toggle componentClass="h3">
-                                <h3>{lists.title}</h3>
-                            </Panel.Title>
-                        </Panel.Heading>
-                        <Panel.Collapse>
-                            <Panel.Body>
-                                <form action='/tasks-dash'>
-                                    <div className="button">
-                                        <button
-                                            type="submit"
-                                            value="view list">
-                                                View List
-                                        </button>
-                                    </div>
-                                </form>
-                            </Panel.Body>
-                        </Panel.Collapse>
-                    </Panel>
-                </div>
-
-                <div>
-                    <AddList userId={user.id} />
-                </div>
-            </div>
-        )
-    }
+		return(
+			<div className="userList-container">
+				<div>
+					<h2> {user.name} &rsquo;s Lists</h2>
+					<Panel bsStyle="success" id="collapsible-panel">
+						<Panel.Heading>
+							<Panel.Title toggle componentClass="h3"><h3>{lists.title}</h3></Panel.Title>
+						</Panel.Heading>
+						<Panel.Collapse>
+							<Panel.Body>
+								{
+									Object.keys(tasks).map((task, index) => {
+										return(
+											<ul key={index}>
+												<li>{tasks.name}</li>
+											</ul>
+										)
+									})
+								}
+								<form action='/dashboard/tasks'>
+									<div className="button">
+										<button
+											type="get"
+											value="view list">
+											View List
+										</button>
+									</div>
+								</form>
+							</Panel.Body>
+						</Panel.Collapse>
+					</Panel>
+				</div>
+				<div>
+					<AddList user={user.id}/>
+				</div>
+			</div>
+		)
+	}
 }
 
 export default UserLists;
