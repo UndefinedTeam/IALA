@@ -30,7 +30,8 @@ class UserLists extends Component {
 					<Panel bsStyle="success" id="collapsible-panel">
 						<Panel.Heading >
 						<Panel.Title toggle componentClass="h3">
-								<h3>{lists.title}</h3>
+            {/*Take out "Todo list within the h3 tags after lists.title is linked"*/}
+								<h3>{lists.title} Todo List</h3>
 						</Panel.Title>
 						</Panel.Heading>
 						<Panel.Collapse>

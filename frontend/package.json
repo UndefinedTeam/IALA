@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "jest-enzyme": "^4.2.0",
+    "less": "^3.0.1",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-big-calendar": "^0.18.0",
