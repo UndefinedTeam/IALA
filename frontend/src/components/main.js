@@ -134,9 +134,12 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					<Route path='/register' component={SignUp}/>
-					<Route path='/tasks-dash' component={Tasks}/>
+
+					<Route path='/tasks' component={Tasks}/>
 					{this.showContent()}
+
+					<Route path='/register' component={SignUp}/>
+
 				</Switch>
 			</div>
 		)
