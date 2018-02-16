@@ -114,21 +114,24 @@ class Main extends Component {
 
 					{login &&
 						<Switch>
+							<Redirect from="/login" to="/dashboard" />
 							<Route path='/dashboard' render={(props) =>
 								<Dashboard
 									user={user}
 									token={authToken}
 								/>
 							}/>
-
 						</Switch>
 					}
 					{!login &&
-						<div>
+						<Switch>
+							<Route path='/dashboard' render={(props) =>
+								 <Login loginRoute={this.loginRoute.bind(this)} />
+							}/>
 							<Route path='/login' render={(props) =>
 								 <Login loginRoute={this.loginRoute.bind(this)} />
 							}/>
-						</div>
+						</Switch>
 					}
 				</Switch>
 			</div>
