@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { createList } from '../util/ApiCalls'
+import { createList } from '../api/lists'
 import { validatePresence } from '../util/validations'
 
 // form below adds a new list then redirects to tasksDash for user to add tasks to the list.
@@ -15,7 +15,8 @@ class AddList extends Component {
                 type: "",
                 // userId: this.props.user.id,
             },
-            errors: {}
+            errors: {},
+            newListSuccess: false,
         }
     }
 
@@ -24,7 +25,7 @@ class AddList extends Component {
 
         // Title field
         errors = validatePresence(errors, form, 'title')
-        
+
         // Type field
         errors = validatePresence(errors, form, 'type')
 
@@ -32,25 +33,36 @@ class AddList extends Component {
 	}
 
 	handleChange(e) {
-		const { form } = this.state
+        const { form } = this.state
 
 		form[e.target.name] = e.target.value
-
-		this.setState({
-			form: form,
-			errors: this.validateForm(form)
-		})
+		if(Object.keys(this.validateForm(form).length > 0)) {
+			this.setState({
+				form: form,
+				errors: this.validateForm(form),
+				newListSuccess: false
+			})
+		} else {
+			this.setState({
+				form: form,
+				errors: this.validateForm(form),
+				newListSuccess: true
+			})
+		}
 	}
 
 	handleSubmit(e) {
-		const { form } = this.state
-
+        const { form } = this.state
+		let { userId } = this.props
+		//console.log(e);
 		e.preventDefault()
 
-		if(this.state.errors.length > 0) {
+		if(Object.keys(this.state.errors).length > 0) {
+			console.log("nein");
 			return this.state.errors
 		} else {
-			createList(form)
+			let response
+			createList(form, userId)
 		}
 	}
 
