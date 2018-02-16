@@ -42,34 +42,40 @@ body {
     flex-direction: column;
     align-content: center;
     width: 100%;
-    padding: 5px;
+    padding: 15px;
 }
 /* Welcome jumbotron on the main landing page */
 .jumbotron {
+    justify-content: space-around;
     border-radius: 4px;
     background-color: #CAEBF2;
-    text-align: center;
-    margin-top: 90px;
+    text-align: left;
+    margin-top: 7%;
+    padding: 15px;
 }
-/* Start here button on the Jumbotron */
-.jumbo-button{
-  border: 2px solid #2c3f54;
-  border-radius: 4px;
-  padding: 2px 5px 2px 5px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  color: black;
-  width: inherit;
-  height: inherit;
+
+.jumbo-button {
+    border: 2px hidden black;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #FF3B3F;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    color: black;
+    font-family: 'Permanent Marker', cursive;
+    font-family: 'Righteous', cursive;
 }
-/* Hover styling for button on the jumbotron */
- .jumbo-button:hover{
-  border: 2px solid #A9A9A9;
-  border-radius: 4px;
-  padding: 2px 5px 2px 5px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  color: black;
+
+.jumbo-button:hover {
+    background-color: #e53538;
+    color: #EFEFEF;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 }
-/* navbar */
+
+.jumbotron > .home-list {
+    list-style: initial;
+}
+
 .navbar-default {
     background-color: #c2edf4;
     font-size: 20px;
@@ -186,12 +192,19 @@ form {
     text-align: center;
 }
 
-/* Positions buttons correctly */
+.button-front {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 5px;
+}
+
 .button {
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-content: center;
+    padding: 5px;
 }
 /* buttons for th register and log in forms */
 button#submit {
@@ -280,12 +293,27 @@ ul {
     list-style: none;
 }
 
+h3 {
+    padding: 10px;
+}
+
+p, li {
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Righteous', cursive;
+  font-size: 15px;
+  padding: auto;
+  margin: auto;
+}
+
 .footer {
   width: 100%;
 }
 
 
 {/* ----Tasks & TodoInput & tasksDash Component */}
+.page-header {
+	margin-top: 9%;
+}
 
 .todo-input-form {
 	width: 200%;

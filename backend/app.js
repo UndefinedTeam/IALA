@@ -86,6 +86,7 @@ authorization ,
   res.json({user: req.currentUser})
 })
 
+//Creates a new user based on information from the Registration Form
 app.post('/user', function(req, res){
   User.create(
     {
@@ -116,7 +117,7 @@ app.get('/lists', (req, res) => {
   })
 })
 
-
+// Gets all lists of one user based on the user id
 app.get('/user/:id/lists', (req, res) => {
     User.findById(req.params.id)
     .then((user) => {
@@ -139,6 +140,7 @@ app.get('/user/:id/lists', (req, res) => {
     })
 })
 
+// Creates a new list for a user from the add list form on the dashboard
 app.post('/user/:id/lists', (req, res) => {
         Todolist.create(
             {
@@ -162,6 +164,25 @@ app.post('/user/:id/lists', (req, res) => {
       })
 })
 
+// Deletes a list for a user
+app.delete('user/:id/list/:listId', (req, res) =>{
+	Todolist.destroy({
+		where: {
+			id: req.params.listId
+		}
+	})
+	.then(deletedList => {
+		res.json(deletedList)
+	})
+	.catch((err) => {
+		res.status(400)
+		res.json({
+			errors: err
+		})
+	})
+})
+
+// Gets all tasks that are part of a list by the list id
 app.get('/list/:id/tasks', (req, res) => {
     TodoList.findById(req.params.id).then((list) => {
         Task.findAll({
@@ -178,6 +199,7 @@ app.get('/list/:id/tasks', (req, res) => {
     })
 })
 
+//adds a new task for a specific list based on id
 app.post('/list/:id/tasks', (req,res) => {
     Tasks.create(
         {
@@ -204,6 +226,54 @@ app.post('/list/:id/tasks', (req,res) => {
         })
     })
 })
+
+//Updates tasks from task edit form
+app.put('/list/:id/tasks/:taskId', (req,res) => {
+    Tasks.update({
+		where: {
+			id: req.params.taskId
+		},
+			task: req.body.task,
+			desc: req.body.desc,
+			isComplete: req.body.isComplete,
+			type: req.body.type,
+			dateStart: req.body.dateStart,
+			dateDone : req.body.dateDone,
+			listId: req.params.id
+	})
+    .then((updatedTask)=>{
+        res.json({
+            message: 'success',
+            task: updatedTask
+        })
+    })
+    .catch((error)=>{
+        res.status(400)
+        res.json({
+        message: "Unable to update task",
+        errors: error.errors
+        })
+    })
+})
+
+// Deletes a task from a list
+app.delete('/list/:id/tasks/:taskId', (req, res) =>{
+	Tasks.destroy({
+		where: {
+			id: req.params.taskId
+		}
+	})
+	.then(deletedTask => {
+		res.json(deletedTask)
+	})
+	.catch((err) => {
+		res.status(400)
+		res.json({
+			errors: err
+		})
+	})
+})
+
 
 //backend API that fetches info from yelp
 //searches yelp and returns the results in a json body

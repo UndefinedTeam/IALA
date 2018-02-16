@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import  { fetchUser } from '../util/ApiCalls'
+import  { fetchUser, checkEmail } from '../api/sessions'
+import  { loginUser } from '../api/user'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import AddList from './AddList'
-import Tasks from './tasks'
+
 
 
 const API = "http://localhost:3001"
@@ -22,20 +22,18 @@ class Main extends Component {
 		}
 	}
 
-	// componentWillMount(){
-	// 	let token = localStorage.getItem('authToken')
-	// 	this.getUser(token)
-	// }
-
 	componentDidMount(){
-		let token = localStorage.getItem('authToken')
-		console.log("did mount token", this.getToken());
-		this.getUser(token)
-		this.forceUpdate()
+		this.getUser()
 	}
 
-	getUser(token){
-		this.fetchUser(token)
+	getUser() {
+		let token = this.getToken()
+
+		if(!token) {
+			return
+		}
+
+		fetchUser(token)
 		.then((res) => {
 			console.log('fetch', res.user);
 			if(res.user) {
@@ -53,13 +51,6 @@ class Main extends Component {
 			this.setState({
 				login: false
 			})
-		})
-	}
-
-	fetchUser(token) {
-		return fetch(`${API}/user?authToken=${token}`)
-		.then(res => {
-			return res.json()
 		})
 	}
 
@@ -81,28 +72,14 @@ class Main extends Component {
 	// Redirect to dashboard after login
 	loginRoute(loginForm) {
 		// Send data from log in form
-		fetch(`${API}/login`,
-		{
-			body: JSON.stringify(loginForm),
-			headers: {
-				'Content-Type':'application/json'
-			},
-			method: "POST"
-		})
+		loginUser(loginForm)
 		.then(()=> {
-			fetch(`${API}/login/${loginForm.email}`)
-			.then(response => {
-				return response.json()
-			})
-			.then(parsedResponse => {
-				//Save response values to local storage
-				let token = parsedResponse.token
-				localStorage.setItem("authToken", token)
-				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
+			let token = checkEmail(loginForm)
+			.then(() => {
 				this.setState({
 					login: true,
 					user: this.getUser(token),
-					authToken: parsedResponse.token
+					authToken: token
 				})
 			})
 			.catch(error => {console.log("Set auth token")})
@@ -112,43 +89,36 @@ class Main extends Component {
 		})
 	}
 
-	showContent(){
-		const { login, authToken, user } = this.state
-		console.log('render', this.state);
-		if(login) {
-			return(
-				<div>
-					<Redirect from='/login' to='/dashboard' />
-					<Route path='/dashboard' render={(props) =>
-						<Dashboard
-							user={user}
-							token={authToken}
-						/>
-					}/>
-				</div>
-			)
-		} else {
-			return (
-				<div>
-					<Redirect from='/dashboard' to='/login' />
-					<Route path='/login' render={(props) =>
-						 <Login
-							loginRoute={this.loginRoute.bind(this)}
-						  />
-					}/>
-				</div>
-			)
-		}
-	}
-
 	render() {
+		const { login, authToken, user } = this.state
+
 		return (
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					<Route path='/tasks' component={Tasks}/>
 					<Route path='/register' component={SignUp}/>
-					{this.showContent()}
+
+					{login &&
+						<Switch>
+							<Redirect from="/login" to="/dashboard" />
+							<Route path='/dashboard' render={(props) =>
+								<Dashboard
+									user={user}
+									token={authToken}
+								/>
+							}/>
+						</Switch>
+					}
+					{!login &&
+						<Switch>
+							<Route path='/dashboard' render={(props) =>
+								 <Login loginRoute={this.loginRoute.bind(this)} />
+							}/>
+							<Route path='/login' render={(props) =>
+								 <Login loginRoute={this.loginRoute.bind(this)} />
+							}/>
+						</Switch>
+					}
 				</Switch>
 			</div>
 		)
@@ -156,26 +126,3 @@ class Main extends Component {
 }
 
 export default Main;
-
-// class ProtectedPage extends Component {
-// 	render() {
-// 		const { login, children } = this.props
-//
-// 		if(!login) {
-// 			return (<Redirect to='/login' />)
-// 		}
-//
-// 		return (
-// 			{children}
-// 		)
-// 	}
-// }
-// <Route path='/dashboard' render={(props) => {
-// 			return (
-// 				<ProtectedPage>
-// 					<Dashboard user={user} />
-// 				</ProtectedPage>
-// 			)
-// 		}
-// 	}
-// />

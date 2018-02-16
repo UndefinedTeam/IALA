@@ -16,24 +16,15 @@ class Home extends Component {
 							and search for any business you need to find, then add them to your todo list. <br />
 							IALA is your one stop shop organizer.<br />
 						</p>
+							<ul className="home-list">
+								<li>View all of your lists</li>
+								<li>Search for Vendors</li>
+								<li>Complete Tasks</li>
+							</ul>
+						<div className="button-front">
 							<Button className="jumbo-button" href="/register">Start Here</Button>
+						</div>
 				</Jumbotron>
-				<section id="labels">
-					<div className="feat-list">
-						<h4>Featured List</h4>
-					</div>
-					<div className="feat-vendor">
-						<h4>Featured Vendor</h4>
-					</div>
-				</section>
-				<section id="features">
-					<div className="feat-list">
-						<img src={require("../images/coffee-cup-desk-pen.jpg")} alt="cofee-cup" />
-					</div>
-					<div className="feat-vendor">
-						<img src={require("../images/calendar.jpeg")} alt="calendar"/>
-					</div>
-				</section>
 
 			</div>
 		)
