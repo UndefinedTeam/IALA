@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput';
-import { addNewUser } from '../util/ApiCalls'
+import { addNewUser } from '../api/user'
 import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
 
 class SignUp extends Component {

@@ -1,19 +1,16 @@
-import React, { Component } from 'react'
-import {
-	Grid,
-	PageHeader,
-	Row,
-	Col,
-	Checkbox,
-	Button
-} from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Navbar, Nav, NavItem, Grid, Page, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import TodoInput from './TodoInput'
+import Tasks from './tasks';
+import TodoInput from './TodoInput';
+import VendorSearch from './VendorSearch';
+import { validatePresence} from '../util/validations';
+
 
 var tasks = [
   {
-		todoListId: 1,
-		categoryId: 0,
+		listId: 1,
+		type: '0',
 		task: 'Task #1',
 		priority: 'Low',
 		desc: 'Some random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random task',
