@@ -60,7 +60,6 @@ class AddList extends Component {
 			console.log("nein");
 			return this.state.errors
 		} else {
-			let response
 			createList(form)
 		}
 	}

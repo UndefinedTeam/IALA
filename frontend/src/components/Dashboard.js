@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import UserLists from './UserLists'
-import VendorSearch from './VendorSearch'
+import Tasks from './tasks'
+//import VendorSearch from './VendorSearch'
 
 class Dashboard extends Component {
 
@@ -8,14 +10,18 @@ class Dashboard extends Component {
 		let { user } = this.props
 
 		return(
-			<div className="dash-container">
-				<UserLists
-					user={user}
-				/>
-			</div>
+			<Switch>
+				<div className="dash-container">
+					<Route exact path='/dashboard' render={(props) =>
+						<UserLists user={user}/>
+					}/>
+					<Route path='/dashboard/tasks' render={(props) =>
+						<Tasks user={user} />
+					}/>
+				</div>
+			</Switch>
 		)
 	}
 }
 
 export default Dashboard
-//id={user.id}

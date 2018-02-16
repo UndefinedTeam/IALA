@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import  { fetchUser } from '../util/ApiCalls'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
-import Tasks from './tasks'
+
 
 
 const API = "http://localhost:3001"
@@ -22,13 +22,16 @@ class Main extends Component {
 	}
 
 	componentDidMount(){
-		let token = localStorage.getItem('authToken')
-		console.log("did mount token", this.getToken());
-		this.getUser(token)
-		this.forceUpdate()
+		this.getUser()
 	}
 
-	getUser(token){
+	getUser() {
+		let token = this.getToken()
+
+		if(!token) {
+			return
+		}
+
 		fetchUser(token)
 		.then((res) => {
 			console.log('fetch', res.user);
@@ -86,6 +89,7 @@ class Main extends Component {
 				let token = parsedResponse.token
 				localStorage.setItem("authToken", token)
 				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
+
 				this.setState({
 					login: true,
 					user: this.getUser(token),
@@ -99,44 +103,41 @@ class Main extends Component {
 		})
 	}
 
-	showContent(){
-		const { login, authToken, user } = this.state
-		console.log('render', this.state);
-		if(login) {
-			return(
-				<div>
-					<Redirect from='/login' to='/dashboard' />
-					<Route path='/dashboard' render={(props) =>
-						<Dashboard
-							user={user}
-							token={authToken}
-						/>
-					}/>
-				</div>
-			)
-		} else {
-			return (
-				<div>
-					<Redirect from='/dashboard' to='/login' />
-					<Route path='/login' render={(props) =>
-						 <Login
-							loginRoute={this.loginRoute.bind(this)}
-						  />
-					}/>
-				</div>
-			)
-		}
-	}
-
 	render() {
 		const { login, authToken, user } = this.state
+
 		return (
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
 					<Route path='/register' component={SignUp}/>
-					<Route path='/tasks-dash' component={Tasks}/>
-					{this.showContent()}
+
+					{login &&
+						<div>
+							<Route path='/dashboard' render={(props) =>
+								<Dashboard
+									user={user}
+									token={authToken}
+								/>
+							}/>
+							<Route path='/login' render={(props) =>
+								<Dashboard
+									user={user}
+									token={authToken}
+								/>
+							}/>
+						</div>
+					}
+					{!login &&
+						<div>
+							<Route path='/login' render={(props) =>
+								 <Login loginRoute={this.loginRoute.bind(this)} />
+							}/>
+							<Route path='/dashboard' render={(props) =>
+								 <Login loginRoute={this.loginRoute.bind(this)} />
+							}/>
+						</div>
+					}
 				</Switch>
 			</div>
 		)
@@ -144,26 +145,3 @@ class Main extends Component {
 }
 
 export default Main;
-
-// class ProtectedPage extends Component {
-// 	render() {
-// 		const { login, children } = this.props
-//
-// 		if(!login) {
-// 			return (<Redirect to='/login' />)
-// 		}
-//
-// 		return (
-// 			{children}
-// 		)
-// 	}
-// }
-// <Route path='/dashboard' render={(props) => {
-// 			return (
-// 				<ProtectedPage>
-// 					<Dashboard user={user} />
-// 				</ProtectedPage>
-// 			)
-// 		}
-// 	}
-// />

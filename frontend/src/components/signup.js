@@ -70,7 +70,6 @@ class SignUp extends Component {
 			this.handleNewUser(false)
 			return this.state.errors
 		} else {
-			let response
 			console.log('ja');
 			this.handleNewUser(true)
 			addNewUser(form)

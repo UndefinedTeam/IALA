@@ -8,14 +8,13 @@ function fetchUser(token) {
     })
 }
 
-
 function addNewUser(params){
    return fetch(`${API}/user`, {
-      body: JSON.stringify(params),
+		method: "POST",
       headers: {
           'Content-Type': 'application/json'
        },
-      method: "POST"
+		body: JSON.stringify(params)
    })
    .then((res) => {
         return res.json()
@@ -39,17 +38,16 @@ function fetchListTasks(listId){
 }
 
 function createList(id, params){
-    return fetch(`${API}/user/${id}/lists`,
-        {
-            body: JSON.stringify(params),
-            headers: {
-            'Content-Type': 'application/json'
-        },
-        method: "POST"
-    })
-    .then((res) => {
-        return res.json()
-    })
+	return fetch(`${API}/user/${id}/lists`, {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(params),
+	})
+	.then((res) => {
+		return res.json()
+	})
 }
 
 //in process
