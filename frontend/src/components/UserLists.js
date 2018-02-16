@@ -40,6 +40,9 @@ class UserLists extends Component {
 				<h1>Loading...</h1>
 			)
 		}
+		// console.log( "User:", user)
+		// console.log("Lists:", lists)
+		// console.log("Tasks:",tasks)
 
 		return(
 			<div className="userList-container">

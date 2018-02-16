@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
-import {
-	Grid,
-	PageHeader,
-	Row,
-	Col,
-	Checkbox,
-	Button
-} from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Navbar, Nav, NavItem, Grid, Page, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import TodoInput from './TodoInput'
+import Tasks from './tasks';
+import TodoInput from './TodoInput';
+import VendorSearch from './VendorSearch';
+import { validatePresence} from '../util/validations';
+
 
 var tasks = [
   {

@@ -5,19 +5,22 @@
     #EFEFEF - Neutral gray
   */
 
+/* Styling for everything */
 * {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Neucha', cursive;
 }
 
+/* IALA logo on the nav bar */
 .logo {
-  width: 75px;
-  height: 75px;
-  position: sticky;
+  width: 80px;
+  height: 100px;
+  padding-bottom: 15px;
+  padding-top: 0
 }
 
 /* http://www.designlovefest.com/wp-content/plugins/download-monitor/download.php?id=93 possible other background */
-
+/* background styling */
 body {
   background-image: url("http://www.designlovefest.com/wp-content/plugins/download-monitor/download.php?id=93");
   min-height: 850px;
@@ -41,7 +44,7 @@ body {
     width: 100%;
     padding: 15px;
 }
-
+/* Welcome jumbotron on the main landing page */
 .jumbotron {
     justify-content: space-around;
     border-radius: 4px;
@@ -75,6 +78,7 @@ body {
 
 .navbar-default {
     background-color: #c2edf4;
+    font-size: 20px;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -82,52 +86,52 @@ body {
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     border-color: #e6e4d3;
 }
-
+/* Makes space between the jumbotron and nav */
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
     margin-bottom: 15px;
     padding: inherit;
 }
-
+/* panel within the user dash that shows the title of the users todo lists */
 .panel-success>.panel-heading {
     color: #A9A9A9;
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
-
+/* yelp search area stuff */
 .vendorResults {
     align-content: center;
     padding: 0, 15px, 0, 15px;
     width: 700, height: 450, overflowY: 'auto',;
     background-color: white;
     border-radius: 25px;
-    border: 2px solid #FF3B3F;
+    border: 2px solid #2c3f54;
     padding: 20px;
     width: 300px;
     height: 450px;
     box-shadow: 0 4px 15px 0 rgba(0,0,0,0.7);
 }
-
+/* featured vendor text */
 #labels {
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 2%;
 }
-
+/* featured todo list text */
 #features {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
-
+/* featured todolist box */
 .feat-list {
     display: flex;
     justify-content: center;
     width: 50%;
     height: auto;
 }
-
+/* featured todo list img */
 .feat-list > img {
     width: 400px;
     height: 270px;
@@ -137,14 +141,14 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
 }
-
+/* featured vendor box */
 .feat-vendor {
     display: flex;
     justify-content: center;
     width: 50%;
     height: auto;
 }
-
+/* featured vendor img */
 .feat-vendor > img {
     width: 400px;
     height: 270px;
@@ -155,21 +159,22 @@ body {
     text-align: center;
 }
 
+/* registration actual form inputs */
+form {
+    border: 2px solid #CAEBF2;
+    border-radius: 4px;
+    background-color: #CAEBF2;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 10px;
+    width: 50%;
+}
+/* registration form container */
 .form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-form {
-    border: 2px solid #D3D3D3;
-    border-radius: 4px;
-    background-color: #D3D3D3;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    padding: 10px;
-    width: 50%;
 }
 
 .form-input {
@@ -194,40 +199,31 @@ form {
 }
 
 .button {
+    font-size: 20px;
     display: flex;
     justify-content: center;
     align-content: center;
     padding: 5px;
 }
-
-#submit {
-	width: 50%;
-    border: 2px hidden;
-    border-radius: 4px;
+/* buttons for th register and log in forms */
+button#submit {
+  width: 50%;
+  border: 2px hidden;
+  border-radius: 4px;
     padding: 2px 5px 2px 5px;
-    background-color: #FF3B3F;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    color: black;
+  background-color: #e53538 ;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  color: black;
 }
-
+/* submit hover button for the register and log in forms */
 #submit:hover {
-    background-color: #e53538;
-    color: white;
-}
-
-.progress-bar {
-    float: left;
-    width: 0;
-    height: inherit;
-    font-size: 12px;
-    color: #fff;
-    text-align: center;
-    background-color: #848FC0;
-    -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
-    box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
-    -webkit-transition: width .6s ease;
-    -o-transition: width .6s ease;
-    transition: width .6s ease;
+  width: 50%;
+  border: 2px hidden;
+  border-radius: 4px;
+  padding: 2px 5px 2px 5px;
+  background-color: #A9A9A9 ;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  color: black;
 }
 
 .panel-success>.panel-heading {
@@ -251,6 +247,7 @@ input {
     width: 100%;
     border: 1px inset;
     border-radius: 4px;
+    background-color: #EFEFEF;
 }
 
 input[type=text]:focus {
@@ -259,9 +256,6 @@ input[type=text]:focus {
 
 
 h4, h1 {
-    font-size: 20px;
-    font-family: 'Permanent Marker', cursive;
-    font-family: 'Righteous', cursive;
     color: #2e4053;
     text-shadow: 2px 5px 18px #EFEFEF;
 }
@@ -273,10 +267,20 @@ h2 {
     padding-top: 15px;
 }
 
+h3 {
+    padding: 10px;
+}
+
 h5 {
   text-align: center;
   color: #2e4053;
   padding-top: 5px;
+}
+
+p {
+  font-size: 35px;
+  padding: auto;
+  margin: auto;
 }
 
 label {
