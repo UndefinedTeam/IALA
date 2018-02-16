@@ -55,7 +55,7 @@ body {
     border: 2px hidden black;
     border-radius: 4px;
     padding: 10px;
-    background-color: #A9A9A9;
+    background-color: #FF3B3F;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
     color: black;
     font-family: 'Permanent Marker', cursive;
@@ -63,8 +63,8 @@ body {
 }
 
 .jumbo-button:hover {
-    background-color: #b5d3d9;
-    color: #FF3B3F;
+    background-color: #e53538;
+    color: #EFEFEF;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 }
@@ -205,7 +205,7 @@ form {
 
 #submit:hover {
     background-color: #e53538;
-    color: #FF3B3F
+    color: white;
 }
 
 .progress-bar {

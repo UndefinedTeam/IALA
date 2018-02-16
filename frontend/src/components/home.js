@@ -21,22 +21,6 @@ class Home extends Component {
 							<Button className="jumbo-button" href="/register">Start Here</Button>
 						</div>
 				</Jumbotron>
-				<section id="labels">
-					<div className="feat-list">
-						<h4>Featured List</h4>
-					</div>
-					<div className="feat-vendor">
-						<h4>Featured Vendor</h4>
-					</div>
-				</section>
-				<section id="features">
-					<div className="feat-list">
-						<img src={require("../images/coffee-cup-desk-pen.jpg")} alt="cofee-cup" />
-					</div>
-					<div className="feat-vendor">
-						<img src={require("../images/calendar.jpeg")} alt="calendar"/>
-					</div>
-				</section>
 
 			</div>
 		)
