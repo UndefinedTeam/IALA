@@ -30,17 +30,6 @@ class UserLists extends Component {
         .catch(e => {console.log(e) })
     }
 
-    getTasks(listId){
-        fetchListTasks(listId)
-        .then((tasks) => {
-            this.setState({
-                tasks: tasks.tasks,
-            })
-        })
-        .catch(e => console.log(e))
-    }
-
-
 	render() {
 		let { user } = this.props
 		let { lists, tasks } = this.state
@@ -62,15 +51,6 @@ class UserLists extends Component {
 						</Panel.Heading>
 						<Panel.Collapse>
 							<Panel.Body>
-								{
-									Object.keys(tasks).map((task, index) => {
-										return(
-											<ul key={index}>
-												<li>{tasks.name}</li>
-											</ul>
-										)
-									})
-								}
 								<form action='/dashboard/tasks'>
 									<div className="button">
 										<button

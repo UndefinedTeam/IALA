@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import  { fetchUser } from '../api/sessions'
+import  { fetchUser, checkEmail } from '../api/sessions'
+import  { loginUser } from '../api/user'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
@@ -71,29 +72,14 @@ class Main extends Component {
 	// Redirect to dashboard after login
 	loginRoute(loginForm) {
 		// Send data from log in form
-		fetch(`${API}/login`,
-		{
-			body: JSON.stringify(loginForm),
-			headers: {
-				'Content-Type':'application/json'
-			},
-			method: "POST"
-		})
+		loginUser(loginForm)
 		.then(()=> {
-			fetch(`${API}/login/${loginForm.email}`)
-			.then(response => {
-				return response.json()
-			})
-			.then(parsedResponse => {
-				//Save response values to local storage
-				let token = parsedResponse.token
-				localStorage.setItem("authToken", token)
-				localStorage.setItem("tokenExpiration", parsedResponse.expiration)
-
+			let token = checkEmail(loginForm)
+			.then(() => {
 				this.setState({
 					login: true,
 					user: this.getUser(token),
-					authToken: parsedResponse.token
+					authToken: token
 				})
 			})
 			.catch(error => {console.log("Set auth token")})
@@ -110,14 +96,6 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-<<<<<<< HEAD
-
-					<Route path='/tasks' component={Tasks}/>
-					{this.showContent()}
-
-					<Route path='/register' component={SignUp}/>
-
-=======
 					<Route path='/register' component={SignUp}/>
 
 					{login &&
@@ -146,7 +124,6 @@ class Main extends Component {
 							}/>
 						</div>
 					}
->>>>>>> deploy/first-deploy
 				</Switch>
 			</div>
 		)
