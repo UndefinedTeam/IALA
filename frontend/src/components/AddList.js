@@ -33,7 +33,7 @@ class AddList extends Component {
 	}
 
 	handleChange(e) {
-        const { form } = this.state
+		const { form } = this.state
 
 		form[e.target.name] = e.target.value
 		if(Object.keys(this.validateForm(form).length > 0)) {
@@ -52,16 +52,14 @@ class AddList extends Component {
 	}
 
 	handleSubmit(e) {
-        const { form } = this.state
+		const { form } = this.state
 		let { userId } = this.props
 		//console.log(e);
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
-			console.log("nein");
 			return this.state.errors
 		} else {
-			let response
 			createList(form, userId)
 		}
 	}
@@ -95,7 +93,7 @@ class AddList extends Component {
                                 errors={errors.type}
                             />
                         </div>
-                        <form action='/tasks-dash'>
+                        <form action='/dashboard/tasks'>
                             <div className= "button">
                                 <button
                                     type='submit'
