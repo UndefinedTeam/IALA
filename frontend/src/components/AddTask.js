@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormInput from 'FormInput'
+import FormInput from './FormInput'
 import { createTask } from '../api/tasks'
 import { validatePresence } from '../util/validations'
 
@@ -80,7 +80,7 @@ class AddTask extends Component {
 	const { form } = this.state
 	let { listId } = this.props
 
-	console.log("The thing I need", userId);
+	console.log("The thing I need", listId);
 	e.preventDefault()
 
 	if(Object.keys(this.state.errors).length > 0) {
@@ -94,7 +94,7 @@ class AddTask extends Component {
   }
 
 	render() {
-		const { title, type, newListSuccess } = this.state.form
+		const { task, desc, type, newTaskSuccess } = this.state.form
 		const { errors } = this.state
 
 		return (
