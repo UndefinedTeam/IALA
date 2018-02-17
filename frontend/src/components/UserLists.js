@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { fetchUserLists } from '../api/lists'
-import { fetchTasks } from '../api/tasks'
 import AddList from './AddList';
 
 
@@ -32,7 +31,7 @@ class UserLists extends Component {
 
 	render() {
 		let { user } = this.props
-		let { lists, tasks } = this.state
+		let { lists } = this.state
 		console.log("hi", user);
 
 		if(!user) {
@@ -40,9 +39,6 @@ class UserLists extends Component {
 				<h1>Loading...</h1>
 			)
 		}
-		// console.log( "User:", user)
-		// console.log("Lists:", lists)
-		// console.log("Tasks:",tasks)
 
 		return(
 			<div className="userList-container">
@@ -50,7 +46,9 @@ class UserLists extends Component {
 					<h2> {user.name} &rsquo;s Lists</h2>
 					<Panel bsStyle="success" id="collapsible-panel">
 						<Panel.Heading>
-							<Panel.Title toggle componentClass="h3"><h3>{lists.title}</h3></Panel.Title>
+							<Panel.Title toggle componentClass="h3">
+								<h3>{lists.title}</h3>
+							</Panel.Title>
 						</Panel.Heading>
 						<Panel.Collapse>
 							<Panel.Body>
@@ -68,7 +66,7 @@ class UserLists extends Component {
 					</Panel>
 				</div>
 				<div>
-					<AddList user={user.id}/>
+					<AddList userId={user.id}/>
 				</div>
 			</div>
 		)

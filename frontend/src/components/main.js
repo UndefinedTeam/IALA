@@ -8,9 +8,6 @@ import SignUp from './signup'
 import Dashboard from './Dashboard'
 
 
-
-const API = "http://localhost:3001"
-
 class Main extends Component {
 	constructor(props) {
 		super(props)

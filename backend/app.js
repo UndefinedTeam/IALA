@@ -142,7 +142,7 @@ app.get('/user/:id/lists', (req, res) => {
 
 // Creates a new list for a user from the add list form on the dashboard
 app.post('/user/:id/lists', (req, res) => {
-        Todolist.create(
+        TodoList.create(
             {
                 title: req.body.title,
                 type: req.body.type,
@@ -166,7 +166,7 @@ app.post('/user/:id/lists', (req, res) => {
 
 // Deletes a list for a user
 app.delete('user/:id/list/:listId', (req, res) =>{
-	Todolist.destroy({
+	TodoList.destroy({
 		where: {
 			id: req.params.listId
 		}
@@ -189,9 +189,9 @@ app.get('/list/:id/tasks', (req, res) => {
             where: {
                 listId: list.id
             }
-        }).then((tasks) => {
+        }).then((task) => {
             res.json({
-                tasks: tasks
+                task: task
             })
         })
     }).catch((error) => {
@@ -201,7 +201,7 @@ app.get('/list/:id/tasks', (req, res) => {
 
 //adds a new task for a specific list based on id
 app.post('/list/:id/tasks', (req,res) => {
-    Tasks.create(
+    Task.create(
         {
             task: req.body.task,
             desc: req.body.desc,
@@ -221,8 +221,8 @@ app.post('/list/:id/tasks', (req,res) => {
     .catch((error)=>{
         res.status(400)
         res.json({
-        message: "Unable to create task",
-        errors: error.errors
+	        message: "Unable to create task",
+	        errors: error.errors
         })
     })
 })

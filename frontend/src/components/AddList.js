@@ -13,7 +13,6 @@ class AddList extends Component {
             form: {
                 title: "",
                 type: "",
-                // userId: this.props.user.id,
             },
             errors: {},
             newListSuccess: false,
@@ -46,30 +45,34 @@ class AddList extends Component {
 			this.setState({
 				form: form,
 				errors: this.validateForm(form),
-				newListSuccess: true
 			})
+			console.log("List is ready to be added!");
 		}
 	}
 
 	handleSubmit(e) {
         const { form } = this.state
 		let { userId } = this.props
-		//console.log(e);
+
+		console.log("The thing I need", userId);
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
-			console.log("nein");
 			return this.state.errors
 		} else {
-			let response
-			createList(form, userId)
+
+			createList(form, parseInt(userId))
+			this.setState({
+				newListSuccess: true
+			})
 		}
 	}
 
 
     render(){
-        const { title, type } = this.state.form
+        const { title, type, newListSuccess } = this.state.form
         const { errors } = this.state
+
 
         return(
             <div className='form-container'>
@@ -95,12 +98,12 @@ class AddList extends Component {
                                 errors={errors.type}
                             />
                         </div>
-                        <form action='/tasks-dash'>
+                        <form action='dashboard/tasks'>
                             <div className= "button">
                                 <button
                                     type='submit'
                                     value='go to task dashboard'
-                                    onChange={this.handleSubmit.bind(this)}
+                                    onClick={this.handleSubmit.bind(this)}
                                 >
                                     Create List
                                 </button>

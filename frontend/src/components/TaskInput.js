@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 
-class TodoInput extends Component {
-  constructor(props) {
-    super(props);
+class TaskInput extends Component {
+	constructor(props) {
+	super(props);
 
-    this.state = {
-      todoListId: 1,
+	this.state = {
+		form: {
+			todoListId: 1,
 			categoryId: 0,
-      task: '',
+			task: '',
 			priority: 'low',
-      desc: '',
-      isComplete: false,
-      dateStart: '',
-      dateDone : ''
-    }
+			desc: '',
+			isComplete: false,
+			dateStart: '',
+			dateDone : ''
+		}
+	}
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-   }
+}
 
 
    handleInputChange(e) {
@@ -99,4 +99,4 @@ class TodoInput extends Component {
   }
 }
 
-export default TodoInput;
+export default TaskInput;

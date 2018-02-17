@@ -1,69 +1,36 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, Grid, Page, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import Tasks from './tasks';
-import TodoInput from './TodoInput';
+import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import TaskInput from './TaskInput';
 import VendorSearch from './VendorSearch';
-import { validatePresence} from '../util/validations';
+import { validatePresence } from '../util/validations';
 
-
-var tasks = [
-  {
-		listId: 1,
-		type: '0',
-		task: 'Task #1',
-		priority: 'Low',
-		desc: 'Some random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random task',
-		isComplete: false,
-		dateStart: '',
-		dateDone: ''
-  },
-  {
-		todoListId: 1,
-		categoryId: 0,
-		task: 'Task #2',
-		priority: 'High',
-		desc: 'Some random much more important task random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random taskSome random task',
-		isComplete: false,
-		dateStart: '',
-		dateDone: ''
-  }
-]
 
 class TasksDash extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks
-    };
-    this.handleAddTask = this.handleAddTask.bind(this);
-  }
+	constructor(props) {
+		super(props);
 
+		this.state = {
+			tasks: []
+		}
 
-  handleAddTask(task) {
-    this.setState({tasks: [...this.state.tasks, task]});
-  }
+	}
 
-
-  handleRemoveTask(index) {
-    this.setState({
-      tasks: this.state.tasks.filter(function(e, i) {
-        return i !== index;
-      })
-    })
-  }
 
 	render() {
+		let { user } = this.props
+		let { list, tasks} = this.state
+
 		return (
 			<Grid>
 				<PageHeader>
-					List Name
-					All tasks pertaining a specific list Id
+					{list.title}
 				</PageHeader>
 
 				<Row>
 					<Col sm={4} id="tasks-sidebar">
-						<TodoInput onAddTask={this.handleAddTask}/>
+						<TaskInput onAddTask={this.handleAddTask}/>
 						<br/>
 					</Col>
 					<Col sm={8} id="tasks-main">
@@ -95,6 +62,7 @@ class TasksDash extends Component {
 						</li>
 					)}
 					</ul>
+					<VendorSearch user={user} />
 				</Col>
 			</Row>
 		</Grid>
