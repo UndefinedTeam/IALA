@@ -33,7 +33,7 @@ class AddList extends Component {
 	}
 
 	handleChange(e) {
-        const { form } = this.state
+		const { form } = this.state
 
 		form[e.target.name] = e.target.value
 		if(Object.keys(this.validateForm(form).length > 0)) {
@@ -55,7 +55,7 @@ class AddList extends Component {
 // TODO: page needs to re-render once the newListSuccess = true ** Not currently doing this **
 
 	handleSubmit(e) {
-        const { form } = this.state
+		const { form } = this.state
 		let { userId } = this.props
 
 		console.log("The thing I need", userId);
@@ -102,7 +102,6 @@ class AddList extends Component {
                                 errors={errors.type}
                             />
                         </div>
-						{}
                             <div className= "button">
                                 <button
                                     type='submit'

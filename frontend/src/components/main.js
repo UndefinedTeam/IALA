@@ -7,7 +7,6 @@ import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
 
-
 class Main extends Component {
 	constructor(props) {
 		super(props)
