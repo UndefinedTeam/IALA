@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
+import { Link } from 'react-router-dom'
 import { createList } from '../api/lists'
 import { validatePresence } from '../util/validations'
 
@@ -13,7 +14,6 @@ class AddList extends Component {
             form: {
                 title: "",
                 type: "",
-                // userId: this.props.user.id,
             },
             errors: {},
             newListSuccess: false,
@@ -46,28 +46,37 @@ class AddList extends Component {
 			this.setState({
 				form: form,
 				errors: this.validateForm(form),
-				newListSuccess: true
 			})
+			console.log("List is ready to be added!");
 		}
 	}
+
+// New list is created
+// TODO: page needs to re-render once the newListSuccess = true ** Not currently doing this **
 
 	handleSubmit(e) {
 		const { form } = this.state
 		let { userId } = this.props
-		//console.log(e);
+
+		console.log("The thing I need", userId);
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
 			return this.state.errors
 		} else {
-			createList(form, userId)
+
+			createList(form, parseInt(userId))
+			this.setState({
+				newListSuccess: true
+			})
 		}
 	}
 
 
     render(){
-        const { title, type } = this.state.form
+        const { title, type, newListSuccess } = this.state.form
         const { errors } = this.state
+
 
         return(
             <div className='form-container'>
@@ -93,17 +102,15 @@ class AddList extends Component {
                                 errors={errors.type}
                             />
                         </div>
-                        <form action='/dashboard/tasks'>
                             <div className= "button">
                                 <button
                                     type='submit'
                                     value='go to task dashboard'
-                                    onChange={this.handleSubmit.bind(this)}
+                                    onClick={this.handleSubmit.bind(this)}
                                 >
                                     Create List
                                 </button>
                             </div>
-                        </form>
                     </form>
             </div>
         )

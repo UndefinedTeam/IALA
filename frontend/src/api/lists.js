@@ -9,7 +9,7 @@ function fetchUserLists(id){
 	})
 }
 
-function createList(id, params){
+function createList(params, id){
 	return fetch(`${API}/user/${id}/lists`, {
 		method: "POST",
 		headers: {
@@ -18,6 +18,7 @@ function createList(id, params){
 		body: JSON.stringify(params),
 	})
 	.then((res) => {
+		console.log("Success!", res)
 		return res.json()
 	})
 }

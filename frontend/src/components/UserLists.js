@@ -1,34 +1,14 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import { fetchUserLists } from '../api/lists'
-// import { fetchTasks } from '../api/tasks'
 import AddList from './AddList';
 
 
 class UserLists extends Component {
-    constructor(props){
-        super(props)
-
-        this.state = {
-            lists: {},
-        }
-    }
-
-    getLists(id){
-        fetchUserLists(id)
-        .then((res) => {
-            console.log("fetch", res.lists)
-            this.setState({
-                lists: res.lists,
-            })
-        })
-        .catch(e => {console.log(e) })
-    }
 
 	render() {
-		let { user } = this.props
-		let { lists } = this.state
-		console.log("hi", user);
+		let { user, lists } = this.props
 
 		if(!user) {
 			return (
@@ -36,28 +16,36 @@ class UserLists extends Component {
 			)
 		}
 
+        // User lists show up! YAY!
+        // TODO: when a user clicks on the view list button the task dash needs to only display tasks from that specific list ** by List id **
+
 		return(
 			<div className="userList-container">
 				<div>
 					<h2> {user.name} &rsquo;s Lists</h2>
-					<Panel bsStyle="success" id="collapsible-panel">
-						<Panel.Heading>
-							<Panel.Title toggle componentClass="h3"><h3>{lists.title}</h3></Panel.Title>
-						</Panel.Heading>
-						<Panel.Collapse>
-							<Panel.Body>
-								<form action='/dashboard/tasks'>
+					{Object.keys(lists).map((list, index) => {
+						return (
+						<Panel bsStyle="success" id="collapsible-panel">
+							<Panel.Heading key={index}>
+								<Panel.Title toggle componentClass="h3">
+									<h3>{lists[index].title}</h3>
+								</Panel.Title>
+							</Panel.Heading>
+							<Panel.Collapse>
+								<Panel.Body>
+									{lists[index].type}
 									<div className="button">
-										<button
-											type="get"
-											value="view list">
-											View List
-										</button>
+										<Link to='/dashboard/tasks'>
+											<button type="get" value="view list">
+													View List
+											</button>
+										</Link>
 									</div>
-								</form>
-							</Panel.Body>
-						</Panel.Collapse>
-					</Panel>
+								</Panel.Body>
+							</Panel.Collapse>
+						</Panel>
+						)
+					})}
 				</div>
 				<div>
 					<AddList userId={user.id}/>

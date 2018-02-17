@@ -8,7 +8,7 @@
 /* Styling for everything */
 * {
   margin: 0;
-  font-family: 'Neucha', cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* IALA logo on the nav bar */
@@ -61,8 +61,7 @@ body {
     background-color: #FF3B3F;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
     color: black;
-    font-family: 'Permanent Marker', cursive;
-    font-family: 'Righteous', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 
 .jumbo-button:hover {
@@ -256,6 +255,7 @@ input[type=text]:focus {
 
 
 h4, h1 {
+	font-family: 'Neucha', cursive;
     color: #2e4053;
     text-shadow: 2px 5px 18px #EFEFEF;
 }
@@ -297,11 +297,10 @@ h3 {
 }
 
 p, li {
-  font-family: 'Permanent Marker', cursive;
-  font-family: 'Righteous', cursive;
-  font-size: 15px;
-  padding: auto;
-  margin: auto;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	padding: auto;
+	margin: auto;
 }
 
 .footer {

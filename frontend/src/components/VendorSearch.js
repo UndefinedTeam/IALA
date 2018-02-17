@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { fetchVendors } from '../api/yelp'
+import { fetchUserLists } from '../api/lists'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -50,6 +52,29 @@ class VendorSearch extends Component {
       this.handleSubmit=this.handleSubmit.bind(this)
   }
 
+  componentWillMount() {
+	this.getUserLists()
+	console.log("I'm here");
+  }
+
+	getUserLists(){
+		let { user } = this.props
+
+		fetchUserLists(user.id)
+		.catch((error) => {
+			console.log(error);
+		})
+		.then((dataObject) => {
+			this.setState({
+			  listNames: dataObject.lists
+			})
+			console.log(this.state.listNames);
+		})
+		.catch((error) => {
+
+		})
+	}
+
 //function for the vendor search input area
   venSearchResults(event,newvalue){
     this.setState({
@@ -63,68 +88,39 @@ class VendorSearch extends Component {
       location: newvalue
     })
     console.log(this.state.location);
-  };
+  }
+
 //handleSubmit function that takes both inputs from the text input fields and makes a request to the backend yelp api and returns the search
   handleSubmit(){
-    console.log(this.state.venSearch );
-    console.log(this.state.location);
-    var youRL = `http://localhost:3001/yelp/${this.state.venSearch}/${this.state.location}`;
-    fetch(youRL, {
-          method: "GET"
-        })
-        .then((responseData) => {
-          return responseData.json();
-        })
-        .catch((error) => {
-          console.log("Error Message: " + error);
-        })
-        .then((responseJSON) => {
-          this.setState({
-            isSubmitHit:true,
-            tableData: responseJSON.businesses
-          })
-          console.log(responseJSON.businesses);
-        })
-    console.log(youRL);
+	let { venSearch, location } = this.state
+
+	fetchVendors(venSearch, location)
+	.then((responseJSON) => {
+		this.setState({
+			isSubmitHit:true,
+			tableData: responseJSON.businesses
+		})
+	console.log(responseJSON.businesses);
+	})
   }
 
   handleClick = (event) => {
-    // This prevents ghost click.
+    // This prevents ghost click
     event.preventDefault();
 
     this.setState({
       open: true,
       anchorEl: event.currentTarget,
-    });
-  };
+    })
+  }
 
   handleRequestClose = () => {
     this.setState({
       open: false,
-    });
-  };
-
-  componentWillMount() {
-    console.log(this.props);
-    fetch(`http://localhost:3001/users/${this.props.id}/list`)
-    .then((data) => {
-      return data.json()
     })
-    .catch((error) => {
-      console.log(error);
-    })
-    .then((dataObject) => {
-      this.setState({
-        listNames: dataObject.lists
-      })
-      console.log(this.state.listNames);
-    })
-    .catch((error) => {
-
-    })
-    console.log("I'm here");
   }
 
+//this isn't working yet but will add vendors to tasks
   addVenToTask = (event) => {
 
     console.log(event.target.value);
@@ -140,9 +136,8 @@ class VendorSearch extends Component {
       yelp logo displayed
       */}
           <div>
-            <img src={require("../images/yelp_fullcolor.png"
-            )}
-            alt="yelpLogo"
+            <img src={require("../images/yelp_fullcolor.png")}
+				alt="yelpLogo"
             />
           </div>
           <TextField
