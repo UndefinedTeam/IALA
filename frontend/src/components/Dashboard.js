@@ -41,10 +41,10 @@ class Dashboard extends Component {
 			<Switch>
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
-						<UserLists user={user}/>
+						<UserLists user={user} lists={lists} />
 					}/>
 					<Route path='/dashboard/tasks' render={(props) =>
-						<TaskDash user={user} lists={lists} />
+						<TaskDash user={user} list={lists} />
 					}/>
 				</div>
 			</Switch>

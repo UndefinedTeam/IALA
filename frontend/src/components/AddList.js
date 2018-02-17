@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
+import { Link } from 'react-router-dom'
 import { createList } from '../api/lists'
 import { validatePresence } from '../util/validations'
 
@@ -50,6 +51,9 @@ class AddList extends Component {
 		}
 	}
 
+// New list is created
+// TODO: page needs to re-render once the newListSuccess = true ** Not currently doing this **
+
 	handleSubmit(e) {
         const { form } = this.state
 		let { userId } = this.props
@@ -98,7 +102,7 @@ class AddList extends Component {
                                 errors={errors.type}
                             />
                         </div>
-                        <form action='dashboard/tasks'>
+						{}
                             <div className= "button">
                                 <button
                                     type='submit'
@@ -108,7 +112,6 @@ class AddList extends Component {
                                     Create List
                                 </button>
                             </div>
-                        </form>
                     </form>
             </div>
         )
