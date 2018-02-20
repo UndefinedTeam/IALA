@@ -61,12 +61,12 @@ class AddList extends Component {
 	handleSubmit(e) {
 		const { form } = this.state
 		let { userId, callRefresh } = this.props
-
-		console.log("The thing I need", userId);
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
-			this.setState({errors: this.state.errors}) 
+			this.setState({
+				errors: this.state.errors
+			})
 		} else {
 			this.callRefresh(e)
 			createList(form, parseInt(userId))
