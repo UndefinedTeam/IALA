@@ -31,7 +31,7 @@ class UserLists extends Component {
 
 		fetchTasks(id)
 		.then((res) => {
-			console.log("fetch-tasks", res.task)
+		//	console.log("fetch-tasks", res.task)
 			Object.keys(res.tasks).map((task, index) => {
 					listTasks.push(task[index])
 			})
@@ -39,8 +39,7 @@ class UserLists extends Component {
 					tasks: listTasks
 				})
 		})
-		.catch(e => {console.log(e)
-		})
+		.catch(e => {return e})
 	}
 
 	renderAddTask(list){
@@ -98,6 +97,13 @@ class UserLists extends Component {
 	// 	}
 	// }
 
+	callRefresh(e){
+		console.log('hi');
+		if(e){
+			this.setState({newTaskSuccess: true})
+		}
+	}
+
 
 	render() {
 		let { user, lists } = this.props
@@ -131,6 +137,7 @@ class UserLists extends Component {
 										</div>
 									</Panel.Title>
 								</Panel.Heading>
+
 								<Panel.Collapse>
 									<Panel.Body>
 											<strong>List Type: </strong>{lists[index].type}
@@ -145,7 +152,7 @@ class UserLists extends Component {
 					}):<h1></h1>}
 				</div>
 				<div className="addList-container">
-					<AddList userId={user.id}/>
+					<AddList userId={user.id} callRefresh={this.callRefresh.bind(this)}/>
 				</div>
 				<div className="vendorResults">
 					<VendorSearch lists={lists}/>
