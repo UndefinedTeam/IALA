@@ -11,18 +11,28 @@ class UserLists extends Component {
 		super(props)
 
 		this.state = {
-			tasks: [],
 			tasksClicked: false,
 			newTaskSuccess: false,
 		}
+	}
+
+	componentWillMount(){
+		let { lists } = this.props
+		let listId
+		Object.keys(lists).map((list, index) => {
+			listId = list[index].id
+		}
+		this.getTasks(listId)
 	}
 
 	getTasks(id){
 		fetchTasks(id)
 		.then((res) => {
 			console.log("fetch-tasks", res.task)
-			this.setState({
-				tasks: res.task,
+			Object.keys(res.tasks).map((task, index) => {
+				return(
+
+				)
 			})
 		})
 		.catch(e => {console.log(e)
@@ -38,6 +48,8 @@ class UserLists extends Component {
 			)
 		}
 	}
+
+
 
 
     // this is not working! >:|
@@ -68,7 +80,6 @@ class UserLists extends Component {
 
 	render() {
 		let { user, lists } = this.props
-		let { tasks } = this.state
 
 		if(!user) {
 			return (
@@ -99,7 +110,6 @@ class UserLists extends Component {
 									<Panel.Body>
 											<strong>List Type: </strong>{lists[index].type}
 										<div>
-										{Object.keys(tasks).map((task, index) => {
 											<ul>
 												<li>{task[index].task}</li>
 												<ul>
@@ -107,7 +117,6 @@ class UserLists extends Component {
 													<li>Is Complete: {task[index].isComplete}</li>
 												</ul>
 											</ul>
-										})}
 										</div>
 										{this.renderAddTask(list)}
 									</Panel.Body>
