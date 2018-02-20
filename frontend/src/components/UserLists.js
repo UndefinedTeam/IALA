@@ -148,7 +148,7 @@ class UserLists extends Component {
 					<AddList userId={user.id}/>
 				</div>
 				<div className="vendorResults">
-					<VendorSearch lists={lists}/>
+					<VendorSearch list={this.props.lists}/>
 				</div>
 			</div>
 		)
