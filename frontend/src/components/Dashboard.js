@@ -20,12 +20,13 @@ class Dashboard extends Component {
 	getLists(id){
 		fetchUserLists(id)
 		.then((res) => {
-            console.log("fetch", res.lists)
+            // console.log("fetch", res.lists)
             this.setState({
                 lists: res.lists,
             })
         })
-        .catch(e => {console.log(e)
+        .catch(e => {
+			// console.log(e)
 		})
 	}
 
@@ -33,13 +34,15 @@ class Dashboard extends Component {
 	render() {
 		let { lists } = this.state
 		let { user } = this.props
-		console.log(lists);
-		console.log(user);
+
+		// console.log(lists);
+		// console.log(user);
+
 		return(
 			<Switch>
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
-						<UserLists user={user} lists={lists} />
+						(<UserLists user={user} lists={lists} />)
 					}/>
 				</div>
 			</Switch>

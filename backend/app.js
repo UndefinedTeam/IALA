@@ -189,9 +189,9 @@ app.get('/list/:id/tasks', (req, res) => {
             where: {
                 listId: list.id
             }
-        }).then((task) => {
+        }).then((tasks) => {
             res.json({
-                task: task
+                tasks: tasks
             })
         })
     }).catch((error) => {

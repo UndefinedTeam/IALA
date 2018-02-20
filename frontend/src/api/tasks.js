@@ -1,16 +1,16 @@
 
 const API = "http://localhost:3001"
 
-function fetchTasks(listId){
-    return fetch(`${API}/list/${listId}/tasks`)
+function fetchTasks(listID){
+    return fetch(`${API}/list/${listID}/tasks`)
     .then((res) => {
         console.log("Tasks:", res)
         return res.json()
     })
 }
 
-function createTask(listId, params){
-    return fetch(`${API}/list/${listId}/tasks`, {
+function createTask(listID, params){
+    return fetch(`${API}/list/${listID}/tasks`, {
 		method: "POST",
 		headers: {
 			'Content-Type': 'application/json'
@@ -22,16 +22,16 @@ function createTask(listId, params){
 	})
 }
 
-function fetchTask(listId, taskId){
-    return fetch(`${API}/list/${listId}/tasks/${taskId}`)
+function fetchTask(listID, taskID){
+    return fetch(`${API}/list/${listID}/tasks/${taskID}`)
     .then((res) => {
         console.log("Task:", res)
         return res.json()
     })
 }
 
-function updateTask(listId, taskId, params){
-	return fetch(`${API}/list/${listId}/tasks/${taskId}`, {
+function updateTask(listID, taskID, params){
+	return fetch(`${API}/list/${listID}/tasks/${taskID}`, {
 		method: "PUT",
 		headers: {
 			'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ function updateTask(listId, taskId, params){
 }
 
 // in process
-// function deleteTask(listId){
+// function deleteTask(listID){
 //
 // }
 
