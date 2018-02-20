@@ -9,11 +9,15 @@ class Dashboard extends Component {
 
 		this.state = {
 			lists: "",
+			newTask: false
 		}
 	}
 
 	componentDidMount(){
 		let { user } = this.props
+		if (!user) {
+			return
+		}
 		this.getLists(user.id)
 	}
 
@@ -29,17 +33,15 @@ class Dashboard extends Component {
 		})
 	}
 
-
 	render() {
 		let { lists } = this.state
 		let { user } = this.props
-		console.log(lists);
-		console.log(user);
+
 		return(
 			<Switch>
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
-						<UserLists user={user} lists={lists} />
+						<UserLists user={user} lists={lists}/>
 					}/>
 				</div>
 			</Switch>
