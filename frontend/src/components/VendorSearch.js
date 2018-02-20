@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { fetchVendors } from '../api/yelp'
-import { fetchUserLists } from '../api/lists'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -45,35 +44,12 @@ class VendorSearch extends Component {
         tableData: [],
         isSubmitHit:false,
         open: false,
-        listNames:[]
+        listNames: this.props.lists
       }
       this.venSearchResults=this.venSearchResults.bind(this);
       this.locationResults=this.locationResults.bind(this);
       this.handleSubmit=this.handleSubmit.bind(this)
   }
-
-  componentWillMount() {
-	this.getUserLists()
-	console.log("I'm here");
-  }
-
-	getUserLists(){
-		let { user } = this.props
-
-		fetchUserLists(user.id)
-		.catch((error) => {
-			console.log(error);
-		})
-		.then((dataObject) => {
-			this.setState({
-			  listNames: dataObject.lists
-			})
-			console.log(this.state.listNames);
-		})
-		.catch((error) => {
-
-		})
-	}
 
 //function for the vendor search input area
   venSearchResults(event,newvalue){
@@ -120,8 +96,8 @@ class VendorSearch extends Component {
     })
   }
 
-//this isn't working yet but will add vendors to tasks
-  addVenToTask = (event) => {
+//this isn't working yet but will add vendors to lists
+  addVenToList = (event) => {
 
     console.log(event.target.value);
     console.log(event.target.tasks.id);

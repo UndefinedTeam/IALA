@@ -4,10 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     task: DataTypes.STRING,
     desc: DataTypes.STRING,
     isComplete: DataTypes.BOOLEAN,
-    categoryId: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     dateStart: DataTypes.STRING,
     dateDone: DataTypes.STRING,
-    priority: DataTypes.STRING
   }, {
     classMethods: {
       // associate: function(models) {

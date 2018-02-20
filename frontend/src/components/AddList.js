@@ -74,13 +74,13 @@ class AddList extends Component {
 
 
     render(){
-        const { title, type, newListSuccess } = this.state.form
+        const { title, type, newListSuccess} = this.state.form
         const { errors } = this.state
-
 
         return(
             <div className='form-container'>
                 <h3>Create a New List</h3>
+
                     <form>
                         <div className='form-input'>
                         <label id='title-input'>Title</label>

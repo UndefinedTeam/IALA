@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { fetchUserLists } from '../api/lists'
 import UserLists from './UserLists'
-import TaskDash from './TaskDashboard'
-//import VendorSearch from './VendorSearch'
 
 class Dashboard extends Component {
 	constructor(props){
@@ -32,7 +30,6 @@ class Dashboard extends Component {
 	}
 
 
-
 	render() {
 		let { lists } = this.state
 		let { user } = this.props
@@ -42,9 +39,6 @@ class Dashboard extends Component {
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
 						<UserLists user={user} lists={lists} />
-					}/>
-					<Route path='/dashboard/tasks' render={(props) =>
-						<TaskDash user={user} list={lists} />
 					}/>
 				</div>
 			</Switch>
