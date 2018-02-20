@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom'
 import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
@@ -21,9 +20,9 @@ class UserLists extends Component {
 	getTasks(id){
 		fetchTasks(id)
 		.then((res) => {
-			console.log("fetch-tasks", res.tasks)
+			console.log("fetch-tasks", res.task)
 			this.setState({
-				tasks: res.tasks,
+				tasks: res.task,
 			})
 		})
 		.catch(e => {console.log(e)
@@ -33,59 +32,43 @@ class UserLists extends Component {
 	renderAddTask(list){
 		console.log("what's my id?", list);
 		if(list){
+			this.getTasks(list)
 			return (
 				<AddTask listId={list}/>
 			)
 		}
 	}
 
-	taskItems(){
-		let { tasks } = this.state
-		console.log("here are the tasks", tasks)
-		Object.keys(tasks).map((task, index) => {
-			<ul>
-				<li>task[index].task</li>
-				<ul>
-					<li>task[index].desc</li>
-					<li>task[index].dateStart</li>
-					<li>task[index].isComplete</li>
-				</ul>
-			</ul>
-		})
-	}
 
-	renderButton(list){
-		let { tasks, tasksClicked, newTaskSuccess } = this.state
-
-		if(tasks){
-			return (
-				<div>
-					<div>
-						<ul>{this.taskItems()}</ul>
-					</div>
-					<div className="button">
-						<button
-							type="add"
-							onClick={this.renderAddTask()} >
-								Add Task
-						</button>
-					</div>
-				</div>
-			)
-		} else if (!tasks && tasksClicked === true){
-			return (
-				this.renderAddTask(list)
-			)
-		} else {
-			return (
-				this.renderAddTask(list)
-			)
-		}
-	}
+    // this is not working! >:|
+	// renderButton(list){
+	// 	let { tasks, tasksClicked, newTaskSuccess } = this.state
+    //
+	// 	if(!tasks){
+	// 		return (
+	// 				<div className="button">
+	// 					<button
+	// 						type="add"
+	// 						onClick={this.renderAddTask(list)} >
+	// 							Add Task
+	// 					</button>
+	// 				</div>
+	// 		)
+	// 	} else if (tasksClicked === true){
+	// 		return (
+	// 			this.renderAddTask(list)
+	// 		)
+	// 	} else {
+	// 		return (
+	// 			this.renderAddTask(list)
+	// 		)
+	// 	}
+	// }
 
 
 	render() {
 		let { user, lists } = this.props
+		let { tasks } = this.state
 
 		if(!user) {
 			return (
@@ -94,6 +77,7 @@ class UserLists extends Component {
 		}
         // User lists show up! YAY!
         // TODO: when a user clicks on the view list button the task dash needs to only display tasks from that specific list ** by List id **
+        //NOTE: The classNames for list-buttons, addList-container, and vendors-container don't exist yet
 
 		return(
 			<div className="userList-container">
@@ -105,7 +89,7 @@ class UserLists extends Component {
 								<Panel.Heading key={index}>
 									<Panel.Title toggle componentClass="h3">
 										<h3>{lists[index].title}</h3>
-										<div className="button">
+										<div className="list-buttons">
 											<button>Edit List</button>
 											<button>Delete List</button>
 										</div>
@@ -114,17 +98,28 @@ class UserLists extends Component {
 								<Panel.Collapse>
 									<Panel.Body>
 											<strong>List Type: </strong>{lists[index].type}
-										{this.renderButton(list)}
+										<div>
+										{Object.keys(tasks).map((task, index) => {
+											<ul>
+												<li>{task[index].task}</li>
+												<ul>
+													<li>{task[index].desc}</li>
+													<li>Is Complete: {task[index].isComplete}</li>
+												</ul>
+											</ul>
+										})}
+										</div>
+										{this.renderAddTask(list)}
 									</Panel.Body>
 								</Panel.Collapse>
 							</Panel>
 						)
 					})}
 				</div>
-				<div>
+				<div className="addList-container">
 					<AddList userId={user.id}/>
 				</div>
-				<div>
+				<div className="vendors-container">
 					<VendorSearch lists={lists}/>
 				</div>
 			</div>

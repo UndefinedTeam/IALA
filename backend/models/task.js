@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     task: DataTypes.STRING,
     desc: DataTypes.STRING,
     isComplete: DataTypes.BOOLEAN,
-    type: DataTypes.STRING,
     dateStart: DataTypes.STRING,
     dateDone: DataTypes.STRING,
   }, {
