@@ -11,29 +11,33 @@ class UserLists extends Component {
 		super(props)
 
 		this.state = {
+			tasks: [],
 			tasksClicked: false,
 			newTaskSuccess: false,
 		}
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		let { lists } = this.props
 		let listId
 		Object.keys(lists).map((list, index) => {
 			listId = list[index].id
-		}
+		})
 		this.getTasks(listId)
 	}
 
 	getTasks(id){
+		let listTasks = []
+
 		fetchTasks(id)
 		.then((res) => {
 			console.log("fetch-tasks", res.task)
 			Object.keys(res.tasks).map((task, index) => {
-				return(
-
-				)
+					listTasks.push(task[index])
 			})
+				this.setState({
+					tasks: listTasks
+				})
 		})
 		.catch(e => {console.log(e)
 		})
@@ -49,8 +53,25 @@ class UserLists extends Component {
 		}
 	}
 
-
-
+	renderTasks(){
+		let { tasks } = this.state
+		console.log("Ready to Render", tasks)
+		// if (tasks.length > 0){
+		// 	return(
+		// 		{tasks.map((task, index) => {
+		// 		<ul>
+		// 			<li>{task[index].task}</li>
+		// 			<ul>
+		// 				<li>{task[index].desc}</li>
+		// 				<li>Is Complete: {task[index].isComplete}</li>
+		// 			</ul>
+		// 		</ul>
+		// 	})}
+		// 	)
+		// } else {
+		// 	<p>Loading ..</p>
+		// }
+	}
 
     // this is not working! >:|
 	// renderButton(list){
@@ -80,6 +101,7 @@ class UserLists extends Component {
 
 	render() {
 		let { user, lists } = this.props
+		let { tasks } = this.state
 
 		if(!user) {
 			return (
@@ -110,13 +132,7 @@ class UserLists extends Component {
 									<Panel.Body>
 											<strong>List Type: </strong>{lists[index].type}
 										<div>
-											<ul>
-												<li>{task[index].task}</li>
-												<ul>
-													<li>{task[index].desc}</li>
-													<li>Is Complete: {task[index].isComplete}</li>
-												</ul>
-											</ul>
+											{this.renderTasks()}
 										</div>
 										{this.renderAddTask(list)}
 									</Panel.Body>
