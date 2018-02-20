@@ -206,7 +206,6 @@ app.post('/list/:id/tasks', (req,res) => {
             task: req.body.task,
             desc: req.body.desc,
             isComplete: req.body.isComplete,
-            type: req.body.type,
             dateStart: req.body.dateStart,
             dateDone : req.body.dateDone,
             listId: req.params.id

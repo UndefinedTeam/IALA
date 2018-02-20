@@ -17,9 +17,6 @@ module.exports = {
       isComplete: {
         type: Sequelize.BOOLEAN
       },
-      type: {
-        type: Sequelize.STRING
-      },
       dateStart: {
         type: Sequelize.STRING
       },

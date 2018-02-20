@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Radio } from 'react-bootstrap'
 import FormInput from './FormInput'
 import { createTask } from '../api/tasks'
 import { validatePresence } from '../util/validations'
@@ -12,7 +11,6 @@ class AddTask extends Component {
 			form: {
 				task: '',
 				desc: '',
-				type: '',
 				isComplete: false,
 				dateStart: '',
 				dateDone : '',
@@ -23,9 +21,6 @@ class AddTask extends Component {
 		}
 	}
 
-	componentWillMount(){
-		this.getCurrentDate()
-	}
 
 	getCurrentDate(){
 		var today = new Date(),
@@ -43,9 +38,6 @@ class AddTask extends Component {
 
 		// description field
 		errors = validatePresence(errors, form, 'desc')
-
-		//type field
-		errors = validatePresence(errors, form, 'type')
 
 		return errors
 	}
@@ -75,6 +67,7 @@ class AddTask extends Component {
 
 		console.log("The thing I need", listId);
 		e.preventDefault()
+		this.getCurrentDate()
 
 		if(Object.keys(this.state.errors).length > 0) {
 			return this.state.errors
@@ -92,8 +85,8 @@ class AddTask extends Component {
 
 		return (
 			<div className='form-container'>
-				<h3>Create a New Task</h3>
 					<form>
+					<h3>Create a New Task</h3>
 						<div className='form-input'>
 						<label id='task-input'>Task</label>
 							<FormInput
@@ -112,16 +105,6 @@ class AddTask extends Component {
 								value={desc}
 								onChange={this.handleChange.bind(this)}
 								errors={errors.desc}
-							/>
-						</div>
-						<div className='form-input'>
-						<label id='type-input'>Type</label>
-							<FormInput
-								type='text'
-								name='type'
-								value={type}
-								onChange={this.handleChange.bind(this)}
-								errors={errors.type}
 							/>
 						</div>
 							<div className= "button">
