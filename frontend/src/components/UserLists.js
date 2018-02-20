@@ -123,7 +123,7 @@ class UserLists extends Component {
 								</Panel.Collapse>
 							</Panel>
 						)
-					}):<h1>Create a list to get started</h1>}
+					}):<h1></h1>}
 				</div>
 				<div>
 					<AddList userId={user.id}/>
