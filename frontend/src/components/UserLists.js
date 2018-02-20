@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
-import { fetchUserLists } from '../api/lists'
+import { Redirect } from 'react-router-dom'
+import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import VendorSearch from './VendorSearch';
 import AddList from './AddList';
-
+import AddTask from './AddTask';
 
 
 class UserLists extends Component {
@@ -11,22 +12,80 @@ class UserLists extends Component {
 		super(props)
 
 		this.state = {
-			listId: ""
+			tasks: [],
+			tasksClicked: false,
+			newTaskSuccess: false,
 		}
 	}
 
+	getTasks(id){
+		fetchTasks(id)
+		.then((res) => {
+			console.log("fetch-tasks", res.tasks)
+			this.setState({
+				tasks: res.tasks,
+			})
+		})
+		.catch(e => {console.log(e)
+		})
+	}
 
-	handleClick(lists, e){
-		console.log("Which List?", lists)
-		console.log("onclick Value", e.value)
+	renderAddTask(list){
+		console.log("what's my id?", list);
+		if(list){
+			return (
+				<AddTask listId={list}/>
+			)
+		}
+	}
 
+	taskItems(){
+		let { tasks } = this.state
+		console.log("here are the tasks", tasks)
+		Object.keys(tasks).map((task, index) => {
+			<ul>
+				<li>task[index].task</li>
+				<ul>
+					<li>task[index].desc</li>
+					<li>task[index].dateStart</li>
+					<li>task[index].isComplete</li>
+				</ul>
+			</ul>
+		})
+	}
+
+	renderButton(list){
+		let { tasks, tasksClicked, newTaskSuccess } = this.state
+
+		if(tasks && newTaskSuccess === true){
+			return (
+				<div>
+					<div>
+						<ul>{this.taskItems()}</ul>
+					</div>
+					<div className="button">
+						<button
+							type="add"
+							onClick={this.handleTaskClick.bind(this)} >
+								Add Task
+						</button>
+					</div>
+				</div>
+			)
+		} else if (!tasks && tasksClicked === true){
+			return (
+				this.renderAddTask(list)
+			)
+		} else {
+			return (
+				this.renderAddTask(list)
+			)
+		}
 	}
 
 
 	render() {
 		let { user, lists } = this.props
-
-		console.log("in Userdash", lists)
 
 		if(!user) {
 			return (
@@ -40,27 +99,22 @@ class UserLists extends Component {
 			<div className="userList-container">
 				<div>
 					<h2> {user.name} &rsquo;s Lists</h2>
-					{Object.keys(lists).map((lists, index) => {
+					{Object.keys(lists).map((list, index) => {
 						return (
 							<Panel bsStyle="success" id="collapsible-panel">
 								<Panel.Heading key={index}>
 									<Panel.Title toggle componentClass="h3">
 										<h3>{lists[index].title}</h3>
+										<div className="button">
+											<button>Edit List</button>
+											<button>Delete List</button>
+										</div>
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Collapse>
 									<Panel.Body>
-										{lists[index].type}
-										<div className="button">
-											<Link to='/dashboard/tasks'>
-												<button
-													type="get"
-													value={lists[index].id}
-													onclick={this.handleClick.bind(this, lists)} >
-														View List
-												</button>
-											</Link>
-										</div>
+											<strong>List Type: </strong>{lists[index].type}
+										{this.renderButton(list)}
 									</Panel.Body>
 								</Panel.Collapse>
 							</Panel>
@@ -69,6 +123,9 @@ class UserLists extends Component {
 				</div>
 				<div>
 					<AddList userId={user.id}/>
+				</div>
+				<div>
+					<VendorSearch lists={lists}/>
 				</div>
 			</div>
 		)

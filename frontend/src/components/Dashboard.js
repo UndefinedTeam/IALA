@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { fetchUserLists } from '../api/lists'
 import UserLists from './UserLists'
-import TaskDash from './TaskDashboard'
 
 class Dashboard extends Component {
 	constructor(props){
@@ -40,9 +39,6 @@ class Dashboard extends Component {
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
 						<UserLists user={user} lists={lists} />
-					}/>
-					<Route path='/dashboard/tasks'render={(props) =>
-						<TaskDash lists={lists} />
 					}/>
 				</div>
 			</Switch>

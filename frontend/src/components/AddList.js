@@ -76,19 +76,11 @@ class AddList extends Component {
     render(){
         const { title, type, newListSuccess} = this.state.form
         const { errors } = this.state
-		let message
-
-		if (!newListSuccess){
-			return message = "Could not add your List"
-		} else {
-			return message = "Success! Your list has been created"
-			this.render()
-		}
 
         return(
             <div className='form-container'>
                 <h3>Create a New List</h3>
-					<p>{message}</p>
+
                     <form>
                         <div className='form-input'>
                         <label id='title-input'>Title</label>

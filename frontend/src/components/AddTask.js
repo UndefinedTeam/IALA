@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Radio } from 'react-bootstrap'
 import FormInput from './FormInput'
 import { createTask } from '../api/tasks'
 import { validatePresence } from '../util/validations'
@@ -15,7 +16,7 @@ class AddTask extends Component {
 				isComplete: false,
 				dateStart: '',
 				dateDone : '',
-				listId: '',
+				listId: this.props.listId,
 			},
 			errors: {},
 			newTaskSuccess: false,
@@ -24,7 +25,6 @@ class AddTask extends Component {
 
 	componentWillMount(){
 		this.getCurrentDate()
-		// this.getListId()
 	}
 
 	getCurrentDate(){
@@ -33,13 +33,6 @@ class AddTask extends Component {
 		this.setState({
 			dateStart: date
 		})
-	}
-
-	getListId(){
-        // gets the current list id for task and sets it in state
-		// this.setState({
-		// 	listId: id
-		// })
 	}
 
 	validateForm(form) {
@@ -72,26 +65,26 @@ class AddTask extends Component {
   			 form: form,
   			 errors: this.validateForm(form),
   		 })
-  		 console.log("List is ready to be added!");
+  		 console.log("Task is ready to be added!");
   	 }
    }
 
-   handleSubmit(e) {
-	const { form } = this.state
-	let { listId } = this.props
+	handleSubmit(e) {
+		let { listId } = this.props
+		const { form } = this.state
 
-	console.log("The thing I need", listId);
-	e.preventDefault()
+		console.log("The thing I need", listId);
+		e.preventDefault()
 
-	if(Object.keys(this.state.errors).length > 0) {
-		return this.state.errors
-	} else {
-		createTask(form, parseInt(listId))
-		this.setState({
-			newTaskSuccess: true
-		})
+		if(Object.keys(this.state.errors).length > 0) {
+			return this.state.errors
+		} else {
+			createTask(form, parseInt(listId))
+			this.setState({
+				newTaskSuccess: true,
+			})
+		}
 	}
-  }
 
 	render() {
 		const { task, desc, type, newTaskSuccess } = this.state.form
@@ -99,7 +92,7 @@ class AddTask extends Component {
 
 		return (
 			<div className='form-container'>
-				<h3>Create a New List</h3>
+				<h3>Create a New Task</h3>
 					<form>
 						<div className='form-input'>
 						<label id='task-input'>Task</label>
