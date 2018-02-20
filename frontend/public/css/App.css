@@ -98,6 +98,7 @@ body {
 }
 /* yelp search area stuff */
 .vendorResults {
+    display: flex;
     align-content: center;
     padding: 0, 15px, 0, 15px;
     width: 700, height: 450, overflowY: 'auto',;
@@ -160,6 +161,9 @@ body {
 
 /* registration actual form inputs */
 form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     border: 2px solid #CAEBF2;
     border-radius: 4px;
     background-color: #CAEBF2;

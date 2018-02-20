@@ -116,7 +116,10 @@ class UserLists extends Component {
 			<div className="userList-container">
 				<div>
 					<h2> {user.name} &rsquo;s Lists</h2>
-					{Object.keys(lists).map((list, index) => {
+					{/*
+						Created an if else statement so the user dashboard would still show up for users without any todo lists
+						*/}
+					{lists ?Object.keys(lists).map((list, index) => {
 						return (
 							<Panel bsStyle="success" id="collapsible-panel">
 								<Panel.Heading key={index}>
@@ -139,12 +142,12 @@ class UserLists extends Component {
 								</Panel.Collapse>
 							</Panel>
 						)
-					})}
+					}):<h1></h1>}
 				</div>
 				<div className="addList-container">
 					<AddList userId={user.id}/>
 				</div>
-				<div className="vendors-container">
+				<div className="vendorResults">
 					<VendorSearch lists={lists}/>
 				</div>
 			</div>
