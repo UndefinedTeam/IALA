@@ -86,7 +86,8 @@ class UserLists extends Component {
 
 	render() {
 		let { user, lists } = this.props
-
+		console.log(user);
+		console.log(lists);
 		if(!user) {
 			return (
 				<h1>Loading...</h1>
@@ -99,7 +100,10 @@ class UserLists extends Component {
 			<div className="userList-container">
 				<div>
 					<h2> {user.name} &rsquo;s Lists</h2>
-					{Object.keys(lists).map((list, index) => {
+					{/*
+						Created an if else statement so the user dashboard would still show up for users without any todo lists
+						*/}
+					{lists ?Object.keys(lists).map((list, index) => {
 						return (
 							<Panel bsStyle="success" id="collapsible-panel">
 								<Panel.Heading key={index}>
@@ -119,12 +123,12 @@ class UserLists extends Component {
 								</Panel.Collapse>
 							</Panel>
 						)
-					})}
+					}):<h1>Create a list to get started</h1>}
 				</div>
 				<div>
 					<AddList userId={user.id}/>
 				</div>
-				<div>
+				<div className="vendorResults">
 					<VendorSearch lists={lists}/>
 				</div>
 			</div>

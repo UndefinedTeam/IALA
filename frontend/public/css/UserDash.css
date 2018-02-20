@@ -18,21 +18,12 @@
     width: 95%;
 }
 
-.vendorSearch-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 40%;
-    border: 2px solid;
-    align-items: center;
-}
-
-.vendorResults {
+.vendorsSearch {
   align-content: center;
   padding: 0, 15px, 0, 15px;
-  width: inherit;,
-  height: inherit;,
-  overflowY: 'auto',
+  width: inherit;
+  height: inherit;
+  overflowY: 'auto';
 }
 
 .navbar-default {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchVendors } from '../api/yelp'
+import { fetchVendors } from '../api/yelp.js'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -69,7 +69,8 @@ class VendorSearch extends Component {
 //handleSubmit function that takes both inputs from the text input fields and makes a request to the backend yelp api and returns the search
   handleSubmit(){
 	let { venSearch, location } = this.state
-
+  console.log(venSearch);
+  console.log(location);
 	fetchVendors(venSearch, location)
 	.then((responseJSON) => {
 		this.setState({
@@ -78,6 +79,8 @@ class VendorSearch extends Component {
 		})
 	console.log(responseJSON.businesses);
 	})
+
+
   }
 
   handleClick = (event) => {
@@ -163,12 +166,13 @@ class VendorSearch extends Component {
                           onRequestClose={this.handleRequestClose}
                         >
                           <Menu className="popOver">
-                          {
-                            this.state.listNames.map((item) => {
-                              return <MenuItem primaryText= {item.title} id={item.id}
-                              onClick={this.addVenToTask}
-                              />
-                            })
+                          {this.state.listNames?
+                              this.state.listNames.map((item) => {
+                                return <MenuItem primaryText= {item.title} id={item.id}
+                                onClick={this.addVenToTask}
+                                />
+                              })
+                            :<p>No Lists</p>
                           }
                           </Menu>
                         </Popover>

@@ -33,7 +33,8 @@ class Dashboard extends Component {
 	render() {
 		let { lists } = this.state
 		let { user } = this.props
-
+		console.log(lists);
+		console.log(user);
 		return(
 			<Switch>
 				<div className="dash-container">
