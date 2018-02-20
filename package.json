@@ -9,5 +9,5 @@
 	"heroku-postbuild": "yarn build",
 	"engines": {
 		"node": "8.4.0"
-	},
+	}
 }
