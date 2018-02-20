@@ -57,7 +57,7 @@ class UserLists extends Component {
 	renderButton(list){
 		let { tasks, tasksClicked, newTaskSuccess } = this.state
 
-		if(tasks && newTaskSuccess === true){
+		if(tasks){
 			return (
 				<div>
 					<div>
@@ -66,7 +66,7 @@ class UserLists extends Component {
 					<div className="button">
 						<button
 							type="add"
-							onClick={this.handleTaskClick.bind(this)} >
+							onClick={this.renderAddTask()} >
 								Add Task
 						</button>
 					</div>

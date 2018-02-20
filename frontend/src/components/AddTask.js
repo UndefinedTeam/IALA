@@ -29,7 +29,7 @@ class AddTask extends Component {
 
 	getCurrentDate(){
 		var today = new Date(),
-            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
 		this.setState({
 			dateStart: date
 		})
@@ -79,7 +79,7 @@ class AddTask extends Component {
 		if(Object.keys(this.state.errors).length > 0) {
 			return this.state.errors
 		} else {
-			createTask(form, parseInt(listId))
+			createTask(parseInt(listId), form)
 			this.setState({
 				newTaskSuccess: true,
 			})
@@ -87,7 +87,7 @@ class AddTask extends Component {
 	}
 
 	render() {
-		const { task, desc, type, newTaskSuccess } = this.state.form
+		const { task, desc, type, dateStart, newTaskSuccess } = this.state.form
 		const { errors } = this.state
 
 		return (
@@ -107,7 +107,7 @@ class AddTask extends Component {
 						<div className='form-input'>
 						<label id='desc-input'>Description of task</label>
 							<FormInput
-								type='textarea'
+								type='text'
 								name='desc'
 								value={desc}
 								onChange={this.handleChange.bind(this)}
