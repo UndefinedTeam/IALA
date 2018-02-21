@@ -28,16 +28,14 @@ function createList(params, id){
 //
 // }
 
-// function deleteList(id){
-//     return fetch(`${API}/users/${id}/list`,
-//         {
-//
-//         })
-//
-// }
-//
+function deleteList(id){
+	return fetch(`${API}/list/${id}`, {
+		method: "DELETE"
+	})
+}
 
 module.exports = {
 	fetchUserLists: fetchUserLists,
 	createList: createList,
+	deleteList: deleteList
 }
