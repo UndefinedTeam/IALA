@@ -54,8 +54,13 @@ class UserLists extends Component {
 	}
 
 	removeList(id){
-		// console.log("gone");
+		console.log("gone");
 		deleteList(id)
+		this.refreshLists()
+	}
+
+	refreshLists(){
+		this.props.refreshLists()
 	}
 
 	render() {
@@ -115,7 +120,8 @@ class UserLists extends Component {
 						}
 				</div>
 				<div className="addList-container">
-					<AddList userId={user.id} />
+					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
+					refreshLists={this.refreshLists.bind(this)}/>
 				</div>
 				<div className="vendorResults">
 					<VendorSearch lists={lists}/>

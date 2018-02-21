@@ -119,6 +119,27 @@ app.get('/lists', (req, res) => {
 
 // Gets all lists of one user based on the user id
 app.get('/user/:id/lists', (req, res) => {
+<<<<<<< HEAD
+    User.findById(req.params.id)
+    .then((user) => {
+        TodoList.findAll({
+            where: {
+                userId: user.id
+            }
+        })
+        .then((lists) => {
+            res.json({
+                lists: lists
+            })
+        })
+        .catch((error) => {
+            res.send(error)
+        })
+    })
+    .catch((error) => {
+        res.send(error)
+    })
+=======
 	User.findById(req.params.id)
 	.then((user) => {
 		TodoList.findAll({
@@ -133,6 +154,7 @@ app.get('/user/:id/lists', (req, res) => {
 			res.send(error)
 		})
 	})
+>>>>>>> master
 })
 
 // Creates a new list for a user from the add list form on the dashboard
@@ -186,12 +208,18 @@ app.get('/list/:id/tasks', (req, res) => {
 	TodoList.findById(req.params.id)
 	.then((list) => {
 		Task.findAll({
+<<<<<<< HEAD
+			where: {	listId: list.id }
+		}).then((task) => {
+			res.json({ task: task })
+=======
 			where: { listId: list.id }
 		})
 		.then((task) => {
 			res.json({
 				task: task
 			})
+>>>>>>> master
 		})
 	}).catch((error) => {
 		res.send(error)

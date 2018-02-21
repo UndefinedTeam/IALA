@@ -54,10 +54,6 @@ class AddList extends Component {
 // New list is created
 // TODO: page needs to re-render once the newListSuccess = true ** Not currently doing this **
 
-	getTasks(){
-		this.props.getTasks()
-	}
-
 	handleSubmit(e) {
 		const { form } = this.state
 		let { userId, callRefresh } = this.props
@@ -69,8 +65,12 @@ class AddList extends Component {
 			})
 		} else {
 			createList(form, parseInt(userId))
-			this.getTasks(userId)
+			this.refreshLists()
 		}
+	}
+
+	refreshLists(){
+		this.props.refreshLists()
 	}
 
 
