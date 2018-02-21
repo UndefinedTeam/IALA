@@ -41,7 +41,7 @@ class UserLists extends Component {
 				const { tasks } = this.state
 
 
-				tasks[id] = res.tasks
+				tasks[id] = res.task
 
 				this.setState({
 					tasks: tasks
@@ -53,19 +53,14 @@ class UserLists extends Component {
 		})
 	}
 
-	deleteTask(id){
-		console.log("gone");
+	removeList(id){
+		// console.log("gone");
 		deleteList(id)
-		this.getTasks(this.props.user.id)
 	}
 
 	render() {
 		let { user, lists } = this.props
-		console.log("hey hi hello");
-		console.log(this.props.lists);
 		let { tasks } = this.state
-		console.log("what's in state?", tasks);
-		console.log("task", tasks[10])
 
 		if(!user || !lists) {
 			return (
@@ -88,11 +83,10 @@ class UserLists extends Component {
 										<h3>{list.title}</h3>
 										<div className="list-buttons">
 											<button>Edit List</button>
-											<button onClick={this.deleteTask.bind(this, list.id)}>Delete List</button>
+											<button onClick={this.removeList.bind(this, list.id)}>Delete List</button>
 										</div>
 									</Panel.Title>
 								</Panel.Heading>
-
 								<Panel.Collapse>
 									<Panel.Body>
 										<strong>List Type: </strong>{list.type}
@@ -104,6 +98,10 @@ class UserLists extends Component {
 														<p>Task: {task.task}</p>
 														<p>Description: {task.desc}</p>
 														<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
+														<div>
+															<button>Edit Task</button>
+															<button>Delete Task</button>
+														</div>
 													</div>
 												))
 											)
@@ -117,7 +115,7 @@ class UserLists extends Component {
 						}
 				</div>
 				<div className="addList-container">
-					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}/>
+					<AddList userId={user.id} />
 				</div>
 				<div className="vendorResults">
 					<VendorSearch lists={lists}/>
