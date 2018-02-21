@@ -154,7 +154,7 @@ class UserLists extends Component {
 					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}/>
 				</div>
 				<div className="vendorResults">
-					<VendorSearch lists={lists}/>
+					<VendorSearch list={this.props.lists}/>
 				</div>
 			</div>
 		)
