@@ -87,14 +87,15 @@ class UserLists extends Component {
 										<strong>List Type: </strong>{list.type}
 										{!tasks[list.id] ? (
 											<p>Loading ...</p>
-										) :
-											tasks[list.id].map((task) => {
-												<div key={list.id}>
-													<p>Task: {task.task}</p>
-													<p>Description: {task.desc}</p>
-													<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
-												</div>
-											})
+										) : (
+												tasks[list.id].map((task) => (
+													<div key={list.id}>
+														<p>Task: {task.task}</p>
+														<p>Description: {task.desc}</p>
+														<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
+													</div>
+												))
+											)
 										}
 
 											<AddTask listId={list.id}/>
@@ -116,6 +117,10 @@ class UserLists extends Component {
 }
 
 export default UserLists;
+
+// ListComp pass tasks for just the list then pass tasks[list.id]
+
+// TaskComp
 
 // renderAddTask() {
 // 	console.log("what's my id?", list);
