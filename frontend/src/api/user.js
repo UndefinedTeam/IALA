@@ -1,8 +1,5 @@
-
-const API = "http://localhost:3001"
-
 function loginUser(loginForm){
-	return fetch(`${API}/login`, {
+	return fetch(`/login`, {
 		method: "POST",
 		headers: {
 			'Content-Type':'application/json'
@@ -15,7 +12,7 @@ function loginUser(loginForm){
 }
 
 function addNewUser(params){
-	return fetch(`${API}/user`, {
+	return fetch(`/user`, {
 		method: "POST",
 		headers: {
 		   'Content-Type': 'application/json'

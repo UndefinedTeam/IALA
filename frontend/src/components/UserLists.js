@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import { fetchTasks, deleteTask } from '../api/tasks'
 import{ deleteList } from '../api/lists'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';

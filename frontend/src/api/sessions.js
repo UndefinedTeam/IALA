@@ -1,15 +1,12 @@
-
-const API = "http://localhost:3001"
-
 function fetchUser(token) {
-    return fetch(`${API}/user?authToken=${token}`)
+    return fetch(`/user?authToken=${token}`)
     .then((res) => {
         return res.json()
     })
 }
 
 function checkEmail(loginForm){
-	return fetch(`${API}/login/${loginForm.email}`)
+	return fetch(`/login/${loginForm.email}`)
 	.then(res => {
 		return res.json()
 	})

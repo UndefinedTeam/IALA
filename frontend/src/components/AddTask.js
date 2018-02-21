@@ -72,7 +72,7 @@ class AddTask extends Component {
 		if(Object.keys(this.state.errors).length > 0) {
 			return this.state.errors
 		} else {
-			createTask(parseInt(listId), form)
+			createTask(parseInt(listId, 10), form)
 			this.setState({
 				newTaskSuccess: true,
 			})
@@ -80,7 +80,7 @@ class AddTask extends Component {
 	}
 
 	render() {
-		const { task, desc, type, dateStart, newTaskSuccess } = this.state.form
+		const { task, desc } = this.state.form
 		const { errors } = this.state
 
 		return (

@@ -91,11 +91,11 @@ class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
-					<Route path='/register' component={SignUp}/>
 
 					{login &&
 						<Switch>
 							<Redirect from="/login" to="/dashboard" />
+							<Redirect from="/register" to="/dashboard" />
 							<Route path='/dashboard' render={(props) =>
 								<Dashboard
 									user={user}
@@ -106,6 +106,7 @@ class Main extends Component {
 					}
 					{!login &&
 						<Switch>
+							<Route path='/register' component={SignUp}/>
 							<Route path='/dashboard' render={(props) =>
 								 <Login loginRoute={this.loginRoute.bind(this)} />
 							}/>
@@ -117,6 +118,7 @@ class Main extends Component {
 							}/>
 						</Switch>
 					}
+
 				</Switch>
 			</div>
 		)

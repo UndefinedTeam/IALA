@@ -13,6 +13,14 @@ class Dashboard extends Component {
 		}
 	}
 
+	componentWillReceiveProps(props){
+		let user = props.user
+		if (!user) {
+			return
+		}
+		this.getLists(user.id)
+	}
+
 	componentDidMount(){
 		let { user } = this.props
 		if (!user) {
@@ -24,13 +32,11 @@ class Dashboard extends Component {
 	getLists(id){
 		fetchUserLists(id)
 		.then((res) => {
-            // console.log("fetch", res.lists)
-            this.setState({
-                lists: res.lists,
-            })
-        })
-        .catch(e => {
-			// console.log(e)
+			this.setState({
+				lists: res.lists,
+			})
+		})
+		.catch(e => {
 		})
 	}
 

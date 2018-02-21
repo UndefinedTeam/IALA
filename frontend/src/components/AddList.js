@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { Link } from 'react-router-dom'
-import { createList } from '../api/lists'
 import { validatePresence } from '../util/validations'
+import { Lists } from '../api'
 
 // form below adds a new list then redirects to tasksDash for user to add tasks to the list.
 
@@ -15,8 +14,7 @@ class AddList extends Component {
                 title: "",
                 type: "",
             },
-            errors: "Empty Form",
-            newListSuccess: false,
+            errors: "Empty Form"
         }
     }
 
@@ -56,7 +54,7 @@ class AddList extends Component {
 
 	handleSubmit(e) {
 		const { form } = this.state
-		let { userId, callRefresh } = this.props
+		let { userId } = this.props
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
@@ -64,7 +62,8 @@ class AddList extends Component {
 				errors: this.state.errors
 			})
 		} else {
-			createList(form, parseInt(userId))
+			Lists.create(form, parseInt(userId, 10))
+			
 			this.refreshLists()
 		}
 	}
@@ -75,7 +74,7 @@ class AddList extends Component {
 
 
     render(){
-        const { title, type, newListSuccess} = this.state.form
+        const { title, type } = this.state.form
         const { errors } = this.state
 
         return(
