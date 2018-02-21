@@ -119,28 +119,25 @@ app.get('/lists', (req, res) => {
 
 // Gets all lists of one user based on the user id
 app.get('/user/:id/lists', (req, res) => {
-	User.findById(req.params.id)
-	.then((user) => {
-		TodoList.findAll({
-			where: {	userId: user.id	}
-		})
-		.then((lists) => {
-			Task.findAll({
-			where: {	listId: lists.id	}
-			})
-			.then((tasks) => {
-				res.json({
-					lists: lists,
-					tasks: tasks
-				})
-			})
-			.catch(error => {res.json(error)})
-		})
-		.catch(error => { res.send(error) })
-	})
-	.catch((error) => {
-		res.send(error)
-	})
+    User.findById(req.params.id)
+    .then((user) => {
+        TodoList.findAll({
+            where: {
+                userId: user.id
+            }
+        })
+        .then((lists) => {
+            res.json({
+                lists: lists
+            })
+        })
+        .catch((error) => {
+            res.send(error)
+        })
+    })
+    .catch((error) => {
+        res.send(error)
+    })
 })
 
 // Creates a new list for a user from the add list form on the dashboard
@@ -192,7 +189,7 @@ app.delete('/list/:id', (req, res) =>{
 app.get('/list/:id/tasks', (req, res) => {
 	TodoList.findById(req.params.id).then((list) => {
 		Task.findAll({
-			where: { listId: list.id }
+			where: {	listId: list.id }
 		}).then((task) => {
 			res.json({ task: task })
 		})

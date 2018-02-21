@@ -40,7 +40,6 @@ class UserLists extends Component {
 			.then((res) => {
 				const { tasks } = this.state
 
-
 				tasks[id] = res.tasks
 
 				this.setState({
@@ -53,10 +52,14 @@ class UserLists extends Component {
 		})
 	}
 
-	deleteTask(id){
+	removeList(id){
 		console.log("gone");
 		deleteList(id)
-		this.getTasks(this.props.user.id)
+		this.refreshLists()
+	}
+
+	refreshLists(){
+		this.props.refreshLists()
 	}
 
 	render() {
@@ -88,7 +91,7 @@ class UserLists extends Component {
 										<h3>{list.title}</h3>
 										<div className="list-buttons">
 											<button>Edit List</button>
-											<button onClick={this.deleteTask.bind(this, list.id)}>Delete List</button>
+											<button onClick={this.removeList.bind(this, list.id)}>Delete List</button>
 										</div>
 									</Panel.Title>
 								</Panel.Heading>
@@ -117,7 +120,8 @@ class UserLists extends Component {
 						}
 				</div>
 				<div className="addList-container">
-					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}/>
+					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
+					refreshLists={this.refreshLists.bind(this)}/>
 				</div>
 				<div className="vendorResults">
 					<VendorSearch lists={lists}/>
