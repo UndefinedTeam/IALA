@@ -55,6 +55,8 @@ class UserLists extends Component {
 		let { user, lists } = this.props
 		let { tasks } = this.state
 		console.log("what's in state?", tasks);
+		console.log("task", tasks[10])
+
 		if(!user || !lists) {
 			return (
 				<h1>Loading...</h1>
@@ -83,11 +85,18 @@ class UserLists extends Component {
 								<Panel.Collapse>
 									<Panel.Body>
 										<strong>List Type: </strong>{list.type}
-											<div>
-												<p>{tasks.task}</p>
-												<p>{tasks.desc}</p>
-												<p>Is Complete: {tasks.isComplete}</p>
-											</div>
+										{!tasks[list.id] ? (
+											<p>Loading ...</p>
+										) :
+											tasks[list.id].map((task) => {
+												<div key={list.id}>
+													<p>Task: {task.task}</p>
+													<p>Description: {task.desc}</p>
+													<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
+												</div>
+											})
+										}
+
 											<AddTask listId={list.id}/>
 									</Panel.Body>
 								</Panel.Collapse>
