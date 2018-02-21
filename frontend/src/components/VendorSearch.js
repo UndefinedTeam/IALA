@@ -48,7 +48,8 @@ class VendorSearch extends Component {
       }
       this.venSearchResults=this.venSearchResults.bind(this);
       this.locationResults=this.locationResults.bind(this);
-      this.handleSubmit=this.handleSubmit.bind(this)
+      this.handleSubmit=this.handleSubmit.bind(this);
+      this.addVenToList=this.addVenToList.bind(this)
   }
 
 //function for the vendor search input area
@@ -69,8 +70,10 @@ class VendorSearch extends Component {
 //handleSubmit function that takes both inputs from the text input fields and makes a request to the backend yelp api and returns the search
   handleSubmit(){
 	let { venSearch, location } = this.state
+  console.log("We are in submit")
   console.log(venSearch);
   console.log(location);
+  console.log(this.props.lists)
 	fetchVendors(venSearch, location)
 	.then((responseJSON) => {
 		this.setState({
@@ -100,11 +103,10 @@ class VendorSearch extends Component {
   }
 
 //this isn't working yet but will add vendors to lists
-  addVenToList = (event) => {
-
-    console.log(event.target.value);
-    console.log(event.target.tasks.id);
-
+  addVenToList = (id, item) => {
+    console.log("heyyyyyyyy");
+    console.log(id);
+    console.log(item);
   }
 
 	render (){
@@ -165,12 +167,14 @@ class VendorSearch extends Component {
                           }}
                           onRequestClose={this.handleRequestClose}
                         >
-                          <Menu className="popOver">
-                          {this.state.listNames?
-                              this.state.listNames.map((item) => {
-                                return <MenuItem primaryText= {item.title} id={item.id}
-                                onClick={this.addVenToTask}
-                                />
+                          <Menu  className="popOver">
+                          {this.props.lists?
+                              this.props.lists.map((element) => {
+                                return <MenuItem
+                                        onClick={()=>this.addVenToList(element.id, item.id)}
+                                        primaryText= {element.title}
+                                        value={element.id}
+                                        />
                               })
                             :<p>No Lists</p>
                           }

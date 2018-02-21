@@ -24,6 +24,8 @@ class Dashboard extends Component {
 	getLists(id){
 		fetchUserLists(id)
 		.then((res) => {
+						console.log("We are in Dashboard js, here is my list:");
+						console.log(res.lists);
             console.log("fetch", res.lists)
             this.setState({
                 lists: res.lists,
@@ -35,6 +37,8 @@ class Dashboard extends Component {
 
 	render() {
 		let { lists } = this.state
+
+
 		let { user } = this.props
 
 		return(
