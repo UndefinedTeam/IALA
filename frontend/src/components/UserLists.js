@@ -80,11 +80,20 @@ class UserLists extends Component {
 							<Panel key={list.id} bsStyle="success" id="collapsible-panel">
 								<Panel.Heading>
 									<Panel.Title toggle componentClass="h3">
+									<div className="list-header">
 										<h3>{list.title}</h3>
 										<div className="list-buttons">
-											<button>Edit List</button>
-											<button onClick={this.removeList.bind(this, list.id)}>Delete List</button>
+											<button className="button-submit space">
+												Edit List
+											</button>
+											<button
+												className="button-submit space"
+												onClick={this.removeList.bind(this, list.id)}
+											>
+												Delete List
+											</button>
 										</div>
+									</div>
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Collapse>
@@ -94,31 +103,57 @@ class UserLists extends Component {
 											<p>Loading ...</p>
 										) : (
 												tasks[list.id].map((task) => (
-													<div key={list.id}>
-														<p>Task: {task.task}</p>
-														<p>Description: {task.desc}</p>
-														<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
-														<div>
-															<button>Edit Task</button>
-															<button>Delete Task</button>
-														</div>
+													<div>
+														<table className="task-display" key={list.id}>
+															<tbody>
+																<tr>
+																	<td>
+																		<strong>Task:</strong> {task.task}
+																	</td>
+																	<td>
+																		<strong>Description:</strong> {task.desc}
+																	</td>
+																	<td>
+																		<strong>Is Complete:</strong> {task.isComplete ? 'completed' : 'not completed'}
+																	</td>
+																	<td>
+																		<button className="button-task">
+																			Mark Complete
+																		</button>
+																	</td>
+																	<td>
+																		<button className="button-task">
+																			Edit Task
+																		</button>
+																	</td>
+																	<td>
+																		<button className="button-task">
+																			Delete Task
+																		</button>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
 													</div>
 												))
 											)
 										}
-
+										<div className="create-task">
 											<AddTask listId={list.id}/>
+										</div>
 									</Panel.Body>
 								</Panel.Collapse>
 							</Panel>
 							))
 						}
 				</div>
-				<div className="addList-container">
-					<AddList userId={user.id} />
-				</div>
-				<div className="vendorResults">
-					<VendorSearch lists={lists}/>
+				<div className="dash-components">
+					<div className="addList-container">
+						<AddList userId={user.id} />
+					</div>
+					<div className="vendorResults">
+						<VendorSearch lists={lists}/>
+					</div>
 				</div>
 			</div>
 		)

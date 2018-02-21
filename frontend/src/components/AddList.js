@@ -80,9 +80,8 @@ class AddList extends Component {
 
         return(
             <div className='form-container'>
-                <h3>Create a New List</h3>
-
-                    <form>
+                <form>
+					<h3>Create a New List</h3>
                         <div className='form-input'>
                         <label id='title-input'>Title</label>
                             <FormInput
@@ -105,6 +104,7 @@ class AddList extends Component {
                         </div>
                             <div className= "button">
                                 <button
+									className="button-submit"
                                     type='submit'
                                     value='go to task dashboard'
                                     onClick={this.handleSubmit.bind(this)}

@@ -109,6 +109,7 @@ class AddTask extends Component {
 						</div>
 							<div className= "button">
 								<button
+									className="button-submit"
 									type='submit'
 									value='re-render task dashboard'
 									onClick={this.handleSubmit.bind(this)}

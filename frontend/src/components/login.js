@@ -57,6 +57,7 @@ class Login extends Component {
 						<h5 style={{'color':'red'}}>{this.state.message}</h5>
 						<div className="button">
 							<button
+								className="button-submit"
 								id="submit"
 								type="button"
 						 		onClick={this.handleSubmit.bind(this)}

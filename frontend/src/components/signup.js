@@ -101,6 +101,7 @@ class SignUp extends Component {
 		if(this.state.newUserSuccess === true){
 			return (
 				<button
+					className="button-submit"
 					id='submit'
 					onClick={this.handleSubmit.bind(this)}>
 					<Link to='/login'><span style={{color:"black"}}>Create your account!</span></Link>
@@ -109,6 +110,7 @@ class SignUp extends Component {
 		} else {
 			return (
 				<button
+					className="button-submit"
 					id='submit'
 					onClick={this.handleInvalid.bind(this)}>
 					Confirm Info

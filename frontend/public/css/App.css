@@ -99,7 +99,7 @@ body {
 /* yelp search area stuff */
 .vendorResults {
     display: flex;
-    align-self: center;
+	justify-content: center;
     align-content: center;
     padding: 0, 15px, 0, 15px;
     width: 700, height: 450, overflowY: 'auto',;
@@ -107,8 +107,7 @@ body {
     border-radius: 25px;
     border: 2px solid #2c3f54;
     padding: 20px;
-    width: 300px;
-    height: 450px;
+    width: 50%;
     box-shadow: 0 4px 15px 0 rgba(0,0,0,0.7);
 }
 /* featured vendor text */
@@ -170,13 +169,17 @@ form {
     background-color: #CAEBF2;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 10px;
-    width: 50%;
+    width: 80%;
+}
+
+form > h3 {
+	text-align: center;
 }
 /* registration form container */
 .form-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
@@ -210,24 +213,24 @@ form {
     padding: 5px;
 }
 /* buttons for th register and log in forms */
-button#submit {
-  width: 50%;
-  border: 2px hidden;
-  border-radius: 4px;
-    padding: 2px 5px 2px 5px;
-  background-color: #e53538 ;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  color: black;
+.button-submit {
+	width: 70%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #e53538 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
 }
 /* submit hover button for the register and log in forms */
-#submit:hover {
-  width: 50%;
-  border: 2px hidden;
-  border-radius: 4px;
-  padding: 2px 5px 2px 5px;
-  background-color: #A9A9A9 ;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  color: black;
+.button-submit:hover {
+	width: 70%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #A9A9A9 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
 }
 
 .panel-success>.panel-heading {
@@ -274,6 +277,7 @@ h2 {
 
 h3 {
     padding: 10px;
+	margin: 0;
 }
 
 h5 {

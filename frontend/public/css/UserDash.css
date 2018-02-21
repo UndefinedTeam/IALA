@@ -13,18 +13,86 @@
     margin: 3%;
 }
 
+.panel-body {
+	flex-direction: column;
+	margin: 1%;
+}
+
+.task-display {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 2%;
+}
+
+.list-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.list-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 20%;
+	padding: 10px;
+}
+
+.button-task {
+	width: 100%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #e53538 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+
+.button-task:hover {
+	width: 100%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #A9A9A9 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+.create-task {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 50%;
+	margin: 5%;
+}
+
+.space {
+	margin: 2%;
+}
+
+.dash-components {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.addList-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 50%;
+}
+
+td {
+	padding: 5px;
+}
+
 #bar {
     margin: 2%;
     width: 95%;
 }
-
-/* .vendorsSearch {
-  align-content: center;
-  padding: 0, 15px, 0, 15px;
-  width: inherit;
-  height: inherit;
-  overflowY: 'auto';
-} */
 
 .navbar-default {
     background-color: #CAEBF2;
