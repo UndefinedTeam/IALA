@@ -12,7 +12,6 @@ class Main extends Component {
 		super(props)
 
 		this.state = {
-			login: false,
 			user: {},
 			authToken: this.getToken()
 		}
@@ -111,7 +110,10 @@ class Main extends Component {
 								 <Login loginRoute={this.loginRoute.bind(this)} />
 							}/>
 							<Route path='/login' render={(props) =>
-								 <Login loginRoute={this.loginRoute.bind(this)} />
+								<Login
+									loginRoute={this.loginRoute.bind(this)}
+									login={this.state.login}
+								/>
 							}/>
 						</Switch>
 					}

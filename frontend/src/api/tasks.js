@@ -41,12 +41,15 @@ function updateTask(listId, taskId, params){
 }
 
 // in process
-// function deleteTask(listId){
-//
-// }
+function deleteTask(id){
+	return fetch(`${API}/tasks/${id}`, {
+		method: "DELETE"
+	})
+}
 
 module.exports = {
-    fetchTasks: fetchTasks,
+	fetchTasks: fetchTasks,
 	fetchTask: fetchTask,
 	createTask: createTask,
+	deleteTask: deleteTask
 }

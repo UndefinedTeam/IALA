@@ -119,25 +119,28 @@ app.get('/lists', (req, res) => {
 
 // Gets all lists of one user based on the user id
 app.get('/user/:id/lists', (req, res) => {
-    User.findById(req.params.id)
-    .then((user) => {
-        TodoList.findAll({
-            where: {
-                userId: user.id
-            }
-        })
-        .then((lists) => {
-            res.json({
-                lists: lists
-            })
-        })
-        .catch((error) => {
-            res.send(error)
-        })
-    })
-    .catch((error) => {
-        res.send(error)
-    })
+	User.findById(req.params.id)
+	.then((user) => {
+		TodoList.findAll({
+			where: {	userId: user.id	}
+		})
+		.then((lists) => {
+			Task.findAll({
+			where: {	listId: lists.id	}
+			})
+			.then((tasks) => {
+				res.json({
+					lists: lists,
+					tasks: tasks
+				})
+			})
+			.catch(error => {res.json(error)})
+		})
+		.catch(error => { res.send(error) })
+	})
+	.catch((error) => {
+		res.send(error)
+	})
 })
 
 // Creates a new list for a user from the add list form on the dashboard
@@ -165,14 +168,18 @@ app.post('/user/:id/lists', (req, res) => {
 })
 
 // Deletes a list for a user
-app.delete('user/:id/list/:listId', (req, res) =>{
-	TodoList.destroy({
+app.delete('/list/:id', (req, res) =>{
+	return TodoList.destroy({
 		where: {
-			id: req.params.listId
+			id: req.params.id
 		}
 	})
-	.then(deletedList => {
-		res.json(deletedList)
+	.then(deleteTask => {
+		return TodoList.findAll()
+	})
+	.then(lists => {
+		console.log('hi');
+		res.json(lists);
 	})
 	.catch((err) => {
 		res.status(400)
@@ -181,22 +188,17 @@ app.delete('user/:id/list/:listId', (req, res) =>{
 		})
 	})
 })
-
 // Gets all tasks that are part of a list by the list id
 app.get('/list/:id/tasks', (req, res) => {
-    TodoList.findById(req.params.id).then((list) => {
-        Task.findAll({
-            where: {
-                listId: list.id
-            }
-        }).then((task) => {
-            res.json({
-                task: task
-            })
-        })
-    }).catch((error) => {
-        res.send(error)
-    })
+	TodoList.findById(req.params.id).then((list) => {
+		Task.findAll({
+			where: {	listId: list.id }
+		}).then((task) => {
+			res.json({ task: task })
+		})
+	}).catch((error) => {
+		res.send(error)
+	})
 })
 
 //adds a new task for a specific list based on id
@@ -228,7 +230,7 @@ app.post('/list/:id/tasks', (req,res) => {
 
 //Updates tasks from task edit form
 app.put('/list/:id/tasks/:taskId', (req,res) => {
-    Tasks.update({
+    Task.update({
 		where: {
 			id: req.params.taskId
 		},
@@ -256,14 +258,18 @@ app.put('/list/:id/tasks/:taskId', (req,res) => {
 })
 
 // Deletes a task from a list
-app.delete('/list/:id/tasks/:taskId', (req, res) =>{
-	Tasks.destroy({
+app.delete('/tasks/:taskId', (req, res) =>{
+	return Task.destroy({
 		where: {
 			id: req.params.taskId
 		}
 	})
-	.then(deletedTask => {
-		res.json(deletedTask)
+	.then(deleteTask => {
+		return Task.findAll()
+	})
+	.then(tasks => {
+		console.log('hi');
+		res.json(tasks);
 	})
 	.catch((err) => {
 		res.status(400)
