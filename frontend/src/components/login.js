@@ -26,8 +26,13 @@ class Login extends Component {
 
 	// Checks user inputs on submit
 	handleSubmit(e){
-		const	{ loginRoute } = this.props
+		const	{ loginRoute, login } = this.props
 		loginRoute(this.state.form)
+		if(!login) {
+			this.setState({
+				message: "Invalid email or password"
+			})
+		}
 	}
 
 	render (){
@@ -49,7 +54,7 @@ class Login extends Component {
 						<div style={{textAlign:"center"}}>
 							{this.state.error}
 						</div>
-
+						<h5 style={{'color':'red'}}>{this.state.message}</h5>
 						<div className="button">
 							<button
 								id="submit"

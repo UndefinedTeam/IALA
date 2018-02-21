@@ -15,7 +15,7 @@ class AddList extends Component {
                 title: "",
                 type: "",
             },
-            errors: {},
+            errors: "Empty Form",
             newListSuccess: false,
         }
     }
@@ -54,21 +54,22 @@ class AddList extends Component {
 // New list is created
 // TODO: page needs to re-render once the newListSuccess = true ** Not currently doing this **
 
+	getTasks(){
+		this.props.getTasks()
+	}
+
 	handleSubmit(e) {
 		const { form } = this.state
-		let { userId } = this.props
-
-		console.log("The thing I need", userId);
+		let { userId, callRefresh } = this.props
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
-			return this.state.errors
-		} else {
-
-			createList(form, parseInt(userId))
 			this.setState({
-				newListSuccess: true
+				errors: this.state.errors
 			})
+		} else {
+			createList(form, parseInt(userId))
+			this.getTasks(userId)
 		}
 	}
 

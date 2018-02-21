@@ -23,26 +23,19 @@ function createList(params, id){
 	})
 }
 
-function deleteList(id){
-	return fetch(`${API}/users/${id}/list`, {
-		method: "DELETE"
-
-		})
-		.then((res) =>{
-			// console.log("It's Gone!")
-			return res.json()
-		})
-
-	}
-
 //in process
 // // function updateList(id, params){
 //
 // }
 
-
+function deleteList(id){
+	return fetch(`${API}/list/${id}`, {
+		method: "DELETE"
+	})
+}
 
 module.exports = {
 	fetchUserLists: fetchUserLists,
 	createList: createList,
+	deleteList: deleteList
 }

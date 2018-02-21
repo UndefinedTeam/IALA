@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import{ deleteList } from '../api/lists'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
 import AddTask from './AddTask';
@@ -39,6 +40,7 @@ class UserLists extends Component {
 			.then((res) => {
 				const { tasks } = this.state
 
+
 				tasks[id] = res.tasks
 
 				this.setState({
@@ -49,6 +51,12 @@ class UserLists extends Component {
 				console.log(e)
 			})
 		})
+	}
+
+	deleteTask(id){
+		console.log("gone");
+		deleteList(id)
+		this.getTasks(this.props.user.id)
 	}
 
 	render() {
@@ -76,12 +84,13 @@ class UserLists extends Component {
 								<Panel.Heading>
 									<Panel.Title toggle componentClass="h3">
 										<h3>{list.title}</h3>
-											<div className="list-buttons">
-												<button>Edit List</button>
-												<button>Delete List</button>
-											</div>
+										<div className="list-buttons">
+											<button>Edit List</button>
+											<button onClick={this.deleteTask.bind(this, list.id)}>Delete List</button>
+										</div>
 									</Panel.Title>
 								</Panel.Heading>
+
 								<Panel.Collapse>
 									<Panel.Body>
 										<strong>List Type: </strong>{list.type}
@@ -106,10 +115,10 @@ class UserLists extends Component {
 						}
 				</div>
 				<div className="addList-container">
-					<AddList userId={user.id}/>
+					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}/>
 				</div>
 				<div className="vendorResults">
-					<VendorSearch lists={lists}/>
+					<VendorSearch list={this.props.lists}/>
 				</div>
 			</div>
 		)

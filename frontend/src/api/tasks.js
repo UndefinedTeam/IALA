@@ -4,7 +4,7 @@ const API = "http://localhost:3001"
 function fetchTasks(listID){
     return fetch(`${API}/list/${listID}/tasks`)
     .then((res) => {
-        console.log("Tasks:", res)
+        //console.log("Tasks:", res)
         return res.json()
     })
 }
@@ -40,13 +40,16 @@ function updateTask(listID, taskID, params){
 	})
 }
 
-// in process
-// function deleteTask(listID){
-//
-// }
+
+function deleteTask(id){
+	return fetch(`${API}/tasks/${id}`, {
+		method: "DELETE"
+	})
+}
 
 module.exports = {
-    fetchTasks: fetchTasks,
+	fetchTasks: fetchTasks,
 	fetchTask: fetchTask,
 	createTask: createTask,
+	deleteTask: deleteTask
 }
