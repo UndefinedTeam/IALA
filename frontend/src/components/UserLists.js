@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import{ deleteList } from '../api/lists'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
 import AddTask from './AddTask';
@@ -17,7 +18,7 @@ class UserLists extends Component {
 		}
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		let { lists } = this.props
 		let listId
 		Object.keys(lists).map((list, index) => {
@@ -35,11 +36,11 @@ class UserLists extends Component {
 			Object.keys(res.tasks).map((task, index) => {
 					listTasks.push(task[index])
 			})
-				this.setState({
-					tasks: listTasks
-				})
+			this.setState({
+				tasks: listTasks
+			})
 		})
-		.catch(e => {return e})
+		.catch(e => {console.log('oh no');})
 	}
 
 	renderAddTask(list){
@@ -97,13 +98,11 @@ class UserLists extends Component {
 	// 	}
 	// }
 
-	callRefresh(e){
-		console.log('hi');
-		if(e){
-			this.setState({newTaskSuccess: true})
-		}
+	deleteTask(id) {
+			console.log("gone");
+			deleteList(id)
+			this.getTasks(this.props.user.id)
 	}
-
 
 	render() {
 		let { user, lists } = this.props
@@ -135,7 +134,7 @@ class UserLists extends Component {
 										<h3>{lists[index].title}</h3>
 										<div className="list-buttons">
 											<button>Edit List</button>
-											<button>Delete List</button>
+											<button onClick={this.deleteTask.bind(this, lists[index].id)}>Delete List</button>
 										</div>
 									</Panel.Title>
 								</Panel.Heading>
@@ -154,7 +153,7 @@ class UserLists extends Component {
 					}):<h1></h1>}
 				</div>
 				<div className="addList-container">
-					<AddList userId={user.id} callRefresh={this.callRefresh.bind(this)}/>
+					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}/>
 				</div>
 				<div className="vendorResults">
 					<VendorSearch lists={lists}/>
