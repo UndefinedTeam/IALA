@@ -4,7 +4,7 @@ const API = "http://localhost:3001"
 function fetchTasks(listID){
     return fetch(`${API}/list/${listID}/tasks`)
     .then((res) => {
-        //console.log("Tasks:", res)
+        console.log("Tasks:", res)
         return res.json()
     })
 }
@@ -39,7 +39,6 @@ function updateTask(listID, taskID, params){
 		body: JSON.stringify(params),
 	})
 }
-
 
 function deleteTask(id){
 	return fetch(`${API}/tasks/${id}`, {

@@ -125,21 +125,13 @@ app.get('/user/:id/lists', (req, res) => {
 			where: {	userId: user.id	}
 		})
 		.then((lists) => {
-			Task.findAll({
-			where: {	listId: lists.id	}
-			})
-			.then((tasks) => {
 				res.json({
 					lists: lists,
-					tasks: tasks
 				})
-			})
-			.catch(error => {res.json(error)})
 		})
-		.catch(error => { res.send(error) })
-	})
-	.catch((error) => {
-		res.send(error)
+		.catch((error) => {
+			res.send(error)
+		})
 	})
 })
 
@@ -188,13 +180,18 @@ app.delete('/list/:id', (req, res) =>{
 		})
 	})
 })
+
 // Gets all tasks that are part of a list by the list id
 app.get('/list/:id/tasks', (req, res) => {
-	TodoList.findById(req.params.id).then((list) => {
+	TodoList.findById(req.params.id)
+	.then((list) => {
 		Task.findAll({
 			where: { listId: list.id }
-		}).then((task) => {
-			res.json({ task: task })
+		})
+		.then((task) => {
+			res.json({
+				task: task
+			})
 		})
 	}).catch((error) => {
 		res.send(error)
@@ -212,7 +209,7 @@ app.post('/list/:id/tasks', (req,res) => {
             dateDone : req.body.dateDone,
             listId: req.params.id
         }
-    )
+	)
     .then((task)=>{
         res.json({
             message: 'success',
