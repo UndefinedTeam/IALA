@@ -6,8 +6,5 @@
 		"install": "(cd backend && node) && (cd frontend && yarn)",
 		"start": "concurrently \"cd backend && node index.js\" \"cd frontend && yarn start\""
 	},
-	"heroku-postbuild": "yarn build",
-	"engines": {
-		"node": "8.4.0"
-	}
+	"heroku-postbuild": "yarn build"
 }
