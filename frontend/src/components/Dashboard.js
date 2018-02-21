@@ -36,6 +36,8 @@ class Dashboard extends Component {
 
 	render() {
 		let { lists } = this.state
+
+
 		let { user } = this.props
 
 		return(

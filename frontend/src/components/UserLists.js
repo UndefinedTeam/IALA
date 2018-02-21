@@ -61,6 +61,8 @@ class UserLists extends Component {
 
 	render() {
 		let { user, lists } = this.props
+		console.log("hey hi hello");
+		console.log(this.props.lists);
 		let { tasks } = this.state
 		console.log("what's in state?", tasks);
 		console.log("task", tasks[10])
@@ -118,7 +120,7 @@ class UserLists extends Component {
 					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}/>
 				</div>
 				<div className="vendorResults">
-					<VendorSearch list={this.props.lists}/>
+					<VendorSearch lists={lists}/>
 				</div>
 			</div>
 		)
