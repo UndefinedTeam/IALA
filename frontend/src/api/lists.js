@@ -4,7 +4,7 @@ const API = "http://localhost:3001"
 function fetchUserLists(id){
 	return fetch(`${API}/user/${id}/lists`)
 	.then((res) => {
-		console.log("Lists:",res)
+		// console.log("Lists:",res)
 		return res.json()
 	})
 }
@@ -18,7 +18,7 @@ function createList(params, id){
 		body: JSON.stringify(params),
 	})
 	.then((res) => {
-		console.log("Success!", res)
+		// console.log("Success!", res)
 		return res.json()
 	})
 }

@@ -192,7 +192,7 @@ app.delete('/list/:id', (req, res) =>{
 app.get('/list/:id/tasks', (req, res) => {
 	TodoList.findById(req.params.id).then((list) => {
 		Task.findAll({
-			where: {	listId: list.id }
+			where: { listId: list.id }
 		}).then((task) => {
 			res.json({ task: task })
 		})
