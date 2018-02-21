@@ -34,6 +34,14 @@ class Dashboard extends Component {
 		})
 	}
 
+	refreshLists(){
+		let { user } = this.props
+		if (!user) {
+			return
+		}
+		this.getLists(user.id)
+	}
+
 	render() {
 		let { lists } = this.state
 
@@ -44,7 +52,7 @@ class Dashboard extends Component {
 			<Switch>
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
-						(<UserLists user={user} lists={lists} />)
+						(<UserLists user={user} lists={lists} refreshLists={this.refreshLists.bind(this)}/>)
 					}/>
 				</div>
 			</Switch>
