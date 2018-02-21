@@ -40,7 +40,6 @@ function updateTask(listID, taskID, params){
 	})
 }
 
-
 function deleteTask(id){
 	return fetch(`${API}/tasks/${id}`, {
 		method: "DELETE"

@@ -40,7 +40,8 @@ class UserLists extends Component {
 			.then((res) => {
 				const { tasks } = this.state
 
-				tasks[id] = res.tasks
+
+				tasks[id] = res.task
 
 				this.setState({
 					tasks: tasks
@@ -64,11 +65,7 @@ class UserLists extends Component {
 
 	render() {
 		let { user, lists } = this.props
-		console.log("hey hi hello");
-		console.log(this.props.lists);
 		let { tasks } = this.state
-		console.log("what's in state?", tasks);
-		console.log("task", tasks[10])
 
 		if(!user || !lists) {
 			return (
@@ -95,7 +92,6 @@ class UserLists extends Component {
 										</div>
 									</Panel.Title>
 								</Panel.Heading>
-
 								<Panel.Collapse>
 									<Panel.Body>
 										<strong>List Type: </strong>{list.type}
@@ -107,6 +103,10 @@ class UserLists extends Component {
 														<p>Task: {task.task}</p>
 														<p>Description: {task.desc}</p>
 														<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
+														<div>
+															<button>Edit Task</button>
+															<button>Delete Task</button>
+														</div>
 													</div>
 												))
 											)
