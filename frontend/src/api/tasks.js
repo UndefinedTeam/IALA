@@ -54,19 +54,9 @@ class Tasks {
 
 	delete(id){
 		const { base } = this.settings
-
-<<<<<<< HEAD
-module.exports = {
-	fetchTasks: fetchTasks,
-	fetchTask: fetchTask,
-	updateTask: updateTask,
-	createTask: createTask,
-	deleteTask: deleteTask
-=======
 		return fetch(`${base}/tasks/${id}`, {
 			method: "DELETE"
 		})
 	}
->>>>>>> master
 }
 export default Tasks
