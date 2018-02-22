@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { fetchUserLists } from '../api/lists'
+import { Lists } from '../api'
 import UserLists from './UserLists'
 
 class Dashboard extends Component {
@@ -30,7 +30,7 @@ class Dashboard extends Component {
 	}
 
 	getLists(id){
-		fetchUserLists(id)
+		Lists.all(id)
 		.then((res) => {
 			this.setState({
 				lists: res.lists,

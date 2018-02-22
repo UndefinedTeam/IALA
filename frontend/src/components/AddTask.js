@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { createTask } from '../api/tasks'
+import { Tasks } from '../api'
 import { validatePresence } from '../util/validations'
 
 class AddTask extends Component {
@@ -24,7 +24,7 @@ class AddTask extends Component {
 
 	getCurrentDate(){
 		var today = new Date(),
-            date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
+		date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
 		this.setState({
 			dateStart: date
 		})
@@ -72,7 +72,7 @@ class AddTask extends Component {
 		if(Object.keys(this.state.errors).length > 0) {
 			return this.state.errors
 		} else {
-			createTask(parseInt(listId, 10), form)
+			Tasks.create(parseInt(listId, 10), form)
 			this.setState({
 				newTaskSuccess: true,
 			})

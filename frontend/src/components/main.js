@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import  { fetchUser, checkEmail } from '../api/sessions'
-import  { loginUser } from '../api/user'
+import  { Session, User } from '../api'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
@@ -28,7 +27,7 @@ class Main extends Component {
 			return
 		}
 
-		fetchUser(token)
+		Session.user(token)
 		.then((res) => {
 			console.log('fetch', res.user);
 			if(res.user) {
@@ -67,9 +66,9 @@ class Main extends Component {
 	// Redirect to dashboard after login
 	loginRoute(loginForm) {
 		// Send data from log in form
-		loginUser(loginForm)
+		User.login(loginForm)
 		.then(()=> {
-			let token = checkEmail(loginForm)
+			let token = Session.email(loginForm)
 			.then(() => {
 				this.setState({
 					login: true,

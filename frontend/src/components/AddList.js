@@ -63,7 +63,7 @@ class AddList extends Component {
 			})
 		} else {
 			Lists.create(form, parseInt(userId, 10))
-			
+
 			this.refreshLists()
 		}
 	}

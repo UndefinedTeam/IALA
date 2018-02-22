@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchVendors } from '../api/yelp.js'
+import { Yelp } from '../api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -74,7 +74,7 @@ class VendorSearch extends Component {
   console.log(venSearch);
   console.log(location);
   console.log(this.props.lists)
-	fetchVendors(venSearch, location)
+	Yelp.get(venSearch, location)
 	.then((responseJSON) => {
 		this.setState({
 			isSubmitHit:true,

@@ -1,7 +1,7 @@
 class Lists {
 	constructor(settings) {
 		this.settings = Object.assign({}, settings, {
-			
+
 		})
 	}
 
@@ -39,4 +39,4 @@ class Lists {
 
 }
 
-export default List
+export default Lists

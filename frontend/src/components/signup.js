@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput';
-import { addNewUser } from '../api/user'
+import { User } from './api'
 import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
 
 class SignUp extends Component {
@@ -72,7 +72,7 @@ class SignUp extends Component {
 		} else {
 			console.log('ja');
 			this.handleNewUser(true)
-			addNewUser(form)
+			User.add(form)
 		}
 	}
 
