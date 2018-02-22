@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { fetchTasks, updateTask, createTask, deleteTask } from '../api/tasks'
-import{ deleteList } from '../api/lists'
+import api from '../api'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
 import AddTask from './AddTask';
+
+const { Tasks, Lists } = api()
 
 
 class UserLists extends Component {
@@ -36,7 +37,7 @@ class UserLists extends Component {
 		let listIDs = lists.map(list => list.id)
 
 		listIDs.forEach(id => {
-			fetchTasks(id)
+			Tasks.all(id)
 			.then((res) => {
 				const { tasks } = this.state
 
@@ -58,7 +59,7 @@ class UserLists extends Component {
     //
 	// 	if (complete === false){
 	// 		markComplete = true
-	// 		updateTask(listID, taskID, markComplete)
+	// 		Tasks.update(listID, taskID, markComplete)
 	// 	} else {
 	// 		markComplete = false
 	// 		updateTask(listID, taskID, markComplete)
@@ -84,8 +85,13 @@ class UserLists extends Component {
 	}
 
 	removeList(id){
-		// console.log("gone");
-		deleteList(id)
+		console.log("gone");
+		Lists.delete(id)
+		this.refreshLists()
+	}
+
+	refreshLists(){
+		this.props.refreshLists()
 	}
 
 	render() {
@@ -179,13 +185,12 @@ class UserLists extends Component {
 							))
 						}
 				</div>
-				<div className="dash-components">
-					<div className="addList-container">
-						<AddList userId={user.id} />
-					</div>
-					<div className="vendorResults">
-						<VendorSearch lists={lists}/>
-					</div>
+				<div className="addList-container">
+					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
+					refreshLists={this.refreshLists.bind(this)}/>
+				</div>
+				<div className="vendorResults">
+					<VendorSearch lists={lists}/>
 				</div>
 			</div>
 		)

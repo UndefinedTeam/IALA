@@ -1,27 +1,36 @@
+class Session {
+	constructor(settings) {
+		this.settings = Object.assign({}, settings, {
 
-const API = "http://localhost:3001"
+		})
+	}
 
-function fetchUser(token) {
-    return fetch(`${API}/user?authToken=${token}`)
-    .then((res) => {
-        return res.json()
-    })
+	user(token) {
+		const { base } = this.settings
+
+		return fetch(`${base}/user?authToken=${token}`)
+		.then((res) => {
+			return res.json()
+		})
+		.catch(error => {
+			return
+		})
+	}
+
+	email(loginForm){
+		const { base } = this.settings
+
+		return fetch(`${base}/login/${loginForm.email}`)
+		.then(res => {
+			return res.json()
+		})
+		.then(parsedRes => {
+			//Save response values to local storage
+			localStorage.setItem("authToken", parsedRes.token)
+			localStorage.setItem("tokenExpiration", parsedRes.expiration)
+			return parsedRes.token
+		})
+	}
 }
 
-function checkEmail(loginForm){
-	return fetch(`${API}/login/${loginForm.email}`)
-	.then(res => {
-		return res.json()
-	})
-	.then(parsedRes => {
-		//Save response values to local storage
-		localStorage.setItem("authToken", parsedRes.token)
-		localStorage.setItem("tokenExpiration", parsedRes.expiration)
-		return parsedRes.token
-	})
-}
-
-module.exports = {
-	fetchUser: fetchUser,
-	checkEmail: checkEmail,
-}
+export default Session

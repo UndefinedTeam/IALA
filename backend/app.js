@@ -1,3 +1,4 @@
+var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
@@ -10,6 +11,7 @@ var apiKey = 'M6w60G2RL_F_kiACA3VphibduaHe_ge5DwPkzFgJQj6GL6fq6eWnL_VV7pxcM6iAfv
 const yelp = require('yelp-fusion')
 const client = yelp.client(apiKey)
 
+app.use(express.static(path.resolve(__dirname, '../frontend/build')))
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors())
@@ -35,7 +37,7 @@ const authorization = function(req, res, next){
   }
 }
 
-app.get('/login/:email', (req, res) => {
+app.get('/api/login/:email', (req, res) => {
    console.log(req.params.email);
    User.findOne({
       where:{email: req.params.email}
@@ -52,7 +54,7 @@ app.get('/login/:email', (req, res) => {
    })
 })
 
-app.post('/login', (req,res) => {
+app.post('/api/login', (req,res) => {
   User.findOne({
     where:{email: req.body.email}
   })
@@ -80,14 +82,14 @@ app.post('/login', (req,res) => {
 
 //APIURL/user?authToken=putTokenHeretoken
 //Gets user info for user with matching auth token
-app.get('/user',
+app.get('/api/user',
 authorization ,
 (req, res) => {
   res.json({user: req.currentUser})
 })
 
 //Creates a new user based on information from the Registration Form
-app.post('/user', function(req, res){
+app.post('/api/user', function(req, res){
   User.create(
     {
       email: req.body.email,
@@ -109,7 +111,7 @@ app.post('/user', function(req, res){
   })
 })
 
-app.get('/lists', (req, res) => {
+app.get('/api/lists', (req, res) => {
   TodoList.findAll().then((lists) => {
     res.json({
         lists: lists
@@ -118,7 +120,8 @@ app.get('/lists', (req, res) => {
 })
 
 // Gets all lists of one user based on the user id
-app.get('/user/:id/lists', (req, res) => {
+app.get('/api/user/:id/lists', (req, res) => {
+
 	User.findById(req.params.id)
 	.then((user) => {
 		TodoList.findAll({
@@ -133,10 +136,11 @@ app.get('/user/:id/lists', (req, res) => {
 			res.send(error)
 		})
 	})
+
 })
 
 // Creates a new list for a user from the add list form on the dashboard
-app.post('/user/:id/lists', (req, res) => {
+app.post('/api/user/:id/lists', (req, res) => {
         TodoList.create(
             {
                 title: req.body.title,
@@ -160,7 +164,7 @@ app.post('/user/:id/lists', (req, res) => {
 })
 
 // Deletes a list for a user
-app.delete('/list/:id', (req, res) =>{
+app.delete('/api/list/:id', (req, res) =>{
 	return TodoList.destroy({
 		where: {
 			id: req.params.id
@@ -182,7 +186,7 @@ app.delete('/list/:id', (req, res) =>{
 })
 
 // Gets all tasks that are part of a list by the list id
-app.get('/list/:id/tasks', (req, res) => {
+app.get('/api/list/:id/tasks', (req, res) => {
 	TodoList.findById(req.params.id)
 	.then((list) => {
 		Task.findAll({
@@ -199,7 +203,7 @@ app.get('/list/:id/tasks', (req, res) => {
 })
 
 //adds a new task for a specific list based on id
-app.post('/list/:id/tasks', (req,res) => {
+app.post('/api/list/:id/tasks', (req,res) => {
     Task.create(
         {
             task: req.body.task,
@@ -226,7 +230,7 @@ app.post('/list/:id/tasks', (req,res) => {
 })
 
 //Updates tasks from task edit form
-app.put('/list/:id/tasks/:taskId', (req,res) => {
+app.put('/api/list/:id/tasks/:taskId', (req,res) => {
     Task.update({
 		where: {
 			id: req.params.taskId
@@ -279,7 +283,7 @@ app.put('/list/:id/tasks/:taskId', (req,res) => {
 })
 
 // Deletes a task from a list
-app.delete('/tasks/:taskId', (req, res) =>{
+app.delete('/api/tasks/:taskId', (req, res) =>{
 	return Task.destroy({
 		where: {
 			id: req.params.taskId
@@ -304,7 +308,7 @@ app.delete('/tasks/:taskId', (req, res) =>{
 //backend API that fetches info from yelp
 //searches yelp and returns the results in a json body
 //https://www.npmjs.com/package/yelp-fusion <--yelps NPM package
-app.get('/yelp/:search/:location', (req, res) => {
+app.get('/api/yelp/:search/:location', (req, res) => {
     console.log(req.params.search)
     console.log(req.params.location)
     client.search({
@@ -317,5 +321,9 @@ app.get('/yelp/:search/:location', (req, res) => {
         console.log(e)
     })
 })
+
+app.get('*', function(req, res) {
+	res.sendFile(path.resolve(__dirname, '../frontend/build','index.html'));
+});
 
 module.exports = app

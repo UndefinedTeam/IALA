@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { Link } from 'react-router-dom'
-import { createList } from '../api/lists'
 import { validatePresence } from '../util/validations'
+import api from '../api'
+
+const { Lists } = api()
 
 // form below adds a new list then redirects to tasksDash for user to add tasks to the list.
 
@@ -15,8 +16,7 @@ class AddList extends Component {
                 title: "",
                 type: "",
             },
-            errors: "Empty Form",
-            newListSuccess: false,
+            errors: "Empty Form"
         }
     }
 
@@ -54,13 +54,9 @@ class AddList extends Component {
 // New list is created
 // TODO: page needs to re-render once the newListSuccess = true ** Not currently doing this **
 
-	getTasks(){
-		this.props.getTasks()
-	}
-
 	handleSubmit(e) {
 		const { form } = this.state
-		let { userId, callRefresh } = this.props
+		let { userId } = this.props
 		e.preventDefault()
 
 		if(Object.keys(this.state.errors).length > 0) {
@@ -68,14 +64,19 @@ class AddList extends Component {
 				errors: this.state.errors
 			})
 		} else {
-			createList(form, parseInt(userId))
-			this.getTasks(userId)
+			Lists.create(form, parseInt(userId, 10))
+
+			this.refreshLists()
 		}
+	}
+
+	refreshLists(){
+		this.props.refreshLists()
 	}
 
 
     render(){
-        const { title, type, newListSuccess} = this.state.form
+        const { title, type } = this.state.form
         const { errors } = this.state
 
         return(

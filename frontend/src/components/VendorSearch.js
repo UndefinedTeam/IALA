@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchVendors } from '../api/yelp.js'
+import api from '../api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -13,6 +13,9 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 //Material UI stuff for the vendor cards to display
+
+const { Yelp } = api()
+
 const styles = {
   root: {
     display: 'flex',
@@ -74,7 +77,7 @@ class VendorSearch extends Component {
   console.log(venSearch);
   console.log(location);
   console.log(this.props.lists)
-	fetchVendors(venSearch, location)
+	Yelp.get(venSearch, location)
 	.then((responseJSON) => {
 		this.setState({
 			isSubmitHit:true,

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { fetchUserLists } from '../api/lists'
+import api from '../api'
 import UserLists from './UserLists'
+
+const { Lists } = api()
 
 class Dashboard extends Component {
 	constructor(props){
@@ -13,6 +15,14 @@ class Dashboard extends Component {
 		}
 	}
 
+	componentWillReceiveProps(props){
+		let user = props.user
+		if (!user) {
+			return
+		}
+		this.getLists(user.id)
+	}
+
 	componentDidMount(){
 		let { user } = this.props
 		if (!user) {
@@ -22,16 +32,22 @@ class Dashboard extends Component {
 	}
 
 	getLists(id){
-		fetchUserLists(id)
+		Lists.all(id)
 		.then((res) => {
-            // console.log("fetch", res.lists)
-            this.setState({
-                lists: res.lists,
-            })
-        })
-        .catch(e => {
-			// console.log(e)
+			this.setState({
+				lists: res.lists,
+			})
 		})
+		.catch(e => {
+		})
+	}
+
+	refreshLists(){
+		let { user } = this.props
+		if (!user) {
+			return
+		}
+		this.getLists(user.id)
 	}
 
 	render() {
@@ -44,7 +60,7 @@ class Dashboard extends Component {
 			<Switch>
 				<div className="dash-container">
 					<Route exact path='/dashboard' render={(props) =>
-						(<UserLists user={user} lists={lists} />)
+						(<UserLists user={user} lists={lists} refreshLists={this.refreshLists.bind(this)}/>)
 					}/>
 				</div>
 			</Switch>
