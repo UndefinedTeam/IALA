@@ -258,6 +258,30 @@ app.put('/api/list/:id/tasks/:taskId', (req,res) => {
     })
 })
 
+// updates complete or incomplete
+app.put('/list/:id/tasks/:taskId', (req,res) => {
+    Task.update({
+		where: {
+			id: req.params.taskId,
+		},
+			isComplete: req.body.isComplete,
+			listId: req.params.id
+	})
+    .then((updatedTask)=>{
+        res.json({
+            message: 'success',
+            task: updatedTask
+        })
+    })
+    .catch((error)=>{
+        res.status(400)
+        res.json({
+        message: "Unable to update task",
+        errors: error.errors
+        })
+    })
+})
+
 // Deletes a task from a list
 app.delete('/api/tasks/:taskId', (req, res) =>{
 	return Task.destroy({
