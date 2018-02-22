@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
 	logInOrOut(){
 		let token = localStorage.getItem('authToken')
-		const login = 	<Nav pullRight><NavItem  href='/register'>Register</NavItem><NavItem href='/login'>Log In</NavItem></Nav>
-		const logout = <Nav pullRight><NavItem  href='/dashboard'>Dashboard</NavItem><NavItem onClick={this.logOut.bind(this)}href='/'>Log Out</NavItem></Nav>
+		const login = 	<Nav pullRight><NavItem>  <Link to='/register'>Register</Link></NavItem><NavItem href='/login'>Log In</NavItem></Nav>
+		const logout = <Nav pullRight><NavItem>  <Link to='/dashboard'>Dashboard</Link></NavItem><NavItem onClick={this.logOut.bind(this)}> <Link to='/'>Log Out</Link></NavItem></Nav>
 
 		if(token !== 'logout' || !token ) {
 			return logout
