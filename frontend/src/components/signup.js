@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput';
-import { User } from './api'
+import api from '../api'
 import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
+
+const { User } = api()
 
 class SignUp extends Component {
 	constructor(props){

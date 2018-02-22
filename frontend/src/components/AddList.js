@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
 import { validatePresence } from '../util/validations'
-import { Lists } from '../api'
+import api from '../api'
+
+const { Lists } = api()
 
 // form below adds a new list then redirects to tasksDash for user to add tasks to the list.
 

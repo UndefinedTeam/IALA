@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import  { Session, User } from '../api'
+import  api from '../api'
 import Home from './home'
 import Login from './login'
 import SignUp from './signup'
 import Dashboard from './Dashboard'
+
+const { Session, User } = api()
 
 class Main extends Component {
 	constructor(props) {

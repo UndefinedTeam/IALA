@@ -8,7 +8,7 @@ class Yelp {
 	get(vendor, location) {
 		const { base } = this.settings
 
-		return fetch(`/${base}/${vendor}/${location}`)
+		return fetch(`${base}/${vendor}/${location}`)
 		.then((raw) => {
 			return raw.json()
 		})

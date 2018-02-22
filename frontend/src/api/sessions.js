@@ -8,16 +8,19 @@ class Session {
 	user(token) {
 		const { base } = this.settings
 
-		return fetch(`/${base}/user?authToken=${token}`)
+		return fetch(`${base}/user?authToken=${token}`)
 		.then((res) => {
 			return res.json()
+		})
+		.catch(error => {
+			return
 		})
 	}
 
 	email(loginForm){
 		const { base } = this.settings
 
-		return fetch(`/${base}/login/${loginForm.email}`)
+		return fetch(`${base}/login/${loginForm.email}`)
 		.then(res => {
 			return res.json()
 		})

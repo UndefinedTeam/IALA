@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Lists } from '../api'
+import api from '../api'
 import UserLists from './UserLists'
+
+const { Lists } = api()
 
 class Dashboard extends Component {
 	constructor(props){

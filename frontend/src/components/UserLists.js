@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { Tasks, Lists } from '../api'
+import api from '../api'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
 import AddTask from './AddTask';
+
+const { Tasks, Lists } = api()
 
 
 class UserLists extends Component {

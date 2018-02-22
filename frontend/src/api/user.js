@@ -8,7 +8,7 @@ class User {
 	login(loginForm){
 		const { base } = this.settings
 
-		return fetch(`/${base}/login`, {
+		return fetch(`${base}/login`, {
 			method: "POST",
 			headers: {
 				'Content-Type':'application/json'
@@ -23,7 +23,7 @@ class User {
 	add(params){
 		const { base } = this.settings
 
-		return fetch(`/${base}/user`, {
+		return fetch(`${base}/user`, {
 			method: "POST",
 			headers: {
 			   'Content-Type': 'application/json'

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import FormInput from './FormInput'
-import { Tasks } from '../api'
+import api from '../api'
 import { validatePresence } from '../util/validations'
+
+const { Tasks } = api()
 
 class AddTask extends Component {
 	constructor(props) {
