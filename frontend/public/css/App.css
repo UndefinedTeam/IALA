@@ -130,10 +130,11 @@ form > h3 {
 /* registration form container */
 .form-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 70%;
+	margin-top: 10%;
 }
 
 .form-input {
@@ -252,10 +253,6 @@ ul {
     list-style: none;
 }
 
-h3 {
-    padding: 10px;
-}
-
 p, li {
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
@@ -265,32 +262,4 @@ p, li {
 
 .footer {
   width: 100%;
-}
-
-
-{/* ----Tasks & TodoInput & tasksDash Component */}
-.page-header {
-	margin-top: 9%;
-}
-
-.todo-input-form {
-	width: 200%;
-	margin-right: 25px;
-}
-
-.task-list-subheader > img {
-  width: 50px;
-  height: 50px;
-  padding: 5px;
-}
-
-#remove-task-btn {
-  float:right
-}
-
-
-.edit-btn {
-  float: right;
-  padding: 5px;
-  margin-right: 15px;
 }
