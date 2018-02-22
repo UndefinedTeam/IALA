@@ -54,7 +54,6 @@ class Tasks {
 
 	delete(id){
 		const { base } = this.settings
-
 		return fetch(`${base}/tasks/${id}`, {
 			method: "DELETE"
 		})

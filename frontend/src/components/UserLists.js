@@ -53,6 +53,36 @@ class UserLists extends Component {
 		})
 	}
 
+	// handleComplete(listID, taskID, complete){
+	// 	let markComplete
+    //
+	// 	if (complete === false){
+	// 		markComplete = true
+	// 		Tasks.update(listID, taskID, markComplete)
+	// 	} else {
+	// 		markComplete = false
+	// 		updateTask(listID, taskID, markComplete)
+	// 	}
+    //
+	// }
+    // onClick={this.handleComplete(listID, taskID, complete).bind(this)}
+
+	renderComplete(listID, taskID, complete){
+		if(complete === true){
+			return (
+				<button className="button-task-completed">
+					Completed
+				</button>
+			)
+		} else {
+			return (
+				<button className="button-task">
+					Incomplete
+				</button>
+			)
+		}
+	}
+
 	removeList(id){
 		console.log("gone");
 		Lists.delete(id)
@@ -66,6 +96,7 @@ class UserLists extends Component {
 	render() {
 		let { user, lists } = this.props
 		let { tasks } = this.state
+		console.log(tasks);
 
 		if(!user || !lists) {
 			return (
@@ -85,34 +116,68 @@ class UserLists extends Component {
 							<Panel key={list.id} bsStyle="success" id="collapsible-panel">
 								<Panel.Heading>
 									<Panel.Title toggle componentClass="h3">
+									<div className="list-header">
 										<h3>{list.title}</h3>
 										<div className="list-buttons">
-											<button>Edit List</button>
-											<button onClick={this.removeList.bind(this, list.id)}>Delete List</button>
+											<button className="button-submit space">
+												Edit List
+											</button>
+											<button
+												className="button-submit space"
+												onClick={this.removeList.bind(this, list.id)}
+											>
+												Delete List
+											</button>
 										</div>
+									</div>
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Collapse>
 									<Panel.Body>
-										<strong>List Type: </strong>{list.type}
+										<div className="list-type">
+											<h4><strong>List Type: </strong>{list.type}</h4>
+										</div>
 										{!tasks[list.id] ? (
 											<p>Loading ...</p>
 										) : (
 												tasks[list.id].map((task) => (
-													<div key={list.id}>
-														<p>Task: {task.task}</p>
-														<p>Description: {task.desc}</p>
-														<p>Is Complete: {task.isComplete ? 'completed' : 'not completed'}</p>
-														<div>
-															<button>Edit Task</button>
-															<button>Delete Task</button>
+													<div className="task-display">
+														<div className="table container">
+															<table key={list.id}>
+															  <thead>
+																<tr>
+																	<th>Task</th>
+																	<th>Description</th>
+																	<th>Is Complete</th>
+																</tr>
+															  </thead>
+															  <tbody>
+																<tr>
+																	<td>{task.task}</td>
+																	<td>{task.desc}</td>
+																	<td>
+																		{this.renderComplete(list.id, task.id, task.isComplete)}
+																	</td>
+																</tr>
+															  </tbody>
+															</table>
+														</div>
+														<div className="button-grp-tasks">
+															<button className="button-task">
+																Edit Task
+															</button>
+
+															<button className="button-task">
+																Delete Task
+															</button>
 														</div>
 													</div>
 												))
 											)
 										}
-
+										<div className="create-task">
 											<AddTask listId={list.id}/>
+										</div>
 									</Panel.Body>
 								</Panel.Collapse>
 							</Panel>
@@ -132,60 +197,3 @@ class UserLists extends Component {
 }
 
 export default UserLists;
-
-// ListComp pass tasks for just the list then pass tasks[list.id]
-
-// TaskComp
-
-// renderAddTask() {
-// 	console.log("what's my id?", list);
-// 	if(list) {
-// 		this.getTasks(list)
-// 		return (
-// 			<AddTask listId={list}/>
-// 		)
-// 	}
-// }
-
-
-	// if (tasks.length > 0) {
-	// 	return(
-	// 		{tasks.map((task, index) => {
-	// 		<ul>
-	// 			<li>{task[index].task}</li>
-	// 			<ul>
-	// 				<li>{task[index].desc}</li>
-	// 				<li>Is Complete: {task[index].isComplete}</li>
-	// 			</ul>
-	// 		</ul>
-	// 	})}
-	// 	)
-	// } else {
-	// 	<p>Loading ..</p>
-	// }
-
-
-// this is not working! >:|
-// renderButton(list) {
-// 	let { tasks, tasksClicked, newTaskSuccess } = this.state
-//
-// 	if(!tasks) {
-// 		return (
-// 				<div className="button">
-// 					<button
-// 						type="add"
-// 						onClick={this.renderAddTask(list)} >
-// 							Add Task
-// 					</button>
-// 				</div>
-// 		)
-// 	} else if (tasksClicked === true) {
-// 		return (
-// 			this.renderAddTask(list)
-// 		)
-// 	} else {
-// 		return (
-// 			this.renderAddTask(list)
-// 		)
-// 	}
-// }
