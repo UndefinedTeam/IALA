@@ -1,15 +1,18 @@
+class Yelp {
+	constructor(settings) {
+		this.settings = Object.assign({}, settings, {
 
-const API = 'http://localhost:3001/yelp'
+		})
+	}
 
-function fetchVendors(ven, loc){
+	get(vendor, location) {
+		const { base } = this.settings
 
-	return fetch(`${API}/${ven}/${loc}`)
-	.then((resData) => {
-		return resData.json()
-	})
+		return fetch(`${base}/${vendor}/${location}`)
+		.then((raw) => {
+			return raw.json()
+		})
+	}
 }
 
-
-module.exports = {
-	fetchVendors: fetchVendors,
-}
+export default Yelp

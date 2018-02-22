@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
-import{ deleteList } from '../api/lists'
+import api from '../api'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
 import AddTask from './AddTask';
+
+const { Tasks, Lists } = api()
 
 
 class UserLists extends Component {
@@ -36,7 +37,7 @@ class UserLists extends Component {
 		let listIDs = lists.map(list => list.id)
 
 		listIDs.forEach(id => {
-			fetchTasks(id)
+			Tasks.all(id)
 			.then((res) => {
 				const { tasks } = this.state
 
@@ -55,7 +56,7 @@ class UserLists extends Component {
 
 	removeList(id){
 		console.log("gone");
-		deleteList(id)
+		Lists.delete(id)
 		this.refreshLists()
 	}
 

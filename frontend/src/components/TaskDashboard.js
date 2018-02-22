@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, Grid, Page, PageHeader, Row, Col, Button, Checkbox } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import api from '../api'
 import AddTask from './AddTask';
 import VendorSearch from './VendorSearch';
 import { validatePresence } from '../util/validations';
+
+const { Tasks } = api()
 
 
 class TasksDash extends Component {
@@ -23,7 +25,7 @@ class TasksDash extends Component {
 
 	getTasks(){
 		let { list } = this.props
-		fetchTasks(list.id)
+		Tasks.all(list.id)
 		.then((res) => {
 			console.log("fetch", res.tasks)
 			this.setState({

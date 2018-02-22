@@ -4,7 +4,7 @@
 },
 	"scripts": {
 		"install": "(cd backend && node) && (cd frontend && yarn)",
-		"start": "concurrently \"cd backend && node index.js\" \"cd frontend && yarn start\""
+		"start": "concurrently \"cd backend && sequelize db:migrate && node index.js\" \"cd frontend && yarn install && yarn build\""
 	},
 	"heroku-postbuild": "yarn build"
 }
