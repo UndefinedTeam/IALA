@@ -98,7 +98,9 @@ class UserLists extends Component {
 								</Panel.Heading>
 								<Panel.Collapse>
 									<Panel.Body>
-										<strong>List Type: </strong>{list.type}
+										<div className="list-type">
+											<h4><strong>List Type: </strong>{list.type}</h4>
+										</div>
 										{!tasks[list.id] ? (
 											<p>Loading ...</p>
 										) : (
@@ -107,26 +109,25 @@ class UserLists extends Component {
 														<table className="task-display" key={list.id}>
 															<tbody>
 																<tr>
-																	<td>
-																		<strong>Task:</strong> {task.task}
-																	</td>
-																	<td>
-																		<strong>Description:</strong> {task.desc}
-																	</td>
-																	<td>
-																		<strong>Is Complete:</strong> {task.isComplete ? 'completed' : 'not completed'}
-																	</td>
+																	<th>Task</th>
+																	<th>Description</th>
+																	<th>Is Complete</th>
+																</tr>
+																<tr>
+																	<td>{task.task}</td>
+																	<td>{task.desc}</td>
+																	<td>{task.isComplete ? 'completed' : 'not completed'}</td>
+																</tr>
+																<tr>
 																	<td>
 																		<button className="button-task">
-																			Mark Complete
+																			Complete
 																		</button>
-																	</td>
-																	<td>
+
 																		<button className="button-task">
 																			Edit Task
 																		</button>
-																	</td>
-																	<td>
+																	
 																		<button className="button-task">
 																			Delete Task
 																		</button>

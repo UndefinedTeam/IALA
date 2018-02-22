@@ -104,7 +104,6 @@ class VendorSearch extends Component {
 
 //this isn't working yet but will add vendors to lists
   addVenToList = (id, item) => {
-    console.log("heyyyyyyyy");
     console.log(id);
     console.log(item);
   }
@@ -121,16 +120,20 @@ class VendorSearch extends Component {
 				alt="yelpLogo"
             />
           </div>
-          <TextField
-            hintText="Search a Business"
-            floatingLabelText="Search Business or category"
-            onChange={this.venSearchResults}
-          /><br />
-          <TextField
-            hintText="Location of search"
-            floatingLabelText="Location of search"
-            onChange={this.locationResults}
-          /><br />
+		<div>
+			<TextField
+				hintText="Search a Business"
+				floatingLabelText="Search Business or category"
+				onChange={this.venSearchResults}
+			/>
+		</div>
+		<div>
+			<TextField
+				hintText="Location of search"
+				floatingLabelText="Location of search"
+				onChange={this.locationResults}
+			/>
+		</div>
 
           <FlatButton label="Search"
           onClick={this.handleSubmit}

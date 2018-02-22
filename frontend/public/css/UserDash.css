@@ -1,3 +1,7 @@
+* {
+	text-decoration: none !important;
+}
+
 .dash-container {
     display: flex;
     flex-direction: row;
@@ -14,8 +18,9 @@
 }
 
 .panel-body {
+	display: flex;
 	flex-direction: column;
-	margin: 1%;
+
 }
 
 .task-display {
@@ -31,6 +36,10 @@
 	justify-content: space-between;
 }
 
+.list-type {
+	margin: 1%;
+}
+
 .list-buttons {
 	display: flex;
 	flex-direction: row;
@@ -40,7 +49,8 @@
 }
 
 .button-task {
-	width: 100%;
+	margin: 6%;
+	width: 100px;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -51,7 +61,7 @@
 
 
 .button-task:hover {
-	width: 100%;
+	width: 100px;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -85,9 +95,30 @@
 	width: 50%;
 }
 
-td {
-	padding: 5px;
+.search-align {
+	display: flex;
+	justify-content: space-between;
 }
+
+table, tbody {
+	border: 1px solid white;
+}
+
+tbody {
+	border-collapse: collapse;
+}
+
+th {
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+}
+
+td {
+	padding: 20px;
+	vertical-align: center;
+}
+
 
 #bar {
     margin: 2%;
