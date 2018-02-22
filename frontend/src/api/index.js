@@ -15,3 +15,5 @@ export default function() {
 		Yelp: new Yelp({base: API})
 	}
 }
+
+//"start": "concurrently \"cd backend && sequelize db:migrate && node index.js\" \"cd frontend && yarn install && yarn build\""
