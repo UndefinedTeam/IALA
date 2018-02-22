@@ -2,11 +2,11 @@
 	"dependencies": {
 		"body-parser": "^1.17.2",
 		"cors": "^2.8.4",
-		"express": "^4.15.4",
+		"express": "^4.16.2",
 		"express-validator": "^4.1.1",
 		"pg": "6.1.5",
 		"sequelize": "3.30.4",
-		"sequelize-cli": "^2.8.0"
+		"sequelize-cli": "^3.2.0"
 	},
 	"scripts": {
 		"install": "(cd backend && node) && (cd frontend && yarn)",

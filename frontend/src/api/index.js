@@ -4,7 +4,7 @@ import Tasks from './tasks'
 import User from './user'
 import Yelp from './yelp'
 
-const API = process.env.ENV === 'production' ? '/api' : 'http://localhost:3001/api'
+const API = process.env.ENV === 'production' ? 'https://iala.herokuapp.com/api' : 'http://localhost:3000/api'
 
 export default function() {
 	return {
