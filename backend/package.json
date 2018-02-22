@@ -25,6 +25,9 @@
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+	 "install": "(cd backend && node) && (cd frontend && yarn)",
+	 "start": "node backend/index.js",
+	 "heroku-postbuild": "cd backend && sequelize db:migrate && cd ../frontend/ && yarn install && yarn build"
   }
 }
