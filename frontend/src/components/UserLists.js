@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-import { fetchTasks, fetchTask, createTask, deleteTask } from '../api/tasks'
+import { fetchTasks, updateTask, createTask, deleteTask } from '../api/tasks'
 import{ deleteList } from '../api/lists'
 import VendorSearch from './VendorSearch';
 import AddList from './AddList';
@@ -53,6 +53,36 @@ class UserLists extends Component {
 		})
 	}
 
+	// handleComplete(listID, taskID, complete){
+	// 	let markComplete
+    //
+	// 	if (complete === false){
+	// 		markComplete = true
+	// 		updateTask(listID, taskID, markComplete)
+	// 	} else {
+	// 		markComplete = false
+	// 		updateTask(listID, taskID, markComplete)
+	// 	}
+    //
+	// }
+    // onClick={this.handleComplete(listID, taskID, complete).bind(this)}
+
+	renderComplete(listID, taskID, complete){
+		if(complete === true){
+			return (
+				<button className="button-task-completed">
+					Completed
+				</button>
+			)
+		} else {
+			return (
+				<button className="button-task">
+					Incomplete
+				</button>
+			)
+		}
+	}
+
 	removeList(id){
 		// console.log("gone");
 		deleteList(id)
@@ -61,6 +91,7 @@ class UserLists extends Component {
 	render() {
 		let { user, lists } = this.props
 		let { tasks } = this.state
+		console.log(tasks);
 
 		if(!user || !lists) {
 			return (
@@ -105,36 +136,36 @@ class UserLists extends Component {
 											<p>Loading ...</p>
 										) : (
 												tasks[list.id].map((task) => (
-													<div>
-														<table className="task-display" key={list.id}>
-															<tbody>
+													<div className="task-display">
+														<div className="table container">
+															<table key={list.id}>
+															  <thead>
 																<tr>
 																	<th>Task</th>
 																	<th>Description</th>
 																	<th>Is Complete</th>
 																</tr>
+															  </thead>
+															  <tbody>
 																<tr>
 																	<td>{task.task}</td>
 																	<td>{task.desc}</td>
-																	<td>{task.isComplete ? 'completed' : 'not completed'}</td>
-																</tr>
-																<tr>
 																	<td>
-																		<button className="button-task">
-																			Complete
-																		</button>
-
-																		<button className="button-task">
-																			Edit Task
-																		</button>
-																	
-																		<button className="button-task">
-																			Delete Task
-																		</button>
+																		{this.renderComplete(list.id, task.id, task.isComplete)}
 																	</td>
 																</tr>
-															</tbody>
-														</table>
+															  </tbody>
+															</table>
+														</div>
+														<div className="button-grp-tasks">
+															<button className="button-task">
+																Edit Task
+															</button>
+
+															<button className="button-task">
+																Delete Task
+															</button>
+														</div>
 													</div>
 												))
 											)
@@ -162,60 +193,3 @@ class UserLists extends Component {
 }
 
 export default UserLists;
-
-// ListComp pass tasks for just the list then pass tasks[list.id]
-
-// TaskComp
-
-// renderAddTask() {
-// 	console.log("what's my id?", list);
-// 	if(list) {
-// 		this.getTasks(list)
-// 		return (
-// 			<AddTask listId={list}/>
-// 		)
-// 	}
-// }
-
-
-	// if (tasks.length > 0) {
-	// 	return(
-	// 		{tasks.map((task, index) => {
-	// 		<ul>
-	// 			<li>{task[index].task}</li>
-	// 			<ul>
-	// 				<li>{task[index].desc}</li>
-	// 				<li>Is Complete: {task[index].isComplete}</li>
-	// 			</ul>
-	// 		</ul>
-	// 	})}
-	// 	)
-	// } else {
-	// 	<p>Loading ..</p>
-	// }
-
-
-// this is not working! >:|
-// renderButton(list) {
-// 	let { tasks, tasksClicked, newTaskSuccess } = this.state
-//
-// 	if(!tasks) {
-// 		return (
-// 				<div className="button">
-// 					<button
-// 						type="add"
-// 						onClick={this.renderAddTask(list)} >
-// 							Add Task
-// 					</button>
-// 				</div>
-// 		)
-// 	} else if (tasksClicked === true) {
-// 		return (
-// 			this.renderAddTask(list)
-// 		)
-// 	} else {
-// 		return (
-// 			this.renderAddTask(list)
-// 		)
-// 	}
-// }

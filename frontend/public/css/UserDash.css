@@ -27,8 +27,19 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	align-content: center;
 	margin: 2%;
+	border: 1px solid #A9A9A9;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
+
+.table-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 
 .list-header {
 	display: flex;
@@ -46,10 +57,11 @@
 	justify-content: flex-end;
 	width: 20%;
 	padding: 10px;
+	font-weight: normal;
 }
 
 .button-task {
-	margin: 6%;
+	margin: 1%;
 	width: 100px;
 	border: 2px hidden;
 	border-radius: 4px;
@@ -59,6 +71,13 @@
 	color: black;
 }
 
+.button-grp-tasks {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	height: 10%;
+	margin: 1%;
+}
 
 .button-task:hover {
 	width: 100px;
@@ -70,12 +89,30 @@
 	color: black;
 }
 
+.button-task-complete {
+	margin: 1%;
+	width: 100px;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #328332;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+
 .create-task {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 50%;
+	width: 90%;
 	margin: 5%;
+}
+
+.create-task > .form-container {
+	display: flex;
+	justify-content: center;
+	width: 50%;
 }
 
 .space {
@@ -100,23 +137,22 @@
 	justify-content: space-between;
 }
 
-table, tbody {
-	border: 1px solid white;
-}
-
-tbody {
-	border-collapse: collapse;
+table {
+	margin-top: 1%;
 }
 
 th {
 	font-weight: bold;
 	font-size: 20px;
+	padding: 3px;
 	text-align: center;
 }
 
 td {
-	padding: 20px;
+	padding: 10px;
+	width: 10%;
 	vertical-align: center;
+	text-align: center;
 }
 
 

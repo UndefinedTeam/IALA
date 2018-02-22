@@ -49,6 +49,7 @@ function deleteTask(id){
 module.exports = {
 	fetchTasks: fetchTasks,
 	fetchTask: fetchTask,
+	updateTask: updateTask,
 	createTask: createTask,
 	deleteTask: deleteTask
 }
