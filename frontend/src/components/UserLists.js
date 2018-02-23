@@ -119,9 +119,6 @@ class UserLists extends Component {
 									<div className="list-header">
 										<h3>{list.title}</h3>
 										<div className="list-buttons">
-											<button className="button-submit space">
-												Edit List
-											</button>
 											<button
 												className="button-submit space"
 												onClick={this.removeList.bind(this, list.id)}
@@ -137,52 +134,51 @@ class UserLists extends Component {
 										<div className="list-type">
 											<h4><strong>List Type: </strong>{list.type}</h4>
 										</div>
-										{!tasks[list.id] ? (
-											<p>Loading ...</p>
-										) : (
-												tasks[list.id].map((task) => (
-													<div className="task-display">
-														<div className="table container">
-															<table key={list.id}>
-															  <thead>
-																<tr>
-																	<th>Task</th>
-																	<th>Description</th>
-																	<th>Is Complete</th>
-																</tr>
-															  </thead>
-															  <tbody>
-																<tr>
-																	<td>{task.task}</td>
-																	<td>{task.desc}</td>
-																	<td>
-																		{this.renderComplete(list.id, task.id, task.isComplete)}
-																	</td>
-																</tr>
-															  </tbody>
-															</table>
-														</div>
-														<div className="button-grp-tasks">
-															<button className="button-task">
-																Edit Task
-															</button>
+										<div className="task-stuff">
+											{!tasks[list.id] ? (
+												<p>Loading ...</p>
+											) : (
+													tasks[list.id].map((task) => (
+														<div className="task-display">
+															<div className="table container">
+																<table key={list.id}>
+																  <thead>
+																	<tr>
+																		<th>Task</th>
+																		<th>Description</th>
+																		<th>Is Complete</th>
+																	</tr>
+																  </thead>
+																  <tbody>
+																	<tr>
+																		<td>{task.task}</td>
+																		<td>{task.desc}</td>
+																		<td>
+																			{this.renderComplete(list.id, task.id, task.isComplete)}
+																		</td>
+																	</tr>
+																  </tbody>
+																</table>
+															</div>
+															<div className="button-grp-tasks">
 
-															<button className="button-task">
-																Delete Task
-															</button>
+																<button className="button-task">
+																	Delete Task
+																</button>
+															</div>
 														</div>
-													</div>
-												))
-											)
-										}
-										<div className="create-task">
-											<AddTask listId={list.id}/>
-										</div>
-									</Panel.Body>
-								</Panel.Collapse>
-							</Panel>
-							))
-						}
+													))
+												)
+											}
+											<div className="create-task">
+												<AddTask listId={list.id}/>
+											</div>
+										</div>	
+										</Panel.Body>
+									</Panel.Collapse>
+								</Panel>
+								))
+							}
 				</div>
 				<div className="dash-components">
 					<div className="addList-container">

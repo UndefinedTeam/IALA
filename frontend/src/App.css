@@ -96,6 +96,7 @@
 .vendorResults {
 	display: flex;
 	justify-content: center;
+	margin-top: 4%;
 	padding: 0, 15px;
 	background-color: white;
 	border-radius: 25px;
@@ -118,6 +119,32 @@
 	align-items: center;
 	justify-content: space-around;
 }
+
+.yelpLogo{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 150px;
+}
+
+.yelp-inputs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 95px;
+}
+
+.yelpTextField {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 5%;
+	width: 50%;
+}
+.search-button {
+	margin: 2%;
+}
+
 /* featured todolist box */
 .feat-list {
 	display: flex;
@@ -170,13 +197,20 @@ form > h3 {
 	text-align: center;
 }
 
+.form-align {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 /* registration form container */
 .form-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	width: 100%;
+	width: 70%;
+	margin-top: 8%;
 }
 
 .form-input {
@@ -330,7 +364,8 @@ p, li {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-content: center;
+	width: 50%;
+	height: 100px;
 	margin: 2%;
 	border: 1px solid #A9A9A9;
 	border-radius: 4px;
@@ -342,7 +377,6 @@ p, li {
 	flex-direction: row;
 	justify-content: center;
 }
-
 
 .list-header {
 	display: flex;
@@ -358,14 +392,15 @@ p, li {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	width: 20%;
+	width: 10%;
+	height: 60px;
 	padding: 10px;
 	font-weight: normal;
 }
 
 .button-task {
 	margin: 1%;
-	width: 100px;
+	width: 55%;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -378,12 +413,13 @@ p, li {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	height: 10%;
+	height: 40px;
+	width: 30%;
 	margin: 1%;
 }
 
 .button-task:hover {
-	width: 100px;
+	width: 55%;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -394,7 +430,8 @@ p, li {
 
 .button-task-complete {
 	margin: 1%;
-	width: 100px;
+	width: 30%;
+	height: 40px;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -403,18 +440,24 @@ p, li {
 	color: black;
 }
 
+.task-stuff {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	margin: 0% 2% 2% 2%;
+}
 .create-task {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 90%;
-	margin: 5%;
+	width: 50%;
 }
 
 .create-task > .form-container {
 	display: flex;
 	justify-content: center;
-	width: 50%;
+	width: 100%;
 }
 
 .space {
@@ -432,6 +475,16 @@ p, li {
 	flex-direction: row;
 	justify-content: center;
 	width: 50%;
+}
+
+.addList-container > .form-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.addList-container > .form-container > form {
+	width: 90%;
 }
 
 

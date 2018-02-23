@@ -3,7 +3,7 @@ import api from '../api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { GridList, GridTile } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
@@ -129,22 +129,24 @@ handleRequestClose = () => {
 				alt="yelpLogo"
             />
           </div>
-		<div className="yelpTextField">
-			<TextField
-				hintText="Search a Business"
-				floatingLabelText="Search Business or category"
-				onChange={this.venSearchResults}
-			/>
-		</div>
-		<div className="yelpTextField">
-			<TextField
-				hintText="Location of search"
-				floatingLabelText="Location of search"
-				onChange={this.locationResults}
-			/>
-		</div>
-          <div style={styles.gridTile}>
-            <FlatButton label="Search"
+			 <div className="yelp-inputs">
+				<div className="yelpTextField">
+					<TextField
+						hintText="Search a Business"
+						floatingLabelText="Search Business or category"
+						onChange={this.venSearchResults}
+					/>
+				</div>
+				<div className="yelpTextField">
+					<TextField
+						hintText="Location of search"
+						floatingLabelText="Location of search"
+						onChange={this.locationResults}
+					/>
+			</div>
+			</div>
+          <div className="search-button" style={styles.gridTile}>
+            <RaisedButton label="Search" primary={true}
             onClick={this.handleSubmit}
             />
           </div>
