@@ -129,8 +129,8 @@ class SignUp extends Component {
 
 		return (
 			<div className='form-container'>
-				<h3>Create an account with IALA!</h3>
 				<form>
+				<h3>Create an account with IALA!</h3>
 					<div className='form-input'>
 						<label id='email-input'>Email</label>
 						<FormInput
