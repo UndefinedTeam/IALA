@@ -185,13 +185,15 @@ class UserLists extends Component {
 							))
 						}
 				</div>
-				<div className="addList-container">
-					<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
-					refreshLists={this.refreshLists.bind(this)}/>
-				</div>
-				<div className="vendorResults">
-					<VendorSearch lists={lists}/>
-				</div>
+				<div className="stuff">
+					<div className="addList-container">
+						<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
+						refreshLists={this.refreshLists.bind(this)}/>
+					</div>
+					<div className="vendorResults">
+						<VendorSearch lists={lists}/>
+					</div>
+			</div>
 			</div>
 		)
 	}
