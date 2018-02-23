@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchVendors } from '../api/yelp.js'
+import api from '../api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -13,6 +13,9 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 //Material UI stuff for the vendor cards to display
+
+const { Yelp } = api()
+
 const styles = {
   root: {
     display: 'flex',
@@ -74,7 +77,7 @@ class VendorSearch extends Component {
   console.log(venSearch);
   console.log(location);
   console.log(this.props.lists)
-	fetchVendors(venSearch, location)
+	Yelp.get(venSearch, location)
 	.then((responseJSON) => {
 		this.setState({
 			isSubmitHit:true,
@@ -104,7 +107,6 @@ class VendorSearch extends Component {
 
 //this isn't working yet but will add vendors to lists
   addVenToList = (id, item) => {
-    console.log("heyyyyyyyy");
     console.log(id);
     console.log(item);
 
@@ -122,16 +124,20 @@ class VendorSearch extends Component {
 				alt="yelpLogo"
             />
           </div>
-          <TextField
-            hintText="Search a Business"
-            floatingLabelText="Search Business or category"
-            onChange={this.venSearchResults}
-          /><br />
-          <TextField
-            hintText="Location of search"
-            floatingLabelText="Location of search"
-            onChange={this.locationResults}
-          /><br />
+		<div>
+			<TextField
+				hintText="Search a Business"
+				floatingLabelText="Search Business or category"
+				onChange={this.venSearchResults}
+			/>
+		</div>
+		<div>
+			<TextField
+				hintText="Location of search"
+				floatingLabelText="Location of search"
+				onChange={this.locationResults}
+			/>
+		</div>
 
           <FlatButton label="Search"
           onClick={this.handleSubmit}

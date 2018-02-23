@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput';
-import { addNewUser } from '../api/user'
+import api from '../api'
 import { validatePresence, validateEmail, validatePassword, confirmPassword, validateZip } from '../util/validations'
+
+const { User } = api()
 
 class SignUp extends Component {
 	constructor(props){
@@ -72,7 +74,7 @@ class SignUp extends Component {
 		} else {
 			console.log('ja');
 			this.handleNewUser(true)
-			addNewUser(form)
+			User.add(form)
 		}
 	}
 
@@ -101,6 +103,7 @@ class SignUp extends Component {
 		if(this.state.newUserSuccess === true){
 			return (
 				<button
+					className="button-submit"
 					id='submit'
 					onClick={this.handleSubmit.bind(this)}>
 					<Link to='/login'><span style={{color:"black"}}>Create your account!</span></Link>
@@ -109,6 +112,7 @@ class SignUp extends Component {
 		} else {
 			return (
 				<button
+					className="button-submit"
 					id='submit'
 					onClick={this.handleInvalid.bind(this)}>
 					Confirm Info
@@ -125,8 +129,8 @@ class SignUp extends Component {
 
 		return (
 			<div className='form-container'>
-				<h3>Create an account with IALA!</h3>
 				<form>
+				<h3>Create an account with IALA!</h3>
 					<div className='form-input'>
 						<label id='email-input'>Email</label>
 						<FormInput

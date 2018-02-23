@@ -1,41 +1,42 @@
+class Lists {
+	constructor(settings) {
+		this.settings = Object.assign({}, settings, {
 
-const API = "http://localhost:3001"
+		})
+	}
 
-function fetchUserLists(id){
-	return fetch(`${API}/user/${id}/lists`)
-	.then((res) => {
-		// console.log("Lists:",res)
-		return res.json()
-	})
+	all(id) {
+		const { base } = this.settings
+
+		return fetch(`${base}/user/${id}/lists`)
+		.then((res) => {
+			return res.json()
+		})
+	}
+
+	create(params, id) {
+		const { base } = this.settings
+
+		return fetch(`${base}/user/${id}/lists`, {
+			method: "POST",
+			headers: {
+			'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(params),
+		})
+		.then((res) => {
+			return res.json()
+		})
+	}
+
+	delete(id) {
+		const { base } = this.settings
+
+		return fetch(`${base}/list/${id}`, {
+			method: "DELETE"
+		})
+	}
+
 }
 
-function createList(params, id){
-	return fetch(`${API}/user/${id}/lists`, {
-		method: "POST",
-		headers: {
-		'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(params),
-	})
-	.then((res) => {
-		// console.log("Success!", res)
-		return res.json()
-	})
-}
-
-//in process
-// // function updateList(id, params){
-//
-// }
-
-function deleteList(id){
-	return fetch(`${API}/list/${id}`, {
-		method: "DELETE"
-	})
-}
-
-module.exports = {
-	fetchUserLists: fetchUserLists,
-	createList: createList,
-	deleteList: deleteList
-}
+export default Lists
