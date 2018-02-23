@@ -26,7 +26,7 @@ const styles = {
     overflowY: 'auto',
   },
   gridList: {
-    width: 700,
+    width: 710,
     height: 450,
     overflowY: 'auto',
   },
@@ -52,7 +52,7 @@ class VendorSearch extends Component {
       this.venSearchResults=this.venSearchResults.bind(this);
       this.locationResults=this.locationResults.bind(this);
       this.handleSubmit=this.handleSubmit.bind(this);
-      this.addVenToList=this.addVenToList.bind(this)
+      this.addVenToList=this.addVenToList.bind(this);
   }
 
 //function for the vendor search input area
@@ -119,32 +119,32 @@ class VendorSearch extends Component {
       {/*
       yelp logo displayed
       */}
-          <div>
+          <div className="yelpLogo">
             <img src={require("../images/yelp_fullcolor.png")}
 				alt="yelpLogo"
             />
           </div>
-		<div>
+		<div className="yelpTextField">
 			<TextField
 				hintText="Search a Business"
 				floatingLabelText="Search Business or category"
 				onChange={this.venSearchResults}
 			/>
 		</div>
-		<div>
+		<div className="yelpTextField">
 			<TextField
 				hintText="Location of search"
 				floatingLabelText="Location of search"
 				onChange={this.locationResults}
 			/>
 		</div>
-
-          <FlatButton label="Search"
-          onClick={this.handleSubmit}
-          />
-
+          <div style={styles.gridTile}>
+            <FlatButton label="Search"
+            onClick={this.handleSubmit}
+            />
+          </div>
           {this.state.isSubmitHit?
-            <div>
+            <div className="yelpGrid">
               <div style={styles.root}>
                 <GridList
                   cellHeight={180}
@@ -174,7 +174,7 @@ class VendorSearch extends Component {
                           }}
                           onRequestClose={this.handleRequestClose}
                         >
-                          <Menu  className="popOver">
+                          <Menu className="popOver">
                           {this.props.lists?
                               this.props.lists.map((element) => {
                                 return <MenuItem
