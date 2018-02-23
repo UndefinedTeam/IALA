@@ -34,7 +34,7 @@ const { Yelp } = api()
 			display: 'flex',
 			flexWrap: 'wrap',
 			justifyContent: 'space-around',
-			'align-items': 'center',
+			alignItems: 'center',
 		}
 	};
 
@@ -166,7 +166,7 @@ handleRequestClose = () => {
                       >
                       <ContentAdd />
 
-                        <Popover
+                     	<Popover
                           open={this.state.open}
                           anchorEl={this.state.anchorEl}
                           anchorOrigin={{

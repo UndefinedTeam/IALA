@@ -259,7 +259,7 @@ app.put('/api/list/:id/tasks/:taskId', (req,res) => {
 })
 
 // updates complete or incomplete
-app.put('/list/:id/tasks/:taskId', (req,res) => {
+app.put('/api/list/:id/tasks/:taskId', (req,res) => {
     Task.update({
 		where: {
 			id: req.params.taskId,
@@ -314,10 +314,12 @@ app.get('/api/yelp/:search/:location', (req, res) => {
     client.search({
         term: req.params.search,
         location: req.params.location
-    }).then((response) => {
+    })
+	 .then((response) => {
     //return entire json object from yelp
       res.json(response.jsonBody)
-    }).catch(e => {
+    })
+	 .catch(e => {
         console.log(e)
     })
 })
