@@ -113,7 +113,7 @@ class UserLists extends Component {
 					<h2> {user.name} &rsquo;s Lists</h2>
 
 						{lists.map((list) => (
-							<Panel key={list.id} bsStyle="success" id="collapsible-panel">
+							<Panel key={list.id} id="collapsible-panel">
 								<Panel.Heading>
 									<Panel.Title toggle componentClass="h3">
 									<div className="list-header">
@@ -130,7 +130,7 @@ class UserLists extends Component {
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Collapse>
-									<Panel.Body>
+									<Panel.Body className="list-panel">
 										<div className="list-type">
 											<h4><strong>List Type: </strong>{list.type}</h4>
 										</div>
@@ -173,7 +173,7 @@ class UserLists extends Component {
 											<div className="create-task">
 												<AddTask listId={list.id}/>
 											</div>
-										</div>	
+										</div>
 										</Panel.Body>
 									</Panel.Collapse>
 								</Panel>

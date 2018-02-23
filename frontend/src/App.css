@@ -20,6 +20,14 @@
 	padding-top: 0
 }
 
+body {
+	background: linear-gradient(rgb(174,224,234),rgb(171,223,234));
+	height: 1200px;
+	background-size: 100%, 100%;
+	background-repeat: no-repeat;
+}
+
+
 /* http://www.designlovefest.com/wp-content/plugins/download-monitor/download.php?id=93 possible other background */
 /* background styling */
 
@@ -86,12 +94,20 @@
 	margin-bottom: 15px;
 	padding: inherit;
 }
-/* panel within the user dash that shows the title of the users todo lists */
-.panel-success>.panel-heading {
-	color: #A9A9A9;
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
+
+.list-panel {
+	background-color: #ebf7fa;
 }
+
+.panel-default {
+	border-color: #A9A9A9;
+}
+
+.panel-default >.panel-heading {
+	background-color: #d4d4d4;
+	border-color: #A9A9A9;
+}
+
 /* yelp search area stuff */
 .vendorResults {
 	display: flex;
@@ -345,6 +361,7 @@ p, li {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	margin-top: 2%;
 }
 
 .userList-container {
