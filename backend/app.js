@@ -229,7 +229,7 @@ app.post('/api/list/:id/tasks', (req,res) => {
     })
 })
 
-//Updates tasks from task edit form
+//Updates tasks from task edit form NOT being used 
 app.put('/api/list/:id/tasks/:taskId', (req,res) => {
     Task.update({
 		where: {
@@ -293,7 +293,6 @@ app.delete('/api/tasks/:taskId', (req, res) =>{
 		return Task.findAll()
 	})
 	.then(tasks => {
-		console.log('hi');
 		res.json(tasks);
 	})
 	.catch((err) => {

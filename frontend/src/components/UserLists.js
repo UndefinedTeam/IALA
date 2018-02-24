@@ -53,43 +53,53 @@ class UserLists extends Component {
 		})
 	}
 
-	// handleComplete(listID, taskID, complete){
-	// 	let markComplete
-    //
-	// 	if (complete === false){
-	// 		markComplete = true
-	// 		Tasks.update(listID, taskID, markComplete)
-	// 	} else {
-	// 		markComplete = false
-	// 		updateTask(listID, taskID, markComplete)
-	// 	}
-    //
-	// }
-    // onClick={this.handleComplete(listID, taskID, complete).bind(this)}
+// Not working! Yet
+	handleComplete(e){
+		let clicked
+		if (e){
+			clicked = true
+		} else {
+			clicked = false
+		}
+		return clicked
+	}
 
-	renderComplete(listID, taskID, complete){
-		if(complete === true){
+// Not working! Yet
+	renderComplete(clicked){
+
+		if(clicked === true){
 			return (
-				<button className="button-task-completed">
+				<button
+					className="button-task-completed"
+					onClick={this.handleComplete.bind(this)}
+				>
 					Completed
 				</button>
 			)
 		} else {
 			return (
-				<button className="button-task">
+				<button
+					className="button-task"
+					onClick={this.handleComplete.bind(this)}
+				>
 					Incomplete
 				</button>
 			)
 		}
 	}
 
+
 	removeList(id){
-		console.log("gone");
 		Lists.delete(id)
-		this.refreshLists()
+		this.refreshPage()
 	}
 
-	refreshLists(){
+	removeTask(id){
+		Tasks.delete(id)
+		this.refreshPage()
+	}
+
+	refreshPage(){
 		this.props.refreshLists()
 	}
 
@@ -154,7 +164,7 @@ class UserLists extends Component {
 																		<td>{task.task}</td>
 																		<td>{task.desc}</td>
 																		<td>
-																			{this.renderComplete(list.id, task.id, task.isComplete)}
+																			{this.renderComplete()}
 																		</td>
 																	</tr>
 																  </tbody>
@@ -162,7 +172,9 @@ class UserLists extends Component {
 															</div>
 															<div className="button-grp-tasks">
 
-																<button className="button-task">
+																<button
+																	className="button-task" onClick={this.removeTask.bind(this, task.id)}
+																>
 																	Delete Task
 																</button>
 															</div>
@@ -171,7 +183,10 @@ class UserLists extends Component {
 												)
 											}
 											<div className="create-task">
-												<AddTask listId={list.id}/>
+												<AddTask
+													listId={list.id}
+													refreshTasks={this.refreshPage.bind(this)}
+												/>
 											</div>
 										</div>
 										</Panel.Body>
@@ -183,7 +198,7 @@ class UserLists extends Component {
 				<div className="dash-components">
 					<div className="addList-container">
 						<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
-						refreshLists={this.refreshLists.bind(this)}/>
+						refreshLists={this.refreshPage.bind(this)}/>
 					</div>
 					<div className="vendorResults">
 						<VendorSearch lists={lists}/>

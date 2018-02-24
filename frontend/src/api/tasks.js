@@ -35,7 +35,6 @@ class Tasks {
 
 		return fetch(`${base}/list/${listID}/tasks/${taskID}`)
 		.then((res) => {
-			console.log("Task:", res)
 			return res.json()
 		})
 	}

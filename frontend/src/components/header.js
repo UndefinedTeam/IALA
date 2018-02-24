@@ -5,8 +5,16 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
 	logInOrOut(){
 		let token = localStorage.getItem('authToken')
-		const login = 	<Nav pullRight><NavItem>  <Link to='/register'>Register</Link></NavItem><NavItem href='/login'>Log In</NavItem></Nav>
-		const logout = <Nav pullRight><NavItem>  <Link to='/dashboard'>Dashboard</Link></NavItem><NavItem onClick={this.logOut.bind(this)}> <Link to='/'>Log Out</Link></NavItem></Nav>
+		const login =
+			<Nav pullRight className="headerlink">
+				<Link to='/register'>Register</Link>
+				<Link to='/login'>Log In</Link>
+			</Nav>
+		const logout =
+			<Nav pullRight className="headerlink">
+				<Link to='/dashboard'>Dashboard</Link>
+				<Link to='/' onClick={this.logOut.bind(this)}>Log Out</Link>
+			</Nav>
 
 		if(token !== 'logout' || !token ) {
 			return logout
@@ -26,7 +34,7 @@ class Header extends Component {
 				<Navbar collapseOnSelect>
 					<Navbar.Header>
 						<Navbar.Brand>
-							<Link to="/"><img src={require("../images/logo.png")} alt="cofee-cup" className="logo" /></Link>
+							<Link to="/"><img src={require("../images/logo.png")} alt="IALA logo" className="logo" /></Link>
 						</Navbar.Brand>
 						<Navbar.Toggle />
 					</Navbar.Header>
