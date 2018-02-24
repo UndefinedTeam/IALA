@@ -3,7 +3,7 @@ import api from '../api'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { GridList, GridTile } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
@@ -16,94 +16,99 @@ import MenuItem from 'material-ui/MenuItem';
 
 const { Yelp } = api()
 
-const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    width: 700,
-    height: 450,
-    overflowY: 'auto',
-  },
-  gridList: {
-    width: 710,
-    height: 450,
-    overflowY: 'auto',
-  },
-  gridTile: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    'align-items': 'center',
-  }
-};
+	const styles = {
+		root: {
+			display: 'flex',
+			flexWrap: 'wrap',
+			justifyContent: 'space-around',
+			width: 700,
+			height: 450,
+			overflowY: 'auto',
+		},
+		gridList: {
+			width: 710,
+			height: 450,
+			overflowY: 'auto',
+		},
+		gridTile: {
+			display: 'flex',
+			flexWrap: 'wrap',
+			justifyContent: 'space-around',
+			alignItems: 'center',
+		}
+	};
 
-class VendorSearch extends Component {
-  constructor(props){
-    super(props)
-      this.state = {
-        venSearch: "",
-        location: "",
-        tableData: [],
-        isSubmitHit:false,
-        open: false,
-        listNames: this.props.lists
-      }
-      this.venSearchResults=this.venSearchResults.bind(this);
-      this.locationResults=this.locationResults.bind(this);
-      this.handleSubmit=this.handleSubmit.bind(this);
-      this.addVenToList=this.addVenToList.bind(this);
-  }
+	class VendorSearch extends Component {
+		constructor(props){
+			super(props)
+
+			this.state = {
+				venSearch: "",
+				location: "",
+				tableData: [],
+				isSubmitHit:false,
+				open: false,
+				listNames: this.props.lists
+			}
+
+			this.venSearchResults=this.venSearchResults.bind(this);
+			this.locationResults=this.locationResults.bind(this);
+			this.handleSubmit=this.handleSubmit.bind(this);
+			this.addVenToList=this.addVenToList.bind(this);
+		}
 
 //function for the vendor search input area
-  venSearchResults(event,newvalue){
-    this.setState({
-      venSearch: newvalue
-    })
-    console.log(this.state.venSearch);
-  };
-//function for the location search input area
-  locationResults(event,newvalue){
-    this.setState({
-      location: newvalue
-    })
-    console.log(this.state.location);
-  }
+	venSearchResults(event,newvalue){
+		this.setState({
+			venSearch: newvalue
+		})
+		console.log(this.state.venSearch);
+	};
+	//function for the location search input area
+	locationResults(event,newvalue){
+		this.setState({
+			location: newvalue
+		})
+		console.log(this.state.location);
+	}
 
 //handleSubmit function that takes both inputs from the text input fields and makes a request to the backend yelp api and returns the search
-  handleSubmit(){
+handleSubmit(){
 	let { venSearch, location } = this.state
-  console.log("We are in submit")
-  console.log(venSearch);
-  console.log(location);
-  console.log(this.props.lists)
+
+	// console.log("We are in submit")
+	// console.log(venSearch);
+	// console.log(location);
+	// console.log(this.props.lists)
+
 	Yelp.get(venSearch, location)
-	.then((responseJSON) => {
+	.then((res) => {
 		this.setState({
 			isSubmitHit:true,
-			tableData: responseJSON.businesses
+			tableData: res.businesses
 		})
-	console.log(responseJSON.businesses);
+		console.log(res.businesses);
 	})
+	.catch((err) => {
+		console.log(err)
+	})
+}
 
+handleClick = (event) => {
+// This prevents ghost click
+	event.preventDefault();
 
-  }
+	this.setState({
+		open: true,
+		anchorEl: event.currentTarget,
+	})
+}
 
-  handleClick = (event) => {
-    // This prevents ghost click
-    event.preventDefault();
-
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    })
-  }
-
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    })
-  }
+handleRequestClose = () => {
+	this.setState({
+		open: false,
+	})
+}
 
 //this isn't working yet but will add vendors to lists
   addVenToList = (id, item) => {
@@ -124,22 +129,24 @@ class VendorSearch extends Component {
 				alt="yelpLogo"
             />
           </div>
-		<div className="yelpTextField">
-			<TextField
-				hintText="Search a Business"
-				floatingLabelText="Search Business or category"
-				onChange={this.venSearchResults}
-			/>
-		</div>
-		<div className="yelpTextField">
-			<TextField
-				hintText="Location of search"
-				floatingLabelText="Location of search"
-				onChange={this.locationResults}
-			/>
-		</div>
-          <div style={styles.gridTile}>
-            <FlatButton label="Search"
+			 <div className="yelp-inputs">
+				<div className="yelpTextField">
+					<TextField
+						hintText="Search a Business"
+						floatingLabelText="Search Business or category"
+						onChange={this.venSearchResults}
+					/>
+				</div>
+				<div className="yelpTextField">
+					<TextField
+						hintText="Location of search"
+						floatingLabelText="Location of search"
+						onChange={this.locationResults}
+					/>
+			</div>
+			</div>
+          <div className="search-button" style={styles.gridTile}>
+            <RaisedButton label="Search" primary={true}
             onClick={this.handleSubmit}
             />
           </div>
@@ -161,7 +168,7 @@ class VendorSearch extends Component {
                       >
                       <ContentAdd />
 
-                        <Popover
+                     	<Popover
                           open={this.state.open}
                           anchorEl={this.state.anchorEl}
                           anchorOrigin={{

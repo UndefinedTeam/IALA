@@ -128,67 +128,69 @@ class SignUp extends Component {
 		console.log(this.state);
 
 		return (
-			<div className='form-container'>
-				<form>
-				<h3>Create an account with IALA!</h3>
-					<div className='form-input'>
-						<label id='email-input'>Email</label>
-						<FormInput
-							type="email"
-							name='email'
-							value={email}
-							onChange={this.handleChange.bind(this)}
-							errors={errors.email}
-						/>
-					</div>
+			<div className="form-align">
+				<div className='form-container'>
+					<form>
+					<h3>Create an account with IALA!</h3>
 						<div className='form-input'>
-						<label id='name-input'>Name</label>
-						<FormInput
-							type="text"
-							name='name'
-							value={name}
-							onChange={this.handleChange.bind(this)}
-							errors={errors.name}
-						/>
-					</div>
-					<div className='form-input'>
-						<label id='password-input'>Password</label>
-						<FormInput
-							type="password"
-							name='password'
-							value={password}
-							onChange={this.handleChange.bind(this)}
-							errors={errors.password}
-						/>
-					</div>
+							<label id='email-input'>Email</label>
+							<FormInput
+								type="email"
+								name='email'
+								value={email}
+								onChange={this.handleChange.bind(this)}
+								errors={errors.email}
+							/>
+						</div>
+							<div className='form-input'>
+							<label id='name-input'>Name</label>
+							<FormInput
+								type="text"
+								name='name'
+								value={name}
+								onChange={this.handleChange.bind(this)}
+								errors={errors.name}
+							/>
+						</div>
+						<div className='form-input'>
+							<label id='password-input'>Password</label>
+							<FormInput
+								type="password"
+								name='password'
+								value={password}
+								onChange={this.handleChange.bind(this)}
+								errors={errors.password}
+							/>
+						</div>
 
-					<div className='form-input'>
-						<label id='passwordConfirm-input'>Confirm Password</label>
-						<FormInput
-							type="password"
-							name='passwordConfirm'
-							value={passwordConfirm}
-							onChange={this.handleChange.bind(this)}
-							errors={errors.passwordConfirm}
-						/>
-					</div>
+						<div className='form-input'>
+							<label id='passwordConfirm-input'>Confirm Password</label>
+							<FormInput
+								type="password"
+								name='passwordConfirm'
+								value={passwordConfirm}
+								onChange={this.handleChange.bind(this)}
+								errors={errors.passwordConfirm}
+							/>
+						</div>
 
-					<div className='form-input'>
-						<label id='zip-input'>Zip</label>
-						<FormInput
-							type="text"
-							name='zip'
-							value={zip}
-							onChange={this.handleChange.bind(this)}
-							errors={errors.zip}
-						/>
-					</div>
+						<div className='form-input'>
+							<label id='zip-input'>Zip</label>
+							<FormInput
+								type="text"
+								name='zip'
+								value={zip}
+								onChange={this.handleChange.bind(this)}
+								errors={errors.zip}
+							/>
+						</div>
 
-					<div className= "button">
-						{this.renderButton()}
-					</div>
-				</form>
-			</div>
+						<div className= "button">
+							{this.renderButton()}
+						</div>
+					</form>
+				</div>
+			</div>	
 		)
 	}
 }

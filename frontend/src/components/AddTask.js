@@ -23,15 +23,6 @@ class AddTask extends Component {
 		}
 	}
 
-
-	getCurrentDate(){
-		var today = new Date(),
-		date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
-		this.setState({
-			dateStart: date
-		})
-	}
-
 	validateForm(form) {
 		let errors = {}
 
@@ -67,9 +58,8 @@ class AddTask extends Component {
 		let { listId } = this.props
 		const { form } = this.state
 
-		console.log("The thing I need", listId);
+		// console.log("The thing I need", listId);
 		e.preventDefault()
-		this.getCurrentDate()
 
 		if(Object.keys(this.state.errors).length > 0) {
 			return this.state.errors
@@ -78,7 +68,12 @@ class AddTask extends Component {
 			this.setState({
 				newTaskSuccess: true,
 			})
+			this.refreshTasks()
 		}
+	}
+
+	refreshTasks(){
+		this.props.refreshTasks()
 	}
 
 	render() {

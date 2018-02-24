@@ -4,7 +4,7 @@ import Tasks from './tasks'
 import User from './user'
 import Yelp from './yelp'
 
-const API = process.env.ENV === 'production' ? 'https://iala.herokuapp.com/api' : 'http://localhost:3000/api'
+const API = process.env.NODE_ENV === 'production' ? 'https://iala.herokuapp.com/api' : 'http://localhost:3000/api'
 
 export default function() {
 	return {
@@ -15,5 +15,3 @@ export default function() {
 		Yelp: new Yelp({base: API})
 	}
 }
-
-//"start": "concurrently \"cd backend && sequelize db:migrate && node index.js\" \"cd frontend && yarn install && yarn build\""

@@ -229,7 +229,7 @@ app.post('/api/list/:id/tasks', (req,res) => {
     })
 })
 
-//Updates tasks from task edit form
+//Updates tasks from task edit form NOT being used 
 app.put('/api/list/:id/tasks/:taskId', (req,res) => {
     Task.update({
 		where: {
@@ -259,7 +259,7 @@ app.put('/api/list/:id/tasks/:taskId', (req,res) => {
 })
 
 // updates complete or incomplete
-app.put('/list/:id/tasks/:taskId', (req,res) => {
+app.put('/api/list/:id/tasks/:taskId', (req,res) => {
     Task.update({
 		where: {
 			id: req.params.taskId,
@@ -293,7 +293,6 @@ app.delete('/api/tasks/:taskId', (req, res) =>{
 		return Task.findAll()
 	})
 	.then(tasks => {
-		console.log('hi');
 		res.json(tasks);
 	})
 	.catch((err) => {
@@ -314,10 +313,12 @@ app.get('/api/yelp/:search/:location', (req, res) => {
     client.search({
         term: req.params.search,
         location: req.params.location
-    }).then((response) => {
+    })
+	 .then((response) => {
     //return entire json object from yelp
       res.json(response.jsonBody)
-    }).catch(e => {
+    })
+	 .catch(e => {
         console.log(e)
     })
 })

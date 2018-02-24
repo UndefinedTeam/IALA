@@ -1,0 +1,553 @@
+/* Color Scheme:
+	#CAEBF2 - Blue
+	#A9A9A9 - Carbon
+	#FF3B3F - Watermelon
+	#EFEFEF - Neutral gray
+*/
+
+/* Styling for everything */
+* {
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	text-decoration: none !important;
+}
+
+/* IALA logo on the nav bar */
+.logo {
+	width: 80px;
+	height: 100px;
+	padding-bottom: 15px;
+	padding-top: 0
+}
+
+body {
+	background: linear-gradient(rgb(174,224,234),rgb(171,223,234));
+	height: 1200px;
+	background-size: 100%, 100%;
+	background-repeat: no-repeat;
+}
+
+.navbar-default {
+	border: none;
+}
+/* http://www.designlovefest.com/wp-content/plugins/download-monitor/download.php?id=93 possible other background */
+/* background styling */
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.home-container {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	width: 100%;
+	padding: 15px;
+}
+/* Welcome jumbotron on the main landing page */
+.jumbotron {
+	justify-content: space-around;
+	border-radius: 4px;
+	background-color: #CAEBF2;
+	text-align: left;
+	margin-top: 7%;
+	padding: 15px;
+}
+
+.jumbo-button {
+	border: 2px hidden black;
+	border-radius: 4px;
+	padding: 10px;
+	background-color: #FF3B3F;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	color: black;
+	font-family: 'Roboto', sans-serif;
+}
+
+.jumbo-button:hover {
+	background-color: #e53538;
+	color: #EFEFEF;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.jumbotron > p {
+	font-weight: 500;
+}
+
+.jumbotron > .home-list {
+	list-style: initial;
+}
+
+.headerlink {
+	margin: 2%;
+}
+
+.headerlink > a {
+	padding: 0 10px 0 10px;
+	font-size: 16px;
+}
+
+.navbar-default {
+	background-color: #c2edf4;
+	font-size: 20px;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+	border-color: #e6e4d3;
+}
+/* Makes space between the jumbotron and nav */
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+	margin-bottom: 15px;
+	padding: inherit;
+}
+
+.list-panel {
+	background-color: #ebf7fa;
+}
+
+.panel-default {
+	border-color: #A9A9A9;
+}
+
+.panel-default >.panel-heading {
+	background-color: #d4d4d4;
+	border-color: #A9A9A9;
+}
+
+/* yelp search area stuff */
+.vendorResults {
+	display: flex;
+	justify-content: center;
+	margin-top: 4%;
+	padding: 0, 15px;
+	background-color: white;
+	border-radius: 25px;
+	border: 2px solid #2c3f54;
+	padding: 20px;
+	width: 50%;
+	box-shadow: 0 4px 15px 0 rgba(0,0,0,0.7);
+}
+/* featured vendor text */
+#labels {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 2%;
+}
+/* featured todo list text */
+#features {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.yelpLogo{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 150px;
+}
+
+.yelp-inputs {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 95px;
+}
+
+.yelpTextField {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 5%;
+	width: 50%;
+}
+.search-button {
+	margin: 2%;
+}
+
+/* featured todolist box */
+.feat-list {
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	height: auto;
+}
+/* featured todo list img */
+.feat-list > img {
+	width: 400px;
+	height: 270px;
+	padding: 15px;
+	background-color: #CAEBF2;
+	width: 350px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+}
+/* featured vendor box */
+.feat-vendor {
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	height: auto;
+}
+/* featured vendor img */
+.feat-vendor > img {
+	width: 400px;
+	height: 270px;
+	padding: 15px;
+	background-color: #CAEBF2;
+	width: 350px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+}
+
+/* registration actual form inputs */
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border: 2px solid #CAEBF2;
+	border-radius: 4px;
+	background-color: #CAEBF2;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding: 10px;
+	width: 50%;
+}
+
+form > h3 {
+	text-align: center;
+}
+
+.form-align {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+/* registration form container */
+.form-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 70%;
+	margin-top: 8%;
+}
+
+.form-input {
+	margin: 15px;
+}
+
+.form-input.has-error > input {
+	border: 2px solid #dc0005;
+	background-color: #ffbec0;
+}
+
+.help-block {
+	color: #dc0005;
+	text-align: center;
+}
+
+.button-front {
+	display: flex;
+	justify-content: flex-start;
+	align-content: center;
+	padding: 5px;
+}
+
+.button {
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	padding: 5px;
+}
+/* buttons for th register and log in forms */
+.button-submit {
+	width: 70%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #e53538;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+/* submit hover button for the register and log in forms */
+.button-submit:hover {
+	width: 70%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #A9A9A9 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+.panel-success>.panel-heading {
+	color: #000;
+	background-color: #CAEBF2;
+	border-color: #CAEBF2;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding: 10px;
+}
+
+.panel-success>.panel-heading+.panel-collapse>.panel-body {
+	border-top-color: #000;
+	background-color: #EFEFEF;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+	padding: 10px;
+}
+
+input {
+	padding: 5px;
+	width: 100%;
+	border: 1px inset;
+	border-radius: 4px;
+	background-color: #EFEFEF;
+}
+
+input[type=text]:focus {
+	background-color: #EFEFEF;
+}
+
+
+h1 {
+	font-family: 'Patua One', cursive;
+	color: #2e4053;
+	text-shadow: 2px 5px 18px #EFEFEF;
+}
+
+h2 {
+	font-size: 50px;
+	text-align: center;
+	color: #2e4053;
+	padding-top: 15px;
+}
+
+h3 {
+	padding: 10px;
+	margin: 0;
+}
+
+h5 {
+	text-align: center;
+	color: #2e4053;
+	padding-top: 5px;
+}
+
+p {
+	font-size: 35px;
+	padding: auto;
+	margin: auto;
+}
+
+label {
+	padding: 0;
+	margin: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+p, li {
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	padding: auto;
+	margin: auto;
+}
+
+.footer {
+	width: 100%;
+}
+
+.dash-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin-top: 2%;
+}
+
+.userList-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	margin: 3%;
+}
+
+.panel-body {
+	display: flex;
+	flex-direction: column;
+}
+
+.task-display {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 50%;
+	height: 100px;
+	margin: 2%;
+	border: 1px solid #A9A9A9;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.table-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.list-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.list-type {
+	margin: 1%;
+}
+
+.list-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 10%;
+	height: 60px;
+	padding: 10px;
+	font-weight: normal;
+}
+
+.button-task {
+	margin: 1%;
+	width: 55%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #e53538 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+.button-grp-tasks {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	height: 40px;
+	width: 30%;
+	margin: 1%;
+}
+
+.button-task:hover {
+	width: 55%;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #A9A9A9 ;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+.button-task-complete {
+	margin: 1%;
+	width: 30%;
+	height: 40px;
+	border: 2px hidden;
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #328332;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	color: black;
+}
+
+.task-stuff {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	margin: 0% 2% 2% 2%;
+}
+
+.task-stuff > h3 {
+	margin-top: 5%
+}
+
+.create-task {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 50%;
+}
+
+.create-task > .form-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.space {
+	margin: 2%;
+}
+
+.dash-components {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.addList-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 50%;
+}
+
+.addList-container > .form-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.addList-container > .form-container > form {
+	width: 90%;
+}
+
+
+table {
+	margin-top: 1%;
+}
+
+th {
+	font-weight: bold;
+	font-size: 20px;
+	padding: 3px;
+	text-align: center;
+}
+
+td {
+	padding: 10px;
+	width: 10%;
+	vertical-align: center;
+	text-align: center;
+}
+
+#bar {
+	margin: 2%;
+	width: 95%;
+}
+
+.navbar-default {
+	background-color: #CAEBF2;
+	overflow: hidden;
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	width: 100%; /* Full width */
+}

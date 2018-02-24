@@ -7,7 +7,6 @@ import AddTask from './AddTask';
 
 const { Tasks, Lists } = api()
 
-
 class UserLists extends Component {
 	constructor(props) {
 		super(props)
@@ -54,43 +53,53 @@ class UserLists extends Component {
 		})
 	}
 
-	// handleComplete(listID, taskID, complete){
-	// 	let markComplete
-    //
-	// 	if (complete === false){
-	// 		markComplete = true
-	// 		Tasks.update(listID, taskID, markComplete)
-	// 	} else {
-	// 		markComplete = false
-	// 		updateTask(listID, taskID, markComplete)
-	// 	}
-    //
-	// }
-    // onClick={this.handleComplete(listID, taskID, complete).bind(this)}
+// Not working! Yet
+	handleComplete(e){
+		let clicked
+		if (e){
+			clicked = true
+		} else {
+			clicked = false
+		}
+		return clicked
+	}
 
-	renderComplete(listID, taskID, complete){
-		if(complete === true){
+// Not working! Yet
+	renderComplete(clicked){
+
+		if(clicked === true){
 			return (
-				<button className="button-task-completed">
+				<button
+					className="button-task-completed"
+					onClick={this.handleComplete.bind(this)}
+				>
 					Completed
 				</button>
 			)
 		} else {
 			return (
-				<button className="button-task">
+				<button
+					className="button-task"
+					onClick={this.handleComplete.bind(this)}
+				>
 					Incomplete
 				</button>
 			)
 		}
 	}
 
+
 	removeList(id){
-		console.log("gone");
 		Lists.delete(id)
-		this.refreshLists()
+		this.refreshPage()
 	}
 
-	refreshLists(){
+	removeTask(id){
+		Tasks.delete(id)
+		this.refreshPage()
+	}
+
+	refreshPage(){
 		this.props.refreshLists()
 	}
 
@@ -114,15 +123,12 @@ class UserLists extends Component {
 					<h2> {user.name} &rsquo;s Lists</h2>
 
 						{lists.map((list) => (
-							<Panel key={list.id} bsStyle="success" id="collapsible-panel">
+							<Panel key={list.id} id="collapsible-panel">
 								<Panel.Heading>
 									<Panel.Title toggle componentClass="h3">
 									<div className="list-header">
 										<h3>{list.title}</h3>
 										<div className="list-buttons">
-											<button className="button-submit space">
-												Edit List
-											</button>
 											<button
 												className="button-submit space"
 												onClick={this.removeList.bind(this, list.id)}
@@ -134,66 +140,70 @@ class UserLists extends Component {
 									</Panel.Title>
 								</Panel.Heading>
 								<Panel.Collapse>
-									<Panel.Body>
+									<Panel.Body className="list-panel">
 										<div className="list-type">
 											<h4><strong>List Type: </strong>{list.type}</h4>
 										</div>
-										{!tasks[list.id] ? (
-											<p>Loading ...</p>
-										) : (
-												tasks[list.id].map((task) => (
-													<div className="task-display">
-														<div className="table container">
-															<table key={list.id}>
-															  <thead>
-																<tr>
-																	<th>Task</th>
-																	<th>Description</th>
-																	<th>Is Complete</th>
-																</tr>
-															  </thead>
-															  <tbody>
-																<tr>
-																	<td>{task.task}</td>
-																	<td>{task.desc}</td>
-																	<td>
-																		{this.renderComplete(list.id, task.id, task.isComplete)}
-																	</td>
-																</tr>
-															  </tbody>
-															</table>
-														</div>
-														<div className="button-grp-tasks">
-															<button className="button-task">
-																Edit Task
-															</button>
+										<div className="task-stuff">
+											{!tasks[list.id] ? (
+												<h3>Loading ...</h3>
+											) : (
+													tasks[list.id].map((task) => (
+														<div className="task-display">
+															<div className="table container">
+																<table key={list.id}>
+																  <thead>
+																	<tr>
+																		<th>Task</th>
+																		<th>Description</th>
+																		<th>Is Complete</th>
+																	</tr>
+																  </thead>
+																  <tbody>
+																	<tr>
+																		<td>{task.task}</td>
+																		<td>{task.desc}</td>
+																		<td>
+																			{this.renderComplete()}
+																		</td>
+																	</tr>
+																  </tbody>
+																</table>
+															</div>
+															<div className="button-grp-tasks">
 
-															<button className="button-task">
-																Delete Task
-															</button>
+																<button
+																	className="button-task" onClick={this.removeTask.bind(this, task.id)}
+																>
+																	Delete Task
+																</button>
+															</div>
 														</div>
-													</div>
-												))
-											)
-										}
-										<div className="create-task">
-											<AddTask listId={list.id}/>
+													))
+												)
+											}
+											<div className="create-task">
+												<AddTask
+													listId={list.id}
+													refreshTasks={this.refreshPage.bind(this)}
+												/>
+											</div>
 										</div>
-									</Panel.Body>
-								</Panel.Collapse>
-							</Panel>
-							))
-						}
+										</Panel.Body>
+									</Panel.Collapse>
+								</Panel>
+								))
+							}
 				</div>
-				<div className="stuff">
+				<div className="dash-components">
 					<div className="addList-container">
 						<AddList userId={user.id} getTasks={this.getTasks.bind(this)}
-						refreshLists={this.refreshLists.bind(this)}/>
+						refreshLists={this.refreshPage.bind(this)}/>
 					</div>
 					<div className="vendorResults">
 						<VendorSearch lists={lists}/>
 					</div>
-			</div>
+				</div>
 			</div>
 		)
 	}
