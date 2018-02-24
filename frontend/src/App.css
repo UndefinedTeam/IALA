@@ -475,6 +475,11 @@ p, li {
 	width: 100%;
 	margin: 0% 2% 2% 2%;
 }
+
+.task-stuff > h3 {
+	margin-top: 5%
+}
+
 .create-task {
 	display: flex;
 	flex-direction: row;

@@ -146,7 +146,7 @@ class UserLists extends Component {
 										</div>
 										<div className="task-stuff">
 											{!tasks[list.id] ? (
-												<p>Loading ...</p>
+												<h3>Loading ...</h3>
 											) : (
 													tasks[list.id].map((task) => (
 														<div className="task-display">
