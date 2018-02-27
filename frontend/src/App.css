@@ -270,7 +270,7 @@ form > h3 {
 }
 /* buttons for th register and log in forms */
 .button-submit {
-	width: 70%;
+	width: 90%;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -280,7 +280,7 @@ form > h3 {
 }
 /* submit hover button for the register and log in forms */
 .button-submit:hover {
-	width: 70%;
+	width: 90%;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
@@ -428,7 +428,7 @@ p, li {
 
 .button-task {
 	margin: 1%;
-	width: 55%;
+	width: 70%;
 	border: 2px hidden;
 	border-radius: 4px;
 	padding: 5px;
