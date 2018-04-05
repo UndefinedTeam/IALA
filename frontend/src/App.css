@@ -7,10 +7,10 @@
 
 /* IALA logo on the nav bar */
 .logo {
-	width: 80px;
-	height: 100px;
-	padding-bottom: 15px;
-	padding-top: 0
+	width: 8rem;
+	height: 10rem;
+	padding-bottom: 1.5rem;
+	padding-top: 0;
 }
 
 body {
@@ -41,24 +41,24 @@ body {
 	flex-direction: column;
 	align-content: center;
 	width: 100%;
-	padding: 15px;
+	padding: 1.5rem;
 }
 /* Welcome jumbotron on the main landing page */
 .jumbotron {
 	justify-content: space-around;
-	border-radius: 4px;
+	border-radius: .4rem;
 	background-color: #CAEBF2;
 	text-align: left;
 	margin-top: 7%;
-	padding: 15px;
+	padding: 1.5rem;
 }
 
 .jumbo-button {
 	border: 2px hidden black;
-	border-radius: 4px;
-	padding: 10px;
+	border-radius: .4rem;
+	padding: 1rem;
 	background-color: #FF3B3F;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.5);
 	color: black;
 	font-family: 'Roboto', sans-serif;
 }
@@ -66,8 +66,8 @@ body {
 .jumbo-button:hover {
 	background-color: #e53538;
 	color: #EFEFEF;
-	padding: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	padding: 1rem;
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.5);
 	transition: all .2s;
 }
 
@@ -76,7 +76,7 @@ body {
 }
 
 .jumbotron > .home-list {
-	margin-left: 20px;
+	margin-left: 2rem;
 	list-style: initial;
 }
 
@@ -85,24 +85,24 @@ body {
 }
 
 .headerlink > a {
-	padding: 0 10px 0 10px;
-	font-size: 16px;
+	padding: 0 1rem;
+	font-size: 1.6rem;
 	text-decoration: none;
 }
 
 .navbar-default {
 	background-color: #c2edf4;
-	font-size: 20px;
+	font-size: 2rem;
 	overflow: hidden;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 .2rem 1rem 0 rgba(0,0,0,0.2);
 	border-color: #e6e4d3;
 }
 /* Makes space between the jumbotron and nav */
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-	margin-bottom: 15px;
+	margin-bottom: 1.5rem;
 	padding: inherit;
 }
 
@@ -124,13 +124,13 @@ body {
 	display: flex;
 	justify-content: center;
 	margin-top: 4%;
-	padding: 0, 15px;
+	padding: 0, 1.5rem;
 	background-color: white;
-	border-radius: 25px;
+	border-radius: 2.5rem;
 	border: 2px solid #2c3f54;
-	padding: 20px;
+	padding: 2rem;
 	width: 50%;
-	box-shadow: 0 4px 15px 0 rgba(0,0,0,0.7);
+	box-shadow: 0 .4rem 1.5rem 0 rgba(0,0,0,0.7);
 }
 /* featured vendor text */
 #labels {
@@ -151,14 +151,14 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	height: 150px;
+	height: 15rem;
 }
 
 .yelp-inputs {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	height: 95px;
+	height: 9.5rem;
 }
 
 .yelpTextField {
@@ -181,12 +181,12 @@ body {
 }
 /* featured todo list img */
 .feat-list > img {
-	width: 400px;
-	height: 270px;
-	padding: 15px;
+	width: 40rem;
+	height: 27rem;
+	padding: 1.5rem;
 	background-color: #CAEBF2;
-	width: 350px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 35rem;
+	box-shadow: 0 .4rem .8rem 0 rgba(0, 0, 0, 0.2), 0 .6rem 2rem 0 rgba(0, 0, 0, 0.19);
 	text-align: center;
 }
 /* featured vendor box */
@@ -198,12 +198,12 @@ body {
 }
 /* featured vendor img */
 .feat-vendor > img {
-	width: 400px;
-	height: 270px;
-	padding: 15px;
+	width: 40rem;
+	height: 27rem;
+	padding: 1.5rem;
 	background-color: #CAEBF2;
-	width: 350px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 35rem;
+	box-shadow: 0 .4rem .8rem 0 rgba(0, 0, 0, 0.2), 0 .6rem 2rem 0 rgba(0, 0, 0, 0.19);
 	text-align: center;
 }
 
@@ -213,10 +213,10 @@ form {
 	flex-direction: column;
 	justify-content: space-around;
 	border: 2px solid #CAEBF2;
-	border-radius: 4px;
+	border-radius: .4rem;
 	background-color: #CAEBF2;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	padding: 10px;
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
+	padding: 1rem;
 	width: 50%;
 }
 
@@ -241,7 +241,7 @@ form > h3 {
 }
 
 .form-input {
-	margin: 15px;
+	margin: 1.5rem;
 }
 
 .form-input.has-error > input {
@@ -258,34 +258,34 @@ form > h3 {
 	display: flex;
 	justify-content: flex-start;
 	align-content: center;
-	padding: 5px;
+	padding: .5rem;
 }
 
 .button {
-	font-size: 20px;
+	font-size: 2rem;
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	padding: 5px;
+	padding: .5rem;
 }
 /* buttons for th register and log in forms */
 .button-submit {
 	width: 90%;
 	border: 2px hidden;
-	border-radius: 4px;
-	padding: 5px;
+	border-radius: .4rem;
+	padding: .5rem;
 	background-color: #e53538;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 	color: black;
 }
 /* submit hover button for the register and log in forms */
 .button-submit:hover {
 	width: 90%;
 	border: 2px hidden;
-	border-radius: 4px;
-	padding: 5px;
+	border-radius: .4rem;
+	padding: .5rem;
 	background-color: #A9A9A9 ;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 	color: black;
 	transition: all .2s;
 }
@@ -294,22 +294,22 @@ form > h3 {
 	color: #000;
 	background-color: #CAEBF2;
 	border-color: #CAEBF2;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	padding: 10px;
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
+	padding: 1rem;
 }
 
 .panel-success>.panel-heading+.panel-collapse>.panel-body {
 	border-top-color: #000;
 	background-color: #EFEFEF;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
-	padding: 10px;
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4);
+	padding: 1rem;
 }
 
 input {
-	padding: 5px;
+	padding: .5rem;
 	width: 100%;
 	border: 1px inset;
-	border-radius: 4px;
+	border-radius: .4rem;
 	background-color: #EFEFEF;
 }
 
@@ -321,29 +321,29 @@ input[type=text]:focus {
 h1 {
 	font-family: 'Patua One', cursive;
 	color: #2e4053;
-	text-shadow: 2px 5px 18px #EFEFEF;
+	text-shadow: .2rem .5rem 1.8rem #EFEFEF;
 }
 
 h2 {
-	font-size: 50px;
+	font-size: 5rem;
 	text-align: center;
 	color: #2e4053;
-	padding-top: 15px;
+	padding-top: 1.5rem;
 }
 
 h3 {
-	padding: 10px;
+	padding: 1rem;
 	margin: 0;
 }
 
 h5 {
 	text-align: center;
 	color: #2e4053;
-	padding-top: 5px;
+	padding-top: .5rem;
 }
 
 p {
-	font-size: 35px;
+	font-size: 3.5rem;
 	padding: auto;
 	margin: auto;
 }
@@ -359,7 +359,7 @@ ul {
 
 p, li {
 	font-family: 'Roboto', sans-serif;
-	font-size: 15px;
+	font-size: 1.5rem;
 	padding: auto;
 	margin: auto;
 }
@@ -394,11 +394,11 @@ p, li {
 	flex-direction: row;
 	justify-content: center;
 	width: 50%;
-	height: 100px;
+	height: 10rem;
 	margin: 2%;
 	border: 1px solid #A9A9A9;
-	border-radius: 4px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	border-radius: .4rem;
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 }
 
 .table-container {
@@ -422,8 +422,8 @@ p, li {
 	flex-direction: row;
 	justify-content: flex-end;
 	width: 10%;
-	height: 60px;
-	padding: 10px;
+	height: 6rem;
+	padding: 1rem;
 	font-weight: normal;
 }
 
@@ -431,10 +431,10 @@ p, li {
 	margin: 1%;
 	width: 70%;
 	border: 2px hidden;
-	border-radius: 4px;
-	padding: 5px;
+	border-radius: .4rem;
+	padding: .5rem;
 	background-color: #e53538 ;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 	color: black;
 }
 
@@ -442,7 +442,7 @@ p, li {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	height: 40px;
+	height: 4rem;
 	width: 30%;
 	margin: 1%;
 }
@@ -450,10 +450,10 @@ p, li {
 .button-task:hover {
 	width: 55%;
 	border: 2px hidden;
-	border-radius: 4px;
-	padding: 5px;
+	border-radius: .4rem;
+	padding: .5rem;
 	background-color: #A9A9A9 ;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 	color: black;
 	transition: all .2s;
 }
@@ -461,12 +461,12 @@ p, li {
 .button-task-complete {
 	margin: 1%;
 	width: 30%;
-	height: 40px;
+	height: 4rem;
 	border: 2px hidden;
-	border-radius: 4px;
-	padding: 5px;
+	border-radius: .4rem;
+	padding: .5rem;
 	background-color: #328332;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 	color: black;
 }
 
@@ -529,13 +529,13 @@ table {
 
 th {
 	font-weight: bold;
-	font-size: 20px;
-	padding: 3px;
+	font-size: 2rem;
+	padding: .3rem;
 	text-align: center;
 }
 
 td {
-	padding: 10px;
+	padding: 1rem;
 	width: 10%;
 	vertical-align: center;
 	text-align: center;

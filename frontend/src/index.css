@@ -4,3 +4,8 @@
 	margin: 0;
 	padding: 0;
 }
+
+html {
+	// This defines what 1 rem is
+	font-size: 62.5%;
+}
