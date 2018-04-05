@@ -5,13 +5,6 @@
 	#EFEFEF - Neutral gray
 */
 
-/* Styling for everything */
-* {
-	margin: 0;
-	font-family: 'Roboto', sans-serif;
-	text-decoration: none !important;
-}
-
 /* IALA logo on the nav bar */
 .logo {
 	width: 80px;
@@ -21,9 +14,13 @@
 }
 
 body {
-	background: linear-gradient(rgb(174,224,234),rgb(171,223,234));
-	height: 1200px;
-	background-size: 100%, 100%;
+	font-family: 'Roboto', sans-serif;
+}
+
+.background {
+	background: linear-gradient(to right bottom, rgb(174,224,234),rgb(171,223,234));
+	height: 150vh;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 
@@ -71,6 +68,7 @@ body {
 	color: #EFEFEF;
 	padding: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	transition: all .2s;
 }
 
 .jumbotron > p {
@@ -78,6 +76,7 @@ body {
 }
 
 .jumbotron > .home-list {
+	margin-left: 20px;
 	list-style: initial;
 }
 
@@ -88,6 +87,7 @@ body {
 .headerlink > a {
 	padding: 0 10px 0 10px;
 	font-size: 16px;
+	text-decoration: none;
 }
 
 .navbar-default {
@@ -287,6 +287,7 @@ form > h3 {
 	background-color: #A9A9A9 ;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	color: black;
+	transition: all .2s;
 }
 
 .panel-success>.panel-heading {
@@ -454,6 +455,7 @@ p, li {
 	background-color: #A9A9A9 ;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 	color: black;
+	transition: all .2s;
 }
 
 .button-task-complete {
